@@ -1,295 +1,37 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
+{% extends '_layout.swig' %}
+{% import '_macro/post.swig' as post_template %}
+{% import '_macro/sidebar.swig' as sidebar_template %}
 
-  
-  <title>yolo训练日志 | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="yolo训练日志通过两天的训练,得到训练后的权值,效果有喜有忧.  数据量的大小对训练的影响. 第一次训练的图片约为6000张 第一次训练的图片约为94000张 迭代次数为120000次 准确度是否与数据集大小成正相关? 但是效果却不明显.  参数设置对训练的影响 net 12345678910111213141516171819202122232425262728293031323334# ba">
-<meta property="og:type" content="article">
-<meta property="og:title" content="yolo训练日志">
-<meta property="og:url" content="http://example.com/2017/12/21/yolo%E8%AE%AD%E7%BB%83%E6%97%A5%E5%BF%97/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="yolo训练日志通过两天的训练,得到训练后的权值,效果有喜有忧.  数据量的大小对训练的影响. 第一次训练的图片约为6000张 第一次训练的图片约为94000张 迭代次数为120000次 准确度是否与数据集大小成正相关? 但是效果却不明显.  参数设置对训练的影响 net 12345678910111213141516171819202122232425262728293031323334# ba">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2017-12-21T13:22:04.000Z">
-<meta property="article:modified_time" content="2020-10-10T01:15:14.810Z">
-<meta property="article:author" content="John Doe">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
 
-<meta name="generator" content="Hexo 5.2.0"></head>
+{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-yolo训练日志" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/12/21/yolo%E8%AE%AD%E7%BB%83%E6%97%A5%E5%BF%97/" class="article-date">
-  <time datetime="2017-12-21T13:22:04.000Z" itemprop="datePublished">2017-12-21</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
-  </div>
+{% block page_class %}page-post-detail{% endblock %}
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      yolo训练日志
-    </h1>
-  
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="yolo训练日志"><a href="#yolo训练日志" class="headerlink" title="yolo训练日志"></a>yolo训练日志</h2><p>通过两天的训练,得到训练后的权值,效果有喜有忧.</p>
-<ol>
-<li><p>数据量的大小对训练的影响.</p>
-<p>第一次训练的图片约为6000张</p>
-<p>第一次训练的图片约为94000张</p>
-<p>迭代次数为120000次</p>
-<p>准确度是否与数据集大小成正相关?</p>
-<p>但是效果却不明显.</p>
-</li>
-<li><p>参数设置对训练的影响</p>
-<p>net</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> batch：每次迭代要进行训练的图片数量</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> subdivisions：源码中的图片数量int imgs = net.batch * net.subdivisions * ngpus，按subdivisions大小分批进行训练 </span></span><br><span class="line">batch=64      </span><br><span class="line">subdivisions=8</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> width：输入图片宽度， height：输入图片高度，channels ：输入图片通道数</span></span><br><span class="line">width=416</span><br><span class="line">height=416</span><br><span class="line">channels=3</span><br><span class="line"></span><br><span class="line">momentum=0.9</span><br><span class="line">decay=0.0005</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 对于每次迭代训练，YOLOv2会基于角度(angle)，饱和度(saturation)，曝光(exposure)，色调(hue)产生新的训练图片</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> angle：图片角度变化，单位为度，假如angle=5，就是生成新图片的时候随机旋转-5~5度 </span></span><br><span class="line">angle=0</span><br><span class="line"><span class="meta">#</span><span class="bash"> saturation &amp; exposure: 饱和度与曝光变化大小，tiny-yolo-voc.cfg中1到1.5倍，以及1/1.5~1倍 </span></span><br><span class="line">saturation = 1.5</span><br><span class="line">exposure = 1.5</span><br><span class="line"><span class="meta">#</span><span class="bash"> hue：色调变化范围，tiny-yolo-voc.cfg中-0.1~0.1 </span></span><br><span class="line">hue=.1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 学习率</span></span><br><span class="line">learning_rate=0.001</span><br><span class="line"><span class="meta">#</span><span class="bash"> max_batches：最大迭代次数 </span></span><br><span class="line">max_batches = 120000</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 按照steps策略调整学习率，还有EXP，CONSTANT，POLY等</span></span><br><span class="line">policy=steps</span><br><span class="line"><span class="meta">#</span><span class="bash"> 根据batch_num调整学习率</span></span><br><span class="line">steps= -1,100,80000,100000</span><br><span class="line"><span class="meta">#</span><span class="bash"> 学习率变化的比例，累计相乘</span></span><br><span class="line">scales=.1,10,.1,.1</span><br></pre></td></tr></table></figure>
+{% block content %}
 
-<p>convolution</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">batch_normalize=1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">卷积核的个数  </span></span><br><span class="line">filters=512</span><br><span class="line"></span><br><span class="line">size=3</span><br><span class="line">stride=1</span><br><span class="line">pad=1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">leaky激活函数，大于0的为x,小于0的为0  </span></span><br><span class="line">activation=leaky </span><br></pre></td></tr></table></figure>
+  <div id="posts" class="posts-expand">
+    {{ post_template.render(page) }}
 
-<p>max pool</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">size=2</span><br><span class="line">stride=1</span><br></pre></td></tr></table></figure>
-
-<p>region</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> anchors：预测框的初始宽高，第一个是w，第二个是h，总数量是num*2，</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> YOLOv2作者说anchors是使用K-MEANS获得，其实就是计算出哪种类型的框比较多，可以增加收敛速度，</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 如果不设置anchors，默认是0.5，还有就是anchors读入参数中名字是biases </span></span><br><span class="line">anchors = 0.738768,0.874946,  2.42204,2.65704,  4.30971,7.04493,  10.246,4.59428,  12.6868,11.8741</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">在YOLOv2中anchors的维度是通过对GT聚类得到的，所给出的5个尺度肯定是适用于VOC2007 2012数据集的，如果借鉴的网络训练自己的数据，就需要更改这个anchor的尺度，anchor的个数当然是越多越好，兼顾效率和精度，作者选了5个，对于小目标这个没有直接的关系，希望能帮到你。</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> bias_match：如果为1，计算best iou时，预测宽高强制与anchors一致 </span></span><br><span class="line">bias_match=1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> classes：类别数量</span></span><br><span class="line">classes=98</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> coords： BoundingBox的tx,ty,tw,th，tx与ty是相对于左上角的gird，</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 同时是当前grid的比例，tw与th是宽度与高度取对数 </span></span><br><span class="line">coords=4</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> num：每个grid预测的BoundingBox个数 </span></span><br><span class="line">num=5</span><br><span class="line"><span class="meta">#</span><span class="bash"> softmax：如果为1，使用softmax作为激活函数</span></span><br><span class="line">softmax=1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> jitter：利用数据抖动产生更多数据，YOLOv2中使用的是crop，filp，以及net层的angle，flip是随机的</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> crop就是jitter的参数，tiny-yolo-voc.cfg中jitter=.2，就是在0~0.2中进行crop</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 通过抖动增加噪声，控制过拟合</span></span><br><span class="line">jitter=.2</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> rescore：决定使用哪种方式计算IOU的误差，为1时，使用当前best iou计算，为0时，使用1计算</span></span><br><span class="line">rescore=1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> object_scale &amp; noobject_scale &amp; class_scale &amp; coord_scale</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> YOLOv1论文中cost <span class="keyword">function</span>的权重，哪一个更大，每一次更新权重的时候，对应方面的权重更新相对比重更大</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 计算损失时，预测框中有物体的权重</span></span><br><span class="line">object_scale=5</span><br><span class="line"><span class="meta">#</span><span class="bash"> 计算损失时，预测框中没有物体的权重</span></span><br><span class="line">noobject_scale=1</span><br><span class="line"><span class="meta">#</span><span class="bash"> 计算类别损失时的权重</span></span><br><span class="line">class_scale=1</span><br><span class="line"><span class="meta">#</span><span class="bash"> 计算损失时坐标偏差的权重</span></span><br><span class="line">coord_scale=1</span><br><span class="line"></span><br><span class="line">absolute=1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> thresh：决定是否需要计算IOU误差的参数，大于thresh，IOU误差不会夹在cost <span class="keyword">function</span>中 </span></span><br><span class="line">thresh = .6</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> random：如果为1每次迭代图片大小随机从320到608，步长为32，如果为0，每次训练大小与输入大小一致</span></span><br><span class="line">random=1</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>输出结果分析</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Loaded: 0.000029 seconds</span><br><span class="line">Region Avg IOU: 0.776567, Class: 0.999925, Obj: 0.418946, No Obj: 0.000931, Avg Recall: 1.000000,  count: 8</span><br><span class="line">...</span><br><span class="line">119999: 6.035534, 6.783708 avg, 0.000010 rate, 2.310784 seconds, 7679936 images</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Region Avg IOU： 这个是预测出的bbox和实际标注的bbox的交集 除以 他们的并集。显然，这个数值越大，说明预测的结果越好。</li>
-<li>Avg Recall： 这个表示平均召回率， 意思是 检测出物体的个数 除以 标注的所有物体个数。</li>
-<li>count： 标注的所有物体的个数。 如果 count = 6， recall = 0.66667， 就是表示一共有6个物体（可能包含不同类别，这个不管类别），然后我预测出来了4个，所以Recall 就是 4 除以 6 = 0.66667 。</li>
-</ul>
-<p>11999</p>
-<ul>
-<li><code>11999</code>是~次数，<code>6.035534</code>是<code>train loss</code>，<code>6.783708 avg</code>是<code>avg train loss</code>，<code>0.000010 rate</code>是学习率， <code>2.310784 seconds</code>是 batch的处理时间， 最后是已经一共处理了多少张图片。</li>
-<li>重点关注 train loss 和avg train loss，这两个值应该是随着iteration增加而逐渐降低的。</li>
-<li>如果loss增大到几百那就是训练发散了，如果loss在一段时间不变，就需要降低learning rate或者改变batch来加强学习效果。</li>
-</ul>
-</li>
-<li><p>如何处理呢</p>
-<ul>
-<li>找到 loss的极值点</li>
-<li>多训练个几万次</li>
-<li>迷茫中…..</li>
-</ul>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><blockquote>
-<p><a target="_blank" rel="noopener" href="http://blog.csdn.net/Fate_fjh/article/details/70598510">http://blog.csdn.net/Fate_fjh/article/details/70598510</a></p>
-<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/hansjorn/p/7491391.html">http://www.cnblogs.com/hansjorn/p/7491391.html</a></p>
-<p>训练自己的数据集时 修改参数和代码</p>
-<p><a target="_blank" rel="noopener" href="http://blog.csdn.net/q6324266/article/details/54375452">http://blog.csdn.net/q6324266/article/details/54375452</a></p>
-<p><a target="_blank" rel="noopener" href="http://blog.csdn.net/hysteric314/article/details/54097845">http://blog.csdn.net/hysteric314/article/details/54097845</a></p>
-</blockquote>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2017/12/21/yolo%E8%AE%AD%E7%BB%83%E6%97%A5%E5%BF%97/" data-id="ckg2zlojg00c2cq9k61h09w5o" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2017/12/22/ssd%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          SSD安装指南
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/12/20/cudnn-installation-in-linux/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">cudnn Installation in Linux</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DAC-SDC/">DAC-SDC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GPGPU/">GPGPU</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/es310/">es310</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E4%B8%AD%E5%BF%83%E6%A0%A1%E5%8C%BA/">中心校区</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E6%8B%9B%E8%81%98/">招聘</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E7%A0%94%E7%A9%B6%E7%94%9F/">研究生</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E7%A0%94%E7%A9%B6%E7%94%9F/%E8%BD%AF%E4%BB%B6%E5%9B%AD/">软件园</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E8%BD%AF%E4%BB%B6%E5%9B%AD/">软件园</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/gpu-computing/">gpu-computing</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/gpu-computing/GPGPU-Sim-Notes/">GPGPU-Sim Notes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/gpu-computing/GPU-PTX-ISA-Analysis/">GPU PTX ISA Analysis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/gpu-computing/Jetson-TX1-2/">Jetson TX1-2</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/C-C/">C/C++</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/C-C/CUDA-Programming/">CUDA Programming</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/CUDA-Programming/">CUDA Programming</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/Perl/">Perl</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/Python/">Python</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/tools/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E7%BB%B4%E6%8A%A4/">系统管理维护</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/uncategorized/">uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E6%AC%B2%E5%96%84%E5%85%B6%E4%BA%8B%E5%BF%85%E5%85%88%E5%88%A9%E5%85%B6%E5%99%A8/">工欲善其事必先利其器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E6%89%AF%E6%B7%A1/">日常扯淡</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F/">程序人生</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%80%9A%E7%94%A8%E7%BC%96%E8%AF%91%E6%8A%80%E6%9C%AF/">通用编译技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/">驱动安装</a></li></ul>
+    <div class="post-spread">
+      {% if theme.jiathis %}
+        {% include '_partials/share/jiathis.swig' %}
+      {% elseif theme.baidushare %}
+        {% include '_partials/share/baidushare.swig' %}
+      {% elseif theme.add_this_id %}
+        {% include '_partials/share/add-this.swig' %}
+      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
+        {% include '_partials/share/duoshuo_share.swig' %}
+      {% endif %}
     </div>
   </div>
 
+{% endblock %}
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/310/" rel="tag">310</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/" rel="tag">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CUDA/" rel="tag">CUDA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cache/" rel="tag">Cache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Caffe/" rel="tag">Caffe</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Faster-rcnn/" rel="tag">Faster rcnn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GOTURN/" rel="tag">GOTURN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GPGPU-Sim/" rel="tag">GPGPU-Sim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GPU/" rel="tag">GPU</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jetson/" rel="tag">Jetson</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PTX-ISA/" rel="tag">PTX ISA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSD-Caffe/" rel="tag">SSD-Caffe</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deeplearning/" rel="tag">deeplearning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/latex/" rel="tag">latex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/perl/" rel="tag">perl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/profiling/" rel="tag">profiling</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tx1/" rel="tag">tx1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tx2/" rel="tag">tx2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/voc2007/" rel="tag">voc2007</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yolo/" rel="tag">yolo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%8B%E7%BB%AD/" rel="tag">手续</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8B%9B%E8%81%98/" rel="tag">招聘</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8C%87%E5%8D%97/" rel="tag">指南</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82%E6%84%9F/" rel="tag">杂感</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A0%94%E7%A9%B6%E7%94%9F/" rel="tag">研究生</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AF%AE%E7%90%83/" rel="tag">篮球</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B5%84%E6%BA%90/" rel="tag">资源</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%9B%AD/" rel="tag">软件园</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%BF%E9%87%8C/" rel="tag">阿里</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
-    </div>
-  </div>
+{% block sidebar %}
+  {{ sidebar_template.render(true) }}
+{% endblock %}
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/310/" style="font-size: 10px;">310</a> <a href="/tags/C-C/" style="font-size: 13.33px;">C/C++</a> <a href="/tags/CUDA/" style="font-size: 18.89px;">CUDA</a> <a href="/tags/Cache/" style="font-size: 11.11px;">Cache</a> <a href="/tags/Caffe/" style="font-size: 10px;">Caffe</a> <a href="/tags/Deep-learning/" style="font-size: 14.44px;">Deep learning</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Faster-rcnn/" style="font-size: 10px;">Faster rcnn</a> <a href="/tags/GOTURN/" style="font-size: 10px;">GOTURN</a> <a href="/tags/GPGPU-Sim/" style="font-size: 11.11px;">GPGPU-Sim</a> <a href="/tags/GPU/" style="font-size: 20px;">GPU</a> <a href="/tags/Jetson/" style="font-size: 11.11px;">Jetson</a> <a href="/tags/Linux/" style="font-size: 17.78px;">Linux</a> <a href="/tags/PTX-ISA/" style="font-size: 11.11px;">PTX ISA</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/SSD-Caffe/" style="font-size: 10px;">SSD-Caffe</a> <a href="/tags/Shell/" style="font-size: 16.67px;">Shell</a> <a href="/tags/deeplearning/" style="font-size: 10px;">deeplearning</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/latex/" style="font-size: 10px;">latex</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/perl/" style="font-size: 15.56px;">perl</a> <a href="/tags/profiling/" style="font-size: 10px;">profiling</a> <a href="/tags/tx1/" style="font-size: 10px;">tx1</a> <a href="/tags/tx2/" style="font-size: 11.11px;">tx2</a> <a href="/tags/voc2007/" style="font-size: 10px;">voc2007</a> <a href="/tags/yolo/" style="font-size: 10px;">yolo</a> <a href="/tags/%E6%89%8B%E7%BB%AD/" style="font-size: 10px;">手续</a> <a href="/tags/%E6%8B%9B%E8%81%98/" style="font-size: 10px;">招聘</a> <a href="/tags/%E6%8C%87%E5%8D%97/" style="font-size: 12.22px;">指南</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9D%82%E6%84%9F/" style="font-size: 10px;">杂感</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 12.22px;">生活</a> <a href="/tags/%E7%A0%94%E7%A9%B6%E7%94%9F/" style="font-size: 11.11px;">研究生</a> <a href="/tags/%E7%AF%AE%E7%90%83/" style="font-size: 10px;">篮球</a> <a href="/tags/%E8%B5%84%E6%BA%90/" style="font-size: 11.11px;">资源</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%9B%AD/" style="font-size: 10px;">软件园</a> <a href="/tags/%E9%98%BF%E9%87%8C/" style="font-size: 12.22px;">阿里</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.33px;">面试</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/10/10/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2020/09/11/tvm-autotune%E4%BC%98%E5%8C%96%E7%9A%84%E7%AE%97%E5%AD%90%E9%85%8D%E7%BD%AE/">TVM autotune优化的算子配置</a>
-          </li>
-        
-          <li>
-            <a href="/2020/09/11/%E5%85%B3%E4%BA%8E%E6%A1%A3%E6%A1%88%E9%97%AE%E9%A2%98/">关于档案问题</a>
-          </li>
-        
-          <li>
-            <a href="/2020/09/03/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE/">环境变量设置</a>
-          </li>
-        
-          <li>
-            <a href="/2020/08/31/%E5%A6%82%E4%BD%95%E5%AF%BB%E6%89%BE%E5%B7%AE%E5%BC%82%E5%8C%96-%E5%A4%9A%E5%81%9A%E4%B8%80%E7%82%B9/">如何寻找差异化-多做一点</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-  </div>
-</body>
-</html>
+{% block script_extra %}
+  {% include '_scripts/pages/post-details.swig' %}
+{% endblock %}
