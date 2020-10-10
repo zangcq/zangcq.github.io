@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>PTX ISA special-registers | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="PTX ISA Special Registers综述PTX includes a number of predefined, read-only variables, which are visible as special registers and accessed through mov or cvt instructions.  %tid 　　　　　    CTA 内的线程号　   %n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PTX ISA special-registers">
+<meta property="og:url" content="http://example.com/2017/08/11/ptx-isa-special-registers/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="PTX ISA Special Registers综述PTX includes a number of predefined, read-only variables, which are visible as special registers and accessed through mov or cvt instructions.  %tid 　　　　　    CTA 内的线程号　   %n">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-08-11T06:31:52.000Z">
+<meta property="article:modified_time" content="2020-10-10T01:15:14.751Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="GPU">
+<meta property="article:tag" content="PTX ISA">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ptx-isa-special-registers" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/11/ptx-isa-special-registers/" class="article-date">
+  <time datetime="2017-08-11T06:31:52.000Z" itemprop="datePublished">2017-08-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/gpu-computing/">gpu-computing</a>►<a class="article-category-link" href="/categories/gpu-computing/GPU-PTX-ISA-Analysis/">GPU PTX ISA Analysis</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PTX ISA special-registers
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="PTX-ISA-Special-Registers"><a href="#PTX-ISA-Special-Registers" class="headerlink" title="PTX ISA Special Registers"></a>PTX ISA <a target="_blank" rel="noopener" href="http://docs.nvidia.com/cuda/parallel-thread-execution/index.html#special-registers">Special Registers</a></h1><h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p>PTX includes a number of predefined, read-only variables, which are visible as special registers and accessed through mov or cvt instructions.</p>
+<ul>
+<li><p><code>%tid</code> 　　　　　  </p>
+<ul>
+<li>CTA 内的线程号　</li>
+</ul>
+</li>
+<li><p><code>%ntid</code>　　　　　　</p>
+<ul>
+<li>CTA 内的线程数　</li>
+</ul>
+</li>
+<li><p><code>%laneid</code>　　　　　</p>
+<ul>
+<li>warp内的线程号</li>
+</ul>
+</li>
+<li><p><code>%warpid</code>　　　　　</p>
+<ul>
+<li>CTA 内的warp号</li>
+</ul>
+</li>
+<li><p><code>%nwarpid</code>　　　　  </p>
+<ul>
+<li>CTA 内的warp数　</li>
+</ul>
+</li>
+<li><p><code>%ctaid</code> 　　  </p>
+<ul>
+<li>CTA 号　</li>
+</ul>
+</li>
+<li><p><code>%nctaid</code>　　　　　  </p>
+<ul>
+<li>CTA 数　</li>
+</ul>
+</li>
+<li><p><code>%smid</code>　　　　　　</p>
+<ul>
+<li>SM 号</li>
+</ul>
+</li>
+<li><p><code>%nsmid</code>　　　　　  </p>
+<ul>
+<li>SM数</li>
+</ul>
+</li>
+<li><p><code>%gridid</code>　　　　　  </p>
+<ul>
+<li>网格号　包含　多个ＣＴＡ</li>
+</ul>
+</li>
+<li><p><code>%lanemask_eq, %lanemask_le, %lanemask_lt, %lanemask_ge, %lanemask_gt</code></p>
+<ul>
+<li>从fermi架构开始提出的线程掩码寄存器，大小32位，我表示每个warp中　active 的线程数。</li>
+<li>不大常见</li>
+</ul>
+</li>
+<li><p><code>%clock, %clock_hi, %clock64</code></p>
+<ul>
+<li>无符号预定义只读的 计数寄存器</li>
+<li>%clock　　　　　 32位</li>
+<li>%clock_hi　　　高32位</li>
+<li>%clock64　　　　 64位</li>
+</ul>
+</li>
+<li><p><code>%pm0, ..., %pm7</code></p>
+<ul>
+<li>performance monitoring　counters</li>
+<li>性能监视计数器，没用过。。</li>
+</ul>
+</li>
+<li><p><code>%pm0_64, ..., %pm7_64</code></p>
+<ul>
+<li>``64 bit performance monitoring　counters</li>
+<li>性能监视计数器，没用过。。</li>
+</ul>
+</li>
+<li><p><code>%envreg0, ..., %envreg31</code></p>
+<ul>
+<li>Driver-defined read-only registers.</li>
+<li>驱动器只读寄存器</li>
+<li>用来获取PTX程序运行环境，ARCH?</li>
+</ul>
+</li>
+<li><p><code>%globaltimer, %globaltimer_lo, %globaltimer_hi</code></p>
+<ul>
+<li>A predefined, 64-bit global nanosecond timer.</li>
+<li>全局纳秒寄存器</li>
+<li>64 bit low 32 bit high 32 bit</li>
+</ul>
+</li>
+<li><p><code>%total_smem_size</code> 　　　　</p>
+<ul>
+<li>每个CTA使用shared memory 的大小　举个例子　fermi 16K/32K</li>
+</ul>
+</li>
+<li><p><code>%dynamic_smem_size</code>　　  </p>
+<ul>
+<li>这个是kernel 函数启动时动态分批的总大小</li>
+</ul>
+</li>
+</ul>
+<p>看完综述应该大体上知道这些都是干嘛的了，如果还想详细了解，再往下看。</p>
+<h2 id="9-1-Special-Registers-tid"><a href="#9-1-Special-Registers-tid" class="headerlink" title="9.1. Special Registers: %tid"></a>9.1. Special Registers: %tid</h2><p><code>%tid</code> ​Thread identifier within a CTA.</p>
+<h3 id="Syntax-predefined"><a href="#Syntax-predefined" class="headerlink" title="Syntax (predefined)"></a>Syntax (predefined)</h3><p><code>.sreg .v4 .u32 %tid; // thread id vector</code> <code>.sreg .u32 %tid.x, %tid.y, %tid.z; // thread id components</code></p>
+<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>A predefined, read-only, per-thread special register initialized with the thread identifier within the CTA. The <code>%tid</code> special register contains a 1D, 2D, or 3D vector to match the CTA shape; the <code>%tid</code> value in unused dimensions is <code>0</code>. The fourth element is unused and always returns zero. The number of threads in each dimension are specified by the predefined special register <code>%ntid</code>.</p>
+<p>Every thread in the CTA has a unique <code>%tid</code>.</p>
+<p><code>%tid</code> component values range <code>from 0 through %ntid-1</code> in each CTA dimension.</p>
+<p><code>%tid.y == %tid.z == 0 in 1D CTAs. %tid.z == 0 in 2D CTAs.</code></p>
+<p>It is guaranteed that:</p>
+<p><code>0 &lt;= %tid.x &lt; %ntid.x</code> <code>0 &lt;= %tid.y &lt; %ntid.y</code> <code>0 &lt;= %tid.z &lt; %ntid.z</code></p>
+<h3 id="PTX-ISA-Notes"><a href="#PTX-ISA-Notes" class="headerlink" title="PTX ISA Notes"></a>PTX ISA Notes</h3><p>Introduced in PTX ISA version 1.0 with type .v4.u16.</p>
+<p>Redefined as type .v4.u32 in PTX ISA version 2.0. For compatibility with legacy PTX code, 16-bit mov and cvt instructions may be used to read the lower 16-bits of each component of %tid.</p>
+<h3 id="Target-ISA-Notes"><a href="#Target-ISA-Notes" class="headerlink" title="Target ISA Notes"></a>Target ISA Notes</h3><p>Supported on all target architectures.</p>
+<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mov.u32      %r1,%tid.x;  <span class="comment">// move tid.x to %rh</span></span><br><span class="line"><span class="comment">// legacy code accessing 16-bit components of %tid</span></span><br><span class="line">mov.u16      %rh,%tid.x;</span><br><span class="line">cvt.u32.u16  %r2,%tid.z;  <span class="comment">// zero-extend tid.z to %r2</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="9-2-Special-Registers-ntid"><a href="#9-2-Special-Registers-ntid" class="headerlink" title="9.2. Special Registers: %ntid"></a>9.2. Special Registers: %ntid</h2><p><code>%ntid</code> Number of thread IDs per CTA.</p>
+<h3 id="Syntax-predefined-1"><a href="#Syntax-predefined-1" class="headerlink" title="Syntax (predefined)"></a>Syntax (predefined)</h3><p><code>.sreg .v4 .u32 %ntid; // CTA shape vector</code> <code>.sreg .u32 %ntid.x, %ntid.y, %ntid.z; // CTA dimensions</code></p>
+<h3 id="Description-1"><a href="#Description-1" class="headerlink" title="Description"></a>Description</h3><p>A predefined, read-only special register initialized with the number of thread ids in each CTA dimension. The %ntid special register contains a 3D CTA shape vector that holds the CTA dimensions. CTA dimensions are non-zero; the fourth element is unused and always returns zero. The total number of threads in a CTA is <code>(%ntid.x * %ntid.y * %ntid.z)</code>.</p>
+<p><code>%ntid.y == %ntid.z == 1 in 1D CTAs.</code> <code>%ntid.z ==1 in 2D CTAs.</code> Maximum values of <code>%ntid.&#123;x,y,z&#125;</code> are as follows:</p>
+<p>.target architecture</p>
+<p>%ntid.x</p>
+<p>%ntid.y</p>
+<p>%ntid.z</p>
+<p>sm_1x</p>
+<p>512</p>
+<p>512</p>
+<p>64</p>
+<p>sm_20, sm_3x, sm_5x, sm_6x</p>
+<p>1024</p>
+<p>1024</p>
+<p>64</p>
+<h3 id="PTX-ISA-Notes-1"><a href="#PTX-ISA-Notes-1" class="headerlink" title="PTX ISA Notes"></a>PTX ISA Notes</h3><p>Introduced in PTX ISA version 1.0 with type .v4.u16.</p>
+<p>Redefined as type <code>.v4.u32</code> in PTX ISA version 2.0. For compatibility with legacy PTX code, 16-bit mov and cvt instructions may be used to read the lower 16-bits of each component of <code>%ntid.</code></p>
+<h3 id="Target-ISA-Notes-1"><a href="#Target-ISA-Notes-1" class="headerlink" title="Target ISA Notes"></a>Target ISA Notes</h3><p>Supported on all target architectures.</p>
+<h3 id="Examples-1"><a href="#Examples-1" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// compute unified thread id for 2D CTA</span></span><br><span class="line">mov.u32  %r0,%tid.x;</span><br><span class="line">mov.u32  %h1,%tid.y;</span><br><span class="line">mov.u32  %h2,%ntid.x;</span><br><span class="line">mad.u32  %r0,%h1,%h2,%r0;</span><br><span class="line">mov.u16  %rh,%ntid.x;      <span class="comment">// legacy code</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="9-3-Special-Registers-laneid"><a href="#9-3-Special-Registers-laneid" class="headerlink" title="9.3. Special Registers: %laneid"></a>9.3. Special Registers: <code>%laneid</code></h2><p><code>%laneid</code> Lane Identifier.</p>
+<h3 id="Syntax-predefined-2"><a href="#Syntax-predefined-2" class="headerlink" title="Syntax (predefined)"></a>Syntax (predefined)</h3><p><code>.sreg .u32 %laneid;</code></p>
+<h3 id="Description-2"><a href="#Description-2" class="headerlink" title="Description"></a>Description</h3><p>A predefined, read-only special register that returns the thread’s lane within the warp. The lane identifier ranges from <code>zero to WARP_SZ-1.</code></p>
+<h3 id="PTX-ISA-Notes-2"><a href="#PTX-ISA-Notes-2" class="headerlink" title="PTX ISA Notes"></a>PTX ISA Notes</h3><p>Introduced in PTX ISA version 1.3.</p>
+<h3 id="Target-ISA-Notes-2"><a href="#Target-ISA-Notes-2" class="headerlink" title="Target ISA Notes"></a>Target ISA Notes</h3><p>Supported on all target architectures.</p>
+<h3 id="Examples-2"><a href="#Examples-2" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mov.u32  %r, %laneid;</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-4-Special-Registers-warpid"><a href="#9-4-Special-Registers-warpid" class="headerlink" title="9.4. Special Registers: %warpid"></a>9.4. Special Registers: %warpid</h2><p><code>%warpid</code> Warp identifier.</p>
+<h3 id="Syntax-predefined-3"><a href="#Syntax-predefined-3" class="headerlink" title="Syntax (predefined)"></a>Syntax (predefined)</h3><p><code>.sreg .u32 %warpid;</code> Description A predefined, read-only special register that returns <code>the thread&#39;s warp identifier</code>. The warp identifier provides a unique warp number within a CTA but not across CTAs within a grid. <code>The warp identifier will be the same for all threads within a single warp.</code></p>
+<p>Note that <code>%warpid is volatile</code> and returns the location of a thread at the moment when read, but its value may change during execution, e.g., <code>due to rescheduling of threads following preemption.</code>For this reason, %ctaid and %tid should be used to compute a virtual warp index if such a value is needed in kernel code; <code>%warpid is intended mainly to enable profiling and diagnostic code to sample and log information such as work place mapping and load distribution.</code></p>
+<h3 id="PTX-ISA-Notes-3"><a href="#PTX-ISA-Notes-3" class="headerlink" title="PTX ISA Notes"></a>PTX ISA Notes</h3><p>Introduced in PTX ISA version 1.3.</p>
+<h3 id="Target-ISA-Notes-3"><a href="#Target-ISA-Notes-3" class="headerlink" title="Target ISA Notes"></a>Target ISA Notes</h3><p>Supported on all target architectures.</p>
+<h3 id="Examples-3"><a href="#Examples-3" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mov.u32  %r, %warpid;</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-5-Special-Registers-nwarpid"><a href="#9-5-Special-Registers-nwarpid" class="headerlink" title="9.5. Special Registers: %nwarpid"></a>9.5. Special Registers: <code>%nwarpid</code></h2><p><code>%nwarpid</code> Number of warp identifiers.</p>
+<h3 id="Syntax-predefined-4"><a href="#Syntax-predefined-4" class="headerlink" title="Syntax (predefined)"></a>Syntax (predefined)</h3><p><code>.sreg .u32 %nwarpid;</code></p>
+<h3 id="Description-3"><a href="#Description-3" class="headerlink" title="Description"></a>Description</h3><p>A predefined, read-only special register that returns the <code>maximum number of warp identifiers.</code></p>
+<h3 id="PTX-ISA-Notes-4"><a href="#PTX-ISA-Notes-4" class="headerlink" title="PTX ISA Notes"></a>PTX ISA Notes</h3><p>Introduced in PTX ISA version 2.0.</p>
+<h3 id="Target-ISA-Notes-4"><a href="#Target-ISA-Notes-4" class="headerlink" title="Target ISA Notes"></a>Target ISA Notes</h3><p>%nwarpid requires sm_20 or higher.</p>
+<h3 id="Examples-4"><a href="#Examples-4" class="headerlink" title="Examples"></a>Examples</h3><p><code>mov.u32 %r, %nwarpid;</code></p>
+<h2 id="9-6-Special-Registers-ctaid"><a href="#9-6-Special-Registers-ctaid" class="headerlink" title="9.6. Special Registers: %ctaid"></a>9.6. Special Registers: <code>%ctaid</code></h2><p><code>%ctaid</code> CTA identifier within a grid.</p>
+<h3 id="Syntax-predefined-5"><a href="#Syntax-predefined-5" class="headerlink" title="Syntax (predefined)"></a>Syntax (predefined)</h3><p><code>.sreg .v4 .u32 %ctaid; // CTA id vector</code> <code>.sreg .u32 %ctaid.x, %ctaid.y, %ctaid.z; // CTA id components</code></p>
+<h3 id="Description-4"><a href="#Description-4" class="headerlink" title="Description"></a>Description</h3><p>A predefined, read-only special register initialized with the CTA identifier within the CTA grid. The %ctaid special register contains a 1D, 2D, or 3D vector, depending on the shape and rank of the CTA grid. The fourth element is unused and always returns zero.</p>
+<p>It is guaranteed that:</p>
+<p><code>0 &lt;= %ctaid.x &lt; %nctaid.x</code> <code>0 &lt;= %ctaid.y &lt; %nctaid.y</code> <code>0 &lt;= %ctaid.z &lt; %nctaid.z</code></p>
+<h3 id="PTX-ISA-Notes-5"><a href="#PTX-ISA-Notes-5" class="headerlink" title="PTX ISA Notes"></a>PTX ISA Notes</h3><p>Introduced in PTX ISA version 1.0 with type .v4.u16.</p>
+<p>Redefined as type .v4.u32 in PTX ISA version 2.0. For compatibility with legacy PTX code, 16-bit mov and cvt instructions may be used to read the lower 16-bits of each component of %ctaid.</p>
+<h3 id="Target-ISA-Notes-5"><a href="#Target-ISA-Notes-5" class="headerlink" title="Target ISA Notes"></a>Target ISA Notes</h3><p>Supported on all target architectures.</p>
+<h3 id="Examples-5"><a href="#Examples-5" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mov.u32  %r0,%ctaid.x;</span><br><span class="line">mov.u16  %rh,%ctaid.y;   <span class="comment">// legacy code</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="9-7-Special-Registers-nctaid"><a href="#9-7-Special-Registers-nctaid" class="headerlink" title="9.7. Special Registers: %nctaid"></a>9.7. Special Registers: %nctaid</h2><p><code>%nctaid</code> Number of CTA ids per grid.</p>
+<h3 id="Syntax-predefined-6"><a href="#Syntax-predefined-6" class="headerlink" title="Syntax (predefined)"></a>Syntax (predefined)</h3><p><code>.sreg .v4 .u32 %nctaid // Grid shape vector</code> <code>.sreg .u32 %nctaid.x,%nctaid.y,%nctaid.z; // Grid dimensions</code></p>
+<h3 id="Description-5"><a href="#Description-5" class="headerlink" title="Description"></a>Description</h3><p>A predefined, read-only special register initialized with the number of CTAs in each grid dimension. The <code>%nctaid</code> special register contains a 3D grid shape vector, with each element having a value of at least 1. The fourth element is unused and always returns zero.</p>
+<p>Maximum values of %nctaid.{x,y,z} are as follows:</p>
+<p>.target architecture</p>
+<p>%nctaid.x</p>
+<p>%nctaid.y</p>
+<p>%nctaid.z</p>
+<p>sm_1x, sm_20</p>
+<p>65535</p>
+<p>65535</p>
+<p>65535</p>
+<p>sm_3x, sm_5x, sm_6x</p>
+<p>2^31 -1</p>
+<p>65535</p>
+<p>65535</p>
+<h3 id="PTX-ISA-Notes-6"><a href="#PTX-ISA-Notes-6" class="headerlink" title="PTX ISA Notes"></a>PTX ISA Notes</h3><p>Introduced in PTX ISA version 1.0 with type .v4.u16.</p>
+<p>Redefined as type .v4.u32 in PTX ISA version 2.0. For compatibility with legacy PTX code, 16-bit mov and cvt instructions may be used to read the lower 16-bits of each component of %nctaid.</p>
+<h3 id="Target-ISA-Notes-6"><a href="#Target-ISA-Notes-6" class="headerlink" title="Target ISA Notes"></a>Target ISA Notes</h3><p>Supported on all target architectures.</p>
+<h3 id="Examples-6"><a href="#Examples-6" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mov.u32  %r0,%nctaid.x;</span><br><span class="line">mov.u16  %rh,%nctaid.x;     <span class="comment">// legacy code</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="9-8-Special-Registers-smid"><a href="#9-8-Special-Registers-smid" class="headerlink" title="9.8. Special Registers: %smid"></a>9.8. Special Registers: %smid</h2><p><code>%smid</code> SM identifier.</p>
+<h3 id="Syntax-predefined-7"><a href="#Syntax-predefined-7" class="headerlink" title="Syntax (predefined)"></a>Syntax (predefined)</h3><p><code>.sreg .u32 %smid;</code></p>
+<h3 id="Description-6"><a href="#Description-6" class="headerlink" title="Description"></a>Description</h3><p>A predefined, read-only special register that returns the processor (SM) identifier on which a particular thread is executing. The SM identifier ranges <code>from 0 to %nsmid-1</code>. The SM identifier numbering is not guaranteed to be <code>contiguous</code>.</p>
+<h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h3><p>Note that %smid is volatile and returns the location of a thread at the moment when read, but its value may change during execution, e.g. due to rescheduling of threads following preemption. %smid is intended mainly to enable profiling and diagnostic code to sample and log information such as work place mapping and load distribution.</p>
+<h3 id="PTX-ISA-Notes-7"><a href="#PTX-ISA-Notes-7" class="headerlink" title="PTX ISA Notes"></a>PTX ISA Notes</h3><p>Introduced in PTX ISA version 1.3.</p>
+<h3 id="Target-ISA-Notes-7"><a href="#Target-ISA-Notes-7" class="headerlink" title="Target ISA Notes"></a>Target ISA Notes</h3><p>Supported on all target architectures.</p>
+<h3 id="Examples-7"><a href="#Examples-7" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mov.u32  %r, %smid;</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-9-Special-Registers-nsmid"><a href="#9-9-Special-Registers-nsmid" class="headerlink" title="9.9. Special Registers: %nsmid"></a>9.9. Special Registers: %nsmid</h2><p><code>%nsmid</code> Number of SM identifiers.</p>
+<h3 id="Syntax-predefined-8"><a href="#Syntax-predefined-8" class="headerlink" title="Syntax (predefined)"></a>Syntax (predefined)</h3><p><code>.sreg .u32 %nsmid;</code></p>
+<h3 id="Description-7"><a href="#Description-7" class="headerlink" title="Description"></a>Description</h3><p>A predefined, read-only special register that returns the maximum number of SM identifiers. The SM identifier numbering is not guaranteed to be contiguous, so %nsmid may be larger than the physical number of SMs in the device.</p>
+<h3 id="PTX-ISA-Notes-8"><a href="#PTX-ISA-Notes-8" class="headerlink" title="PTX ISA Notes"></a>PTX ISA Notes</h3><p>Introduced in PTX ISA version 2.0.</p>
+<h3 id="Target-ISA-Notes-8"><a href="#Target-ISA-Notes-8" class="headerlink" title="Target ISA Notes"></a>Target ISA Notes</h3><p>%nsmid requires sm_20 or higher.</p>
+<h3 id="Examples-8"><a href="#Examples-8" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mov.u32  %r, %nsmid;</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-10-Special-Registers-gridid"><a href="#9-10-Special-Registers-gridid" class="headerlink" title="9.10. Special Registers: %gridid"></a>9.10. Special Registers: <code>%gridid</code></h2><p><code>%gridid</code> Grid identifier.</p>
+<h3 id="Syntax-predefined-9"><a href="#Syntax-predefined-9" class="headerlink" title="Syntax (predefined)"></a>Syntax (predefined)</h3><p><code>.sreg .u64 %gridid;</code></p>
+<h3 id="Description-8"><a href="#Description-8" class="headerlink" title="Description"></a>Description</h3><p>A predefined, read-only special register initialized with the per-grid temporal grid identifier. The %gridid is used by debuggers to distinguish CTAs within concurrent (small) CTA grids.</p>
+<p>During execution, repeated launches of programs may occur, where each launch starts a grid-of-CTAs. This variable provides the temporal grid launch number for this context.</p>
+<p>For sm_1x targets, <code>%gridid</code> is limited to the range [0..216-1]. For sm_20, <code>%gridid</code> is limited to the range [0..232-1]. sm_30 supports the entire 64-bit range.</p>
+<h3 id="PTX-ISA-Notes-9"><a href="#PTX-ISA-Notes-9" class="headerlink" title="PTX ISA Notes"></a>PTX ISA Notes</h3><p>Introduced in PTX ISA version 1.0 as type .u16.</p>
+<p>Redefined as type .u32 in PTX ISA version 1.3.</p>
+<p>Redefined as type .u64 in PTX ISA version 3.0.</p>
+<p>For compatibility with legacy PTX code, 16-bit and 32-bit mov and cvt instructions may be used to read the lower 16-bits or 32-bits of each component of %gridid.</p>
+<h3 id="Target-ISA-Notes-9"><a href="#Target-ISA-Notes-9" class="headerlink" title="Target ISA Notes"></a>Target ISA Notes</h3><p>Supported on all target architectures.</p>
+<h3 id="Examples-9"><a href="#Examples-9" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mov.u64  %s, %gridid;  <span class="comment">// 64-bit read of %gridid</span></span><br><span class="line">mov.u32  %r, %gridid;  <span class="comment">// legacy code with 32-bit %gridid</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="9-11-Special-Registers-lanemask-eq"><a href="#9-11-Special-Registers-lanemask-eq" class="headerlink" title="9.11. Special Registers: %lanemask_eq"></a>9.11. Special Registers: %lanemask_eq</h2><p><code>%lanemask_eq</code> 32-bit mask with bit set in position equal to the thread’s lane number in the warp.</p>
+<h3 id="Syntax-predefined-10"><a href="#Syntax-predefined-10" class="headerlink" title="Syntax (predefined)"></a>Syntax (predefined)</h3><p><code>.sreg .u32 %lanemask_eq;</code></p>
+<h3 id="Description-9"><a href="#Description-9" class="headerlink" title="Description"></a>Description</h3><p>A predefined, read-only special register initialized with a 32-bit mask with a bit set in the position equal to the thread’s lane number in the warp.</p>
+<h3 id="PTX-ISA-Notes-10"><a href="#PTX-ISA-Notes-10" class="headerlink" title="PTX ISA Notes"></a>PTX ISA Notes</h3><p>Introduced in PTX ISA version 2.0.</p>
+<h3 id="Target-ISA-Notes-10"><a href="#Target-ISA-Notes-10" class="headerlink" title="Target ISA Notes"></a>Target ISA Notes</h3><p>%lanemask_eq requires sm_20 or higher.</p>
+<h3 id="Examples-10"><a href="#Examples-10" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mov.u32     %r, %lanemask_eq;</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-12-Special-Registers-lanemask-le"><a href="#9-12-Special-Registers-lanemask-le" class="headerlink" title="9.12. Special Registers: %lanemask_le"></a>9.12. Special Registers: %lanemask_le</h2><p><code>%lanemask_le</code> 32-bit mask with bits set in positions less than or equal to the thread’s lane number in the warp.</p>
+<h3 id="Syntax-predefined-11"><a href="#Syntax-predefined-11" class="headerlink" title="Syntax (predefined)"></a>Syntax (predefined)</h3><p><code>.sreg .u32 %lanemask_le;</code></p>
+<h3 id="Description-10"><a href="#Description-10" class="headerlink" title="Description"></a>Description</h3><p>A predefined, read-only special register initialized with a 32-bit mask with bits set in positions less than or equal to the thread’s lane number in the warp.</p>
+<h3 id="PTX-ISA-Notes-11"><a href="#PTX-ISA-Notes-11" class="headerlink" title="PTX ISA Notes"></a>PTX ISA Notes</h3><p>Introduced in PTX ISA version 2.0.</p>
+<h3 id="Target-ISA-Notes-11"><a href="#Target-ISA-Notes-11" class="headerlink" title="Target ISA Notes"></a>Target ISA Notes</h3><p><code>%lanemask_le</code> requires sm_20 or higher.</p>
+<h3 id="Examples-11"><a href="#Examples-11" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mov.u32     %r, %lanemask_le</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-13-Special-Registers-lanemask-lt"><a href="#9-13-Special-Registers-lanemask-lt" class="headerlink" title="9.13. Special Registers: %lanemask_lt"></a>9.13. Special Registers: %lanemask_lt</h2><p><code>%lanemask_lt</code> 32-bit mask with bits set in positions less than the thread’s lane number in the warp.</p>
+<h3 id="Syntax-predefined-12"><a href="#Syntax-predefined-12" class="headerlink" title="Syntax (predefined)"></a>Syntax (predefined)</h3><p><code>.sreg .u32 %lanemask_lt;</code></p>
+<h3 id="Description-11"><a href="#Description-11" class="headerlink" title="Description"></a>Description</h3><p>A predefined, read-only special register initialized with a 32-bit mask with bits set in positions less than the thread’s lane number in the warp.</p>
+<h3 id="PTX-ISA-Notes-12"><a href="#PTX-ISA-Notes-12" class="headerlink" title="PTX ISA Notes"></a>PTX ISA Notes</h3><p>Introduced in PTX ISA version 2.0.</p>
+<h3 id="Target-ISA-Notes-12"><a href="#Target-ISA-Notes-12" class="headerlink" title="Target ISA Notes"></a>Target ISA Notes</h3><p>%lanemask_lt requires sm_20 or higher.</p>
+<h3 id="Examples-12"><a href="#Examples-12" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mov.u32     %r, %lanemask_lt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-14-Special-Registers-lanemask-ge"><a href="#9-14-Special-Registers-lanemask-ge" class="headerlink" title="9.14. Special Registers: %lanemask_ge"></a>9.14. Special Registers: %lanemask_ge</h2><p><code>%lanemask_ge</code> 32-bit mask with bits set in positions greater than or equal to the thread’s lane number in the warp.</p>
+<h3 id="Syntax-predefined-13"><a href="#Syntax-predefined-13" class="headerlink" title="Syntax (predefined)"></a>Syntax (predefined)</h3><p><code>.sreg .u32 %lanemask_ge;</code></p>
+<h3 id="Description-12"><a href="#Description-12" class="headerlink" title="Description"></a>Description</h3><p>A predefined, read-only special register initialized with a 32-bit mask with bits set in positions greater than or equal to the thread’s lane number in the warp.</p>
+<h3 id="PTX-ISA-Notes-13"><a href="#PTX-ISA-Notes-13" class="headerlink" title="PTX ISA Notes"></a>PTX ISA Notes</h3><p>Introduced in PTX ISA version 2.0.</p>
+<h3 id="Target-ISA-Notes-13"><a href="#Target-ISA-Notes-13" class="headerlink" title="Target ISA Notes"></a>Target ISA Notes</h3><p>%lanemask_ge requires sm_20 or higher.</p>
+<h3 id="Examples-13"><a href="#Examples-13" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mov.u32     %r, %lanemask_ge;</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-15-Special-Registers-lanemask-gt"><a href="#9-15-Special-Registers-lanemask-gt" class="headerlink" title="9.15. Special Registers: %lanemask_gt"></a>9.15. Special Registers: %lanemask_gt</h2><p><code>%lanemask_gt</code> 32-bit mask with bits set in positions greater than the thread’s lane number in the warp.</p>
+<h3 id="Syntax-predefined-14"><a href="#Syntax-predefined-14" class="headerlink" title="Syntax (predefined)"></a>Syntax (predefined)</h3><p><code>.sreg .u32 %lanemask_gt;</code></p>
+<h3 id="Description-13"><a href="#Description-13" class="headerlink" title="Description"></a>Description</h3><p>A predefined, read-only special register initialized with a 32-bit mask with bits set in positions greater than the thread’s lane number in the warp.</p>
+<h3 id="PTX-ISA-Notes-14"><a href="#PTX-ISA-Notes-14" class="headerlink" title="PTX ISA Notes"></a>PTX ISA Notes</h3><p>Introduced in PTX ISA version 2.0.</p>
+<h3 id="Target-ISA-Notes-14"><a href="#Target-ISA-Notes-14" class="headerlink" title="Target ISA Notes"></a>Target ISA Notes</h3><p>%lanemask_gt requires sm_20 or higher.</p>
+<h3 id="Examples-14"><a href="#Examples-14" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mov.u32     %r, %lanemask_gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-16-Special-Registers-clock-clock-hi"><a href="#9-16-Special-Registers-clock-clock-hi" class="headerlink" title="9.16. Special Registers: %clock, %clock_hi"></a>9.16. Special Registers: %clock, %clock_hi</h2><p><code>%clock, %clock_hi</code> <code>%clock</code> A predefined, read-only 32-bit unsigned cycle counter. %clock_hi The upper 32-bits of %clock64 special register.</p>
+<h3 id="Syntax-predefined-15"><a href="#Syntax-predefined-15" class="headerlink" title="Syntax (predefined)"></a>Syntax (predefined)</h3><p><code>.sreg .u32 %clock;</code> <code>.sreg .u32 %clock_hi;</code></p>
+<h3 id="Description-14"><a href="#Description-14" class="headerlink" title="Description"></a>Description</h3><p>Special register %clock and %clock_hi are unsigned 32-bit read-only cycle counters that wrap silently.</p>
+<h3 id="PTX-ISA-Notes-15"><a href="#PTX-ISA-Notes-15" class="headerlink" title="PTX ISA Notes"></a>PTX ISA Notes</h3><p><code>%clock</code> introduced in PTX ISA version 1.0.</p>
+<p><code>%clock_hi</code> introduced in PTX ISA version 5.0.</p>
+<h3 id="Target-ISA-Notes-15"><a href="#Target-ISA-Notes-15" class="headerlink" title="Target ISA Notes"></a>Target ISA Notes</h3><p>%clock supported on all target architectures.</p>
+<p>%clock_hi requires sm_20 or higher.</p>
+<h3 id="Examples-15"><a href="#Examples-15" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mov.u32 r1,%clock;</span><br><span class="line">mov.u32 r2, %clock_hi;</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-17-Special-Registers-clock64"><a href="#9-17-Special-Registers-clock64" class="headerlink" title="9.17. Special Registers: %clock64"></a>9.17. Special Registers: %clock64</h2><p><code>%clock64</code> A predefined, read-only 64-bit unsigned cycle counter.</p>
+<h3 id="Syntax-predefined-16"><a href="#Syntax-predefined-16" class="headerlink" title="Syntax (predefined)"></a>Syntax (predefined)</h3><p><code>.sreg .u64 %clock64;</code>  </p>
+<h3 id="Description-15"><a href="#Description-15" class="headerlink" title="Description"></a>Description</h3><p>Special register %clock64 is an unsigned 64-bit read-only cycle counter that wraps silently.</p>
+<h3 id="Notes-1"><a href="#Notes-1" class="headerlink" title="Notes"></a>Notes</h3><p>The lower 32-bits of %clock64 are identical to %clock.</p>
+<p>The upper 32-bits of %clock64 are identical to %clock_hi.</p>
+<h3 id="PTX-ISA-Notes-16"><a href="#PTX-ISA-Notes-16" class="headerlink" title="PTX ISA Notes"></a>PTX ISA Notes</h3><p>Introduced in PTX ISA version 2.0.</p>
+<h3 id="Target-ISA-Notes-16"><a href="#Target-ISA-Notes-16" class="headerlink" title="Target ISA Notes"></a>Target ISA Notes</h3><p>%clock64 requires sm_20 or higher.</p>
+<h3 id="Examples-16"><a href="#Examples-16" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mov.u64  r1,%clock64;</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-18-Special-Registers-pm0-pm7"><a href="#9-18-Special-Registers-pm0-pm7" class="headerlink" title="9.18. Special Registers: %pm0..%pm7"></a>9.18. Special Registers: %pm0..%pm7</h2><p><code>%pm0..%pm7</code> Performance monitoring counters.</p>
+<h3 id="Syntax-predefined-17"><a href="#Syntax-predefined-17" class="headerlink" title="Syntax (predefined)"></a>Syntax (predefined)</h3><p><code>.sreg .u32 %pm&lt;8&gt;;</code>  </p>
+<h3 id="Description-16"><a href="#Description-16" class="headerlink" title="Description"></a>Description</h3><p>Special registers %pm0..%pm7 are unsigned 32-bit read-only performance monitor counters. Their behavior is currently undefined.</p>
+<h3 id="PTX-ISA-Notes-17"><a href="#PTX-ISA-Notes-17" class="headerlink" title="PTX ISA Notes"></a>PTX ISA Notes</h3><p>%pm0..%pm3 introduced in PTX ISA version 1.3.</p>
+<p>%pm4..%pm7 introduced in PTX ISA version 3.0.</p>
+<h3 id="Target-ISA-Notes-17"><a href="#Target-ISA-Notes-17" class="headerlink" title="Target ISA Notes"></a>Target ISA Notes</h3><p>%pm0..%pm3 supported on all target architectures.</p>
+<p>%pm4..%pm7 require sm_20 or higher.</p>
+<h3 id="Examples-17"><a href="#Examples-17" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mov.u32  r1,%pm0;</span><br><span class="line">mov.u32  r1,%pm7;</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-19-Special-Registers-pm0-64-pm7-64"><a href="#9-19-Special-Registers-pm0-64-pm7-64" class="headerlink" title="9.19. Special Registers: %pm0_64..%pm7_64"></a>9.19. Special Registers: %pm0_64..%pm7_64</h2><p><code>%pm0_64..%pm7_64</code> 64 bit Performance monitoring counters.</p>
+<h3 id="Syntax-predefined-18"><a href="#Syntax-predefined-18" class="headerlink" title="Syntax (predefined)"></a>Syntax (predefined)</h3><p><code>.sreg .u64 %pm0_64;</code> <code>.sreg .u64 %pm1_64;</code> <code>.sreg .u64 %pm2_64;</code> <code>.sreg .u64 %pm3_64;</code> <code>.sreg .u64 %pm4_64;</code> <code>.sreg .u64 %pm5_64;</code> <code>.sreg .u64 %pm6_64;</code> <code>.sreg .u64 %pm7_64;</code></p>
+<h3 id="Description-17"><a href="#Description-17" class="headerlink" title="Description"></a>Description</h3><p>Special registers %pm0_64..%pm7_64 are unsigned 64-bit read-only performance monitor counters. Their behavior is currently undefined.</p>
+<h3 id="Notes-2"><a href="#Notes-2" class="headerlink" title="Notes"></a>Notes</h3><p>The lower 32bits of %pm0_64..%pm7_64 are identical to %pm0..%pm7.</p>
+<h3 id="PTX-ISA-Notes-18"><a href="#PTX-ISA-Notes-18" class="headerlink" title="PTX ISA Notes"></a>PTX ISA Notes</h3><p>%pm0_64..%pm7_64 introduced in PTX ISA version 4.0.</p>
+<h3 id="Target-ISA-Notes-18"><a href="#Target-ISA-Notes-18" class="headerlink" title="Target ISA Notes"></a>Target ISA Notes</h3><p>%pm0_64..%pm7_64 require sm_50 or higher.</p>
+<h3 id="Examples-18"><a href="#Examples-18" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mov.u32  r1,%pm0_64;</span><br><span class="line">mov.u32  r1,%pm7_64;</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-20-Driver-defined-read-only-registers-envreg-lt-32-gt"><a href="#9-20-Driver-defined-read-only-registers-envreg-lt-32-gt" class="headerlink" title="9.20. Driver-defined read-only registers:%envreg&lt;32&gt;."></a>9.20. Driver-defined read-only registers:<code>%envreg&lt;32&gt;</code>.</h2><h3 id="Syntax-predefined-19"><a href="#Syntax-predefined-19" class="headerlink" title="Syntax (predefined)"></a>Syntax (predefined)</h3><p><code>.sreg .b32 %envreg&lt;32&gt;;</code>  </p>
+<h3 id="Description-18"><a href="#Description-18" class="headerlink" title="Description"></a>Description</h3><p>A set of 32 pre-defined read-only registers used to capture execution environment of PTX program outside of PTX virtual machine. These registers are initialized by the driver prior to kernel launch and can contain cta-wide or grid-wide values.</p>
+<p>Precise semantics of these registers is defined in the driver documentation.</p>
+<h3 id="PTX-ISA-Notes-19"><a href="#PTX-ISA-Notes-19" class="headerlink" title="PTX ISA Notes"></a>PTX ISA Notes</h3><p>Introduced in PTX ISA version 2.1.</p>
+<h3 id="Target-ISA-Notes-19"><a href="#Target-ISA-Notes-19" class="headerlink" title="Target ISA Notes"></a>Target ISA Notes</h3><p>Supported on all target architectures.</p>
+<h3 id="Examples-19"><a href="#Examples-19" class="headerlink" title="Examples"></a>Examples</h3><p>$$mov.b32 %r1,%envreg0; // move envreg0 to %r1$$</p>
+<h2 id="9-21-Special-Registers-globaltimer-globaltimer-lo-globaltimer-hi"><a href="#9-21-Special-Registers-globaltimer-globaltimer-lo-globaltimer-hi" class="headerlink" title="9.21. Special Registers: %globaltimer, %globaltimer_lo, %globaltimer_hi"></a>9.21. Special Registers: %globaltimer, %globaltimer_lo, %globaltimer_hi</h2><p>%globaltimer, %globaltimer_lo, %globaltimer_hi %globaltimer A predefined, 64-bit global nanosecond timer. %globaltimer_lo The lower 32-bits of %globaltimer. %globaltimer_hi The upper 32-bits of %globaltimer.</p>
+<h3 id="Syntax-predefined-20"><a href="#Syntax-predefined-20" class="headerlink" title="Syntax (predefined)"></a>Syntax (predefined)</h3><p><code>.sreg .u64 %globaltimer;</code> <code>.sreg .u32 %globaltimer_lo, %globaltimer_hi;</code></p>
+<h3 id="Description-19"><a href="#Description-19" class="headerlink" title="Description"></a>Description</h3><p>Special registers intended for use by NVIDIA tools. The behavior is target-specific and may change or be removed in future GPUs. When JIT-compiled to other targets, the value of these registers is unspecified.</p>
+<h3 id="PTX-ISA-Notes-20"><a href="#PTX-ISA-Notes-20" class="headerlink" title="PTX ISA Notes"></a>PTX ISA Notes</h3><p>Introduced in PTX ISA version 3.1.</p>
+<h3 id="Target-ISA-Notes-20"><a href="#Target-ISA-Notes-20" class="headerlink" title="Target ISA Notes"></a>Target ISA Notes</h3><p>Requires target sm_30 or higher.</p>
+<h3 id="Examples-20"><a href="#Examples-20" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mov.u64  r1,%globaltimer;</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-22-Special-Registers-total-smem-size"><a href="#9-22-Special-Registers-total-smem-size" class="headerlink" title="9.22. Special Registers: %total_smem_size"></a>9.22. Special Registers: <code>%total_smem_size</code></h2><p><code>%total_smem_size</code> Total size of shared memory used by a CTA of a kernel.</p>
+<h3 id="Syntax-predefined-21"><a href="#Syntax-predefined-21" class="headerlink" title="Syntax (predefined)"></a>Syntax (predefined)</h3><p><code>.sreg .u32 %total_smem_size;</code></p>
+<h3 id="Description-20"><a href="#Description-20" class="headerlink" title="Description"></a>Description</h3><p>A predefined, read-only special register initialized with total size of shared memory allocated (statically and dynamically) for the CTA of a kernel at launch time.</p>
+<p>Size is returned in multiples of shared memory allocation unit size supported by target architecture.</p>
+<p>Allocation unit values are as follows:</p>
+<p>Target architecture</p>
+<p>Shared memory allocation unit size</p>
+<p>sm_2x</p>
+<p>128 bytes</p>
+<p>sm_3x, sm_5x, sm_6x</p>
+<p>256 bytes</p>
+<h3 id="PTX-ISA-Notes-21"><a href="#PTX-ISA-Notes-21" class="headerlink" title="PTX ISA Notes"></a>PTX ISA Notes</h3><p>Introduced in PTX ISA version 4.1.</p>
+<h3 id="Target-ISA-Notes-21"><a href="#Target-ISA-Notes-21" class="headerlink" title="Target ISA Notes"></a>Target ISA Notes</h3><p>Requires sm_20 or higher.</p>
+<h3 id="Examples-21"><a href="#Examples-21" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mov.u32  %r, %total_smem_size;</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-23-Special-Registers-dynamic-smem-size"><a href="#9-23-Special-Registers-dynamic-smem-size" class="headerlink" title="9.23. Special Registers: %dynamic_smem_size"></a>9.23. Special Registers: %dynamic_smem_size</h2><p><code>%dynamic_smem_size</code> Size of shared memory allocated dynamically at kernel launch.</p>
+<h3 id="Syntax-predefined-22"><a href="#Syntax-predefined-22" class="headerlink" title="Syntax (predefined)"></a>Syntax (predefined)</h3><p><code>.sreg .u32 %dynamic_smem_size;</code></p>
+<h3 id="Description-21"><a href="#Description-21" class="headerlink" title="Description"></a>Description</h3><p>Size of shared memory allocated dynamically at kernel launch.</p>
+<p>A predefined, read-only special register initialized with size of shared memory allocated dynamically for the CTA of a kernel at launch time.</p>
+<h3 id="PTX-ISA-Notes-22"><a href="#PTX-ISA-Notes-22" class="headerlink" title="PTX ISA Notes"></a>PTX ISA Notes</h3><p>Introduced in PTX ISA version 4.1.</p>
+<h3 id="Target-ISA-Notes-22"><a href="#Target-ISA-Notes-22" class="headerlink" title="Target ISA Notes"></a>Target ISA Notes</h3><p>Requires sm_20 or higher.</p>
+<h3 id="Examples-22"><a href="#Examples-22" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mov.u32  %r, %dynamic_smem_size;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/08/11/ptx-isa-special-registers/" data-id="ckg2zlolc00kmcq9kgpab9cqs" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GPU/" rel="tag">GPU</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PTX-ISA/" rel="tag">PTX ISA</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/12/google-%E5%B9%BF%E5%91%8A%E7%94%B3%E8%AF%B7/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          google 广告申请
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/11/perl-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C%E5%87%BD%E6%95%B0-join-split-chomp/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Perl 字符串操作函数　join split chomp</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DAC-SDC/">DAC-SDC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GPGPU/">GPGPU</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/es310/">es310</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E4%B8%AD%E5%BF%83%E6%A0%A1%E5%8C%BA/">中心校区</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E6%8B%9B%E8%81%98/">招聘</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E7%A0%94%E7%A9%B6%E7%94%9F/">研究生</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E7%A0%94%E7%A9%B6%E7%94%9F/%E8%BD%AF%E4%BB%B6%E5%9B%AD/">软件园</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E8%BD%AF%E4%BB%B6%E5%9B%AD/">软件园</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/gpu-computing/">gpu-computing</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/gpu-computing/GPGPU-Sim-Notes/">GPGPU-Sim Notes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/gpu-computing/GPU-PTX-ISA-Analysis/">GPU PTX ISA Analysis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/gpu-computing/Jetson-TX1-2/">Jetson TX1-2</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/C-C/">C/C++</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/C-C/CUDA-Programming/">CUDA Programming</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/CUDA-Programming/">CUDA Programming</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/Perl/">Perl</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/Python/">Python</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/tools/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E7%BB%B4%E6%8A%A4/">系统管理维护</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/uncategorized/">uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E6%AC%B2%E5%96%84%E5%85%B6%E4%BA%8B%E5%BF%85%E5%85%88%E5%88%A9%E5%85%B6%E5%99%A8/">工欲善其事必先利其器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E6%89%AF%E6%B7%A1/">日常扯淡</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F/">程序人生</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%80%9A%E7%94%A8%E7%BC%96%E8%AF%91%E6%8A%80%E6%9C%AF/">通用编译技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/">驱动安装</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/310/" rel="tag">310</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/" rel="tag">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CUDA/" rel="tag">CUDA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cache/" rel="tag">Cache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Caffe/" rel="tag">Caffe</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Faster-rcnn/" rel="tag">Faster rcnn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GOTURN/" rel="tag">GOTURN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GPGPU-Sim/" rel="tag">GPGPU-Sim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GPU/" rel="tag">GPU</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jetson/" rel="tag">Jetson</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PTX-ISA/" rel="tag">PTX ISA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSD-Caffe/" rel="tag">SSD-Caffe</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deeplearning/" rel="tag">deeplearning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/latex/" rel="tag">latex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/perl/" rel="tag">perl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/profiling/" rel="tag">profiling</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tx1/" rel="tag">tx1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tx2/" rel="tag">tx2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/voc2007/" rel="tag">voc2007</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yolo/" rel="tag">yolo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%8B%E7%BB%AD/" rel="tag">手续</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8B%9B%E8%81%98/" rel="tag">招聘</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8C%87%E5%8D%97/" rel="tag">指南</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82%E6%84%9F/" rel="tag">杂感</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A0%94%E7%A9%B6%E7%94%9F/" rel="tag">研究生</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AF%AE%E7%90%83/" rel="tag">篮球</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B5%84%E6%BA%90/" rel="tag">资源</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%9B%AD/" rel="tag">软件园</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%BF%E9%87%8C/" rel="tag">阿里</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/310/" style="font-size: 10px;">310</a> <a href="/tags/C-C/" style="font-size: 13.33px;">C/C++</a> <a href="/tags/CUDA/" style="font-size: 18.89px;">CUDA</a> <a href="/tags/Cache/" style="font-size: 11.11px;">Cache</a> <a href="/tags/Caffe/" style="font-size: 10px;">Caffe</a> <a href="/tags/Deep-learning/" style="font-size: 14.44px;">Deep learning</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Faster-rcnn/" style="font-size: 10px;">Faster rcnn</a> <a href="/tags/GOTURN/" style="font-size: 10px;">GOTURN</a> <a href="/tags/GPGPU-Sim/" style="font-size: 11.11px;">GPGPU-Sim</a> <a href="/tags/GPU/" style="font-size: 20px;">GPU</a> <a href="/tags/Jetson/" style="font-size: 11.11px;">Jetson</a> <a href="/tags/Linux/" style="font-size: 17.78px;">Linux</a> <a href="/tags/PTX-ISA/" style="font-size: 11.11px;">PTX ISA</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/SSD-Caffe/" style="font-size: 10px;">SSD-Caffe</a> <a href="/tags/Shell/" style="font-size: 16.67px;">Shell</a> <a href="/tags/deeplearning/" style="font-size: 10px;">deeplearning</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/latex/" style="font-size: 10px;">latex</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/perl/" style="font-size: 15.56px;">perl</a> <a href="/tags/profiling/" style="font-size: 10px;">profiling</a> <a href="/tags/tx1/" style="font-size: 10px;">tx1</a> <a href="/tags/tx2/" style="font-size: 11.11px;">tx2</a> <a href="/tags/voc2007/" style="font-size: 10px;">voc2007</a> <a href="/tags/yolo/" style="font-size: 10px;">yolo</a> <a href="/tags/%E6%89%8B%E7%BB%AD/" style="font-size: 10px;">手续</a> <a href="/tags/%E6%8B%9B%E8%81%98/" style="font-size: 10px;">招聘</a> <a href="/tags/%E6%8C%87%E5%8D%97/" style="font-size: 12.22px;">指南</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9D%82%E6%84%9F/" style="font-size: 10px;">杂感</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 12.22px;">生活</a> <a href="/tags/%E7%A0%94%E7%A9%B6%E7%94%9F/" style="font-size: 11.11px;">研究生</a> <a href="/tags/%E7%AF%AE%E7%90%83/" style="font-size: 10px;">篮球</a> <a href="/tags/%E8%B5%84%E6%BA%90/" style="font-size: 11.11px;">资源</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%9B%AD/" style="font-size: 10px;">软件园</a> <a href="/tags/%E9%98%BF%E9%87%8C/" style="font-size: 12.22px;">阿里</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.33px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/10/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/11/tvm-autotune%E4%BC%98%E5%8C%96%E7%9A%84%E7%AE%97%E5%AD%90%E9%85%8D%E7%BD%AE/">TVM autotune优化的算子配置</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/11/%E5%85%B3%E4%BA%8E%E6%A1%A3%E6%A1%88%E9%97%AE%E9%A2%98/">关于档案问题</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/03/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE/">环境变量设置</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/31/%E5%A6%82%E4%BD%95%E5%AF%BB%E6%89%BE%E5%B7%AE%E5%BC%82%E5%8C%96-%E5%A4%9A%E5%81%9A%E4%B8%80%E7%82%B9/">如何寻找差异化-多做一点</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

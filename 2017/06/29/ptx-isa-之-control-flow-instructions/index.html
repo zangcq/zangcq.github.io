@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>PTX ISA 之 Control Flow Instructions | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Control Flow InstructionsThe following PTX instructions and syntax are for controlling execution in a PTX program: &amp;#123;&amp;#125; @ bra call ret exit 1.1. Control Flow Instructions: {}&amp;#123;&amp;#125; Instr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PTX ISA 之 Control Flow Instructions">
+<meta property="og:url" content="http://example.com/2017/06/29/ptx-isa-%E4%B9%8B-control-flow-instructions/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Control Flow InstructionsThe following PTX instructions and syntax are for controlling execution in a PTX program: &amp;#123;&amp;#125; @ bra call ret exit 1.1. Control Flow Instructions: {}&amp;#123;&amp;#125; Instr">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-06-29T02:26:19.000Z">
+<meta property="article:modified_time" content="2020-10-10T01:15:14.699Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="GPU">
+<meta property="article:tag" content="PTX ISA">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ptx-isa-之-control-flow-instructions" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/29/ptx-isa-%E4%B9%8B-control-flow-instructions/" class="article-date">
+  <time datetime="2017-06-29T02:26:19.000Z" itemprop="datePublished">2017-06-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/gpu-computing/">gpu-computing</a>►<a class="article-category-link" href="/categories/gpu-computing/GPU-PTX-ISA-Analysis/">GPU PTX ISA Analysis</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PTX ISA 之 Control Flow Instructions
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Control-Flow-Instructions"><a href="#Control-Flow-Instructions" class="headerlink" title="Control Flow Instructions"></a>Control Flow Instructions</h1><p>The following PTX instructions and syntax are for controlling execution in a PTX program:</p>
+<p><code>&#123;&#125;</code> <code>@</code> <code>bra</code> <code>call</code> <code>ret</code> <code>exit</code></p>
+<h2 id="1-1-Control-Flow-Instructions"><a href="#1-1-Control-Flow-Instructions" class="headerlink" title="1.1. Control Flow Instructions: {}"></a>1.1. Control Flow Instructions: {}</h2><p><code>&#123;&#125;</code> Instruction grouping.</p>
+<p>作为指令组存在，相当于指令列表，在ptx中作为kernel函数的分界。</p>
+<h3 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h3><p><code>&#123; instructionList &#125;</code></p>
+<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>The curly braces create a group of instructions, used primarily for defining a function body. The curly braces also provide a mechanism for determining the scope of a variable: any variable declared within a scope is not available outside the scope.</p>
+<p>同时作为变量的作用域。</p>
+<h3 id="PTX-ISA-Notes"><a href="#PTX-ISA-Notes" class="headerlink" title="PTX ISA Notes"></a>PTX ISA Notes</h3><p>Introduced in PTX ISA version 1.0.</p>
+<h3 id="Target-ISA-Notes"><a href="#Target-ISA-Notes" class="headerlink" title="Target ISA Notes"></a>Target ISA Notes</h3><p>Supported on all target architectures.</p>
+<p>在sass 中也会出现<code>&#123;&#125;</code>，其作用是？</p>
+<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><p>$${ add.s32 a,b,c; mov.s32 d,a; }$$</p>
+<h2 id="1-2-Control-Flow-Instructions"><a href="#1-2-Control-Flow-Instructions" class="headerlink" title="1.2. Control Flow Instructions: @"></a>1.2. Control Flow Instructions: @</h2><p><code>@</code> Predicated execution.</p>
+<p>作为谓词执行的标志。</p>
+<h3 id="Syntax-1"><a href="#Syntax-1" class="headerlink" title="Syntax"></a>Syntax</h3><p><code>@&#123;!&#125;p instruction;</code></p>
+<h3 id="Description-1"><a href="#Description-1" class="headerlink" title="Description"></a>Description</h3><p>Execute an instruction or instruction block for threads that have the guard predicate True. Threads with a False guard predicate do nothing.</p>
+<p>作为条件判断的指令标志，如果<code>p</code>为真，则执行指令，否则 不执行指令。</p>
+<h3 id="Semantics"><a href="#Semantics" class="headerlink" title="Semantics"></a>Semantics</h3><p><code>If &#123;!&#125;p</code> then instruction</p>
+<h3 id="PTX-ISA-Notes-1"><a href="#PTX-ISA-Notes-1" class="headerlink" title="PTX ISA Notes"></a>PTX ISA Notes</h3><p>Introduced in PTX ISA version 1.0.</p>
+<h3 id="Target-ISA-Notes-1"><a href="#Target-ISA-Notes-1" class="headerlink" title="Target ISA Notes"></a>Target ISA Notes</h3><p>Supported on all target architectures.</p>
+<h3 id="Examples-1"><a href="#Examples-1" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">setp.eq.f32  p,y,<span class="number">0</span>;         <span class="comment">// is y zero?</span></span><br><span class="line">@!p div.f32      ratio,x,y  <span class="comment">// avoid division by zero</span></span><br><span class="line">@q  bra L23;                <span class="comment">// conditional branch</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-3-Control-Flow-Instructions-bra"><a href="#1-3-Control-Flow-Instructions-bra" class="headerlink" title="1.3. Control Flow Instructions: bra"></a>1.3. Control Flow Instructions: bra</h2><p><code>bra</code> Branch to a target and continue execution there.</p>
+<p>作为分支指令，用作跳转。</p>
+<h3 id="Syntax-2"><a href="#Syntax-2" class="headerlink" title="Syntax"></a>Syntax</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@p   bra&#123;.uni&#125;  tgt;             <span class="comment">// direct branch, tgt is a label </span></span><br><span class="line">bra&#123;.uni&#125;  tgt;                  <span class="comment">// unconditional branch</span></span><br><span class="line">@p   bra&#123;.uni&#125;  tgt&#123;, tlist&#125;;    <span class="comment">// indirect branch, tgt is reg</span></span><br><span class="line">bra&#123;.uni&#125;  tgt&#123;, tlist&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>tgt = target 作为要跳转的目标 label， 分为有条件和无条件跳转。</p>
+<h3 id="Description-2"><a href="#Description-2" class="headerlink" title="Description"></a>Description</h3><p>Continue execution at the target. Conditional branches are specified by using a guard predicate. The branch target must be a label. The branch target can be either a label or an address of a label held in a register.</p>
+<p>继续在target上执行，目标必须是 label 或者存储 label的地址，TARGET 通常是 一个 basic block 形如<code>BB1_3</code></p>
+<p><code>bra.uni</code>is guaranteed to be non-divergent, meaning that all threads in a warp have identical values for the guard predicate and branch target.</p>
+<p><code>uni</code>表示无 warp 分歧，同一个warp中的线程，都走同一个分支。</p>
+<p>Indirect branches support an optional second operand, <code>tlist</code>, to communicate the list of potential targets. This operand is either the name of an array (jump table) initialized to a list of labels; or a label associated with a <code>.branchtargets</code> directive, which declares a list of potential target labels. The<code>tgt</code>register must hold the address of one of the control flow labels in the jump table or <code>.branchtargets</code>list indicated by<code>tlist</code>.</p>
+<p>非直接分支，可能是一个label的列表，通过寄存器存储了label的地址。</p>
+<p>If no tlist is provided, the branch target may be any label within the current function whose address is taken (i.e., any label used in a variable initialize or as the source operand of a mov instruction. Note that if no <code>tlist</code>is given, the optimizer will build a conservative control flow graph which may degrade performance. If <code>tlist</code> is given and the actual target is not in <code>tlist</code>, the code is incorrect and the program may generate incorrect results or fail to execute.</p>
+<p>如果 label列表不给出，那么编译器就会生成一个保守并且性能降低的cfg，如果给定了label 列表，但是真正的label 不在其中，那便会导致错误的结果或者不能执行。</p>
+<p>Jump tables and <code>.branchtargets</code> declarations must be within the local function scope and refer only to control flow labels within the current function. Jump tables may be defined in either the constant or global state space.</p>
+<p>跳转 label 和 branch 声明，必须在当前的kernel里，不能跳到别的kernel 中。个人理解</p>
+<h3 id="Semantics-1"><a href="#Semantics-1" class="headerlink" title="Semantics"></a>Semantics</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">if</span> (p) &#123;</span><br><span class="line">pc = tgt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="PTX-ISA-Notes-2"><a href="#PTX-ISA-Notes-2" class="headerlink" title="PTX ISA Notes"></a>PTX ISA Notes</h3><p>Direct branch introduced in PTX ISA version 1.0.</p>
+<p>Indirect branch introduced in PTX ISA version 2.1.</p>
+<p>Note: indirect branch is currently unimplemented.</p>
+<h3 id="Target-ISA-Notes-2"><a href="#Target-ISA-Notes-2" class="headerlink" title="Target ISA Notes"></a>Target ISA Notes</h3><p>Direct branch supported on all target architectures.</p>
+<p>Indirect branch requires sm_20 or higher.</p>
+<h3 id="Examples-2"><a href="#Examples-2" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">bra.uni  L_exit;        <span class="comment">// uniform unconditional jump</span></span><br><span class="line">@q  bra      L23;       <span class="comment">// conditional branch</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// indirect branch using jump table</span></span><br><span class="line">.global .u32 jmptbl[<span class="number">5</span>] = &#123; Loop, Done, L1, L2, L3 &#125;;</span><br><span class="line">...</span><br><span class="line">@p  ld.global.u32  %r0, [jmptbl+<span class="number">4</span>];<span class="comment">//L2</span></span><br><span class="line">@q  ld.global.u32  %r0, [jmptbl+<span class="number">8</span>];<span class="comment">//？</span></span><br><span class="line">bra            %r0, jmptbl;</span><br><span class="line"></span><br><span class="line"><span class="comment">// indirect branch using .branchtargets directive</span></span><br><span class="line">...</span><br><span class="line">@p  mov.u32  %r0, Done;</span><br><span class="line">@q  mov.u32  %r0, L1;</span><br><span class="line">Btgt: .branchtargets Done, L1;</span><br><span class="line">bra      %r0, Btgt;</span><br><span class="line"><span class="comment">//  如果执行了，，那就跳到L1</span></span><br><span class="line"><span class="comment">//  indirect branch with no target list provided</span></span><br><span class="line">...</span><br><span class="line">@p  mov.u32  %r0, Done;</span><br><span class="line">@q  mov.u32  %r0, L1;</span><br><span class="line">bra      %r0;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-4-Control-Flow-Instructions-call"><a href="#1-4-Control-Flow-Instructions-call" class="headerlink" title="1.4. Control Flow Instructions: call"></a>1.4. Control Flow Instructions: call</h3><p><strong>call</strong> Call a function, recording the return location.</p>
+<p>调用一个函数，并记录返回位置。</p>
+<h3 id="Syntax-3"><a href="#Syntax-3" class="headerlink" title="Syntax"></a>Syntax</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// direct call to named function, func is a symbol</span></span><br><span class="line">call&#123;.uni&#125; (ret-param), func, (param-<span class="built_in">list</span>);</span><br><span class="line">call&#123;.uni&#125; func, (param-<span class="built_in">list</span>);</span><br><span class="line">call&#123;.uni&#125; func;</span><br><span class="line"></span><br><span class="line"><span class="comment">// indirect call via pointer, with full list of call targets</span></span><br><span class="line">call&#123;.uni&#125; (ret-param), fptr, (param-<span class="built_in">list</span>), flist;</span><br><span class="line">call&#123;.uni&#125; fptr, (param-<span class="built_in">list</span>), flist;</span><br><span class="line">call&#123;.uni&#125; fptr, flist;</span><br><span class="line"></span><br><span class="line"><span class="comment">// indirect call via pointer, with no knowledge of call targets</span></span><br><span class="line">call&#123;.uni&#125; (ret-param), fptr, (param-<span class="built_in">list</span>), fproto;</span><br><span class="line">call&#123;.uni&#125; fptr, (param-<span class="built_in">list</span>), fproto;</span><br><span class="line">call&#123;.uni&#125; fptr, fproto;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Description-3"><a href="#Description-3" class="headerlink" title="Description"></a>Description</h3><p>The call instruction stores the address of the next instruction, so execution can resume at that point after executing a <code>ret</code> instruction.</p>
+<p>call指令可以保存下一条指令，因此可以在<code>ret</code>之后回到原来的执行点。</p>
+<p>A call is assumed to be divergent unless the .<code>uni</code> suffix is present, indicating that the call is guaranteed to be non-divergent, meaning that all threads in a warp have identical values for the guard predicate and call target.</p>
+<p>For direct calls, the called location <code>func</code> must be a symbolic function name; for indirect calls, the called location <code>fptr</code> must be an address of a function held in a register. Input arguments and return values are optional. Arguments may be registers, immediate constants, or variables in <code>.param</code> space. Arguments are pass-by-value.</p>
+<p><em>直接</em> 调用的时候，可以直接调用函数名，也可以调用函数的地址。参数同 值来 传递。</p>
+<p>Indirect calls require an additional operand, <code>flist</code>or <code>fproto</code>, to communicate the list of potential call targets or the common function prototype of all call targets, respectively. In the first case, <code>flist</code> gives a complete list of potential call targets and the optimizing <code>backend</code>is free to optimize the calling convention. In the second case, where the complete list of potential call targets may not be known, the common function prototype is given and the call must obey the ABI’s calling convention.</p>
+<p>非直接调用，需要一个额外的参数。</p>
+<p>The <code>flist</code> operand is either the name of an array (call table) initialized to a list of function names; or a label associated with a <code>.calltargets</code> directive, which declares a list of potential call targets. In both cases the fptr register holds the address of a function listed in the call table or <code>.calltargets</code> list, and the call operands are type-checked against the type signature of the functions indicated by <code>flist</code>.</p>
+<p>The <code>fproto</code> operand is the name of a label associated with a <code>.callprototype</code> directive. This operand is used when a complete list of potential targets is not known. The call operands are type-checked against the prototype, and code generation will follow the <code>ABI</code> calling convention. If a function that doesn’t match the prototype is called, the behavior is undefined.</p>
+<p>Call tables may be declared at module scope or local scope, in either the constant or global state space. The <code>.calltargets</code> and <code>.callprototype</code> directives must be declared within a function body. All functions must be declared prior to being referenced in a call table initializer or <code>.calltargets</code> directive.</p>
+<h3 id="PTX-ISA-Notes-3"><a href="#PTX-ISA-Notes-3" class="headerlink" title="PTX ISA Notes"></a>PTX ISA Notes</h3><p>Direct call introduced in PTX ISA version 1.0. Indirect call introduced in PTX ISA version 2.1.</p>
+<h3 id="Target-ISA-Notes-3"><a href="#Target-ISA-Notes-3" class="headerlink" title="Target ISA Notes"></a>Target ISA Notes</h3><p>Direct call supported on all target architectures. Indirect call requires sm_20 or higher.</p>
+<h3 id="Examples-3"><a href="#Examples-3" class="headerlink" title="Examples"></a>Examples</h3><p>$$// examples of direct call call init; // call function ‘init’ call.uni g, (a); // call function ‘g’ with parameter ‘a’ @p call (d), h, (a, b); // return value into register d // call-via-pointer using jump table .func (.reg .u32 rv) foo (.reg .u32 a, .reg .u32 b) … .func (.reg .u32 rv) bar (.reg .u32 a, .reg .u32 b) … .func (.reg .u32 rv) baz (.reg .u32 a, .reg .u32 b) … .global .u32 jmptbl[5] = { foo, bar, baz }; … call (retval), %r0, (x, y), jmptbl; @p ld.global.u32 %r0, [jmptbl+4]; @p ld.global.u32 %r0, [jmptbl+8]; // call-via-pointer using .calltargets directive .func (.reg .u32 rv) foo (.reg .u32 a, .reg .u32 b) … .func (.reg .u32 rv) bar (.reg .u32 a, .reg .u32 b) … .func (.reg .u32 rv) baz (.reg .u32 a, .reg .u32 b) … … @p mov.u32 %r0, foo; @q mov.u32 %r0, baz; Ftgt: .calltargets foo, bar, baz; call (retval), %r0, (x, y), Ftgt; // call-via-pointer using .callprototype directive .func dispatch (.reg .u32 fptr, .reg .u32 idx) {… Fproto: .callprototype _ (.param .u32 _, .param .u32 _); call %fptr, (x, y), Fproto; …$$</p>
+<h2 id="1-5-Control-Flow-Instructions-ret"><a href="#1-5-Control-Flow-Instructions-ret" class="headerlink" title="1.5. Control Flow Instructions: ret"></a>1.5. Control Flow Instructions: ret</h2><p><em>ret</em> Return from function to instruction after call.</p>
+<p>在函数调用结束后调用后返回。</p>
+<h3 id="Syntax-4"><a href="#Syntax-4" class="headerlink" title="Syntax"></a>Syntax</h3><p><code>ret&#123;.uni&#125;;</code></p>
+<h3 id="Description-4"><a href="#Description-4" class="headerlink" title="Description"></a>Description</h3><p>Return execution to caller’s environment. A divergent return suspends threads until all threads are ready to return to the caller. This allows multiple divergent <code>ret</code>instructions.</p>
+<p>A <code>ret</code> is assumed to be divergent unless the<code>.uni</code>suffix is present, indicating that the return is guaranteed to be non-divergent.</p>
+<p>Any values returned from a function should be moved into the return parameter variables prior to executing the <code>ret</code> instruction.</p>
+<p>A return instruction executed in a top-level entry routine will terminate thread execution.</p>
+<h3 id="PTX-ISA-Notes-4"><a href="#PTX-ISA-Notes-4" class="headerlink" title="PTX ISA Notes"></a>PTX ISA Notes</h3><p>Introduced in PTX ISA version 1.0.</p>
+<h3 id="Target-ISA-Notes-4"><a href="#Target-ISA-Notes-4" class="headerlink" title="Target ISA Notes"></a>Target ISA Notes</h3><p>Supported on all target architectures.</p>
+<h3 id="Examples-4"><a href="#Examples-4" class="headerlink" title="Examples"></a>Examples</h3><p>$$ret; @p ret;$$</p>
+<h2 id="1-6-Control-Flow-Instructions-exit"><a href="#1-6-Control-Flow-Instructions-exit" class="headerlink" title="1.6. Control Flow Instructions: exit"></a>1.6. Control Flow Instructions: exit</h2><p><em>exit</em> Terminate a thread.</p>
+<p>终止一个线程</p>
+<h3 id="Syntax-5"><a href="#Syntax-5" class="headerlink" title="Syntax"></a>Syntax</h3><p><code>exit;</code></p>
+<h3 id="Description-5"><a href="#Description-5" class="headerlink" title="Description"></a>Description</h3><p>Ends execution of a thread.</p>
+<p>As threads exit, barriers waiting on all threads are checked to see if the exiting threads are the only threads that have not yet made it to a barrier for all threads in the CTA. If the exiting threads are holding up the barrier, the barrier is released.</p>
+<p>当所有线程退出，栅栏在等待所有线程并且检查CTA中所有线程是否到达，如果退出的线程需要到达这个barrier ，那么这个barrier 就可以释放了。</p>
+<h3 id="PTX-ISA-Notes-5"><a href="#PTX-ISA-Notes-5" class="headerlink" title="PTX ISA Notes"></a>PTX ISA Notes</h3><p>Introduced in PTX ISA version 1.0.</p>
+<h3 id="Target-ISA-Notes-5"><a href="#Target-ISA-Notes-5" class="headerlink" title="Target ISA Notes"></a>Target ISA Notes</h3><p>Supported on all target architectures.</p>
+<h3 id="Examples-5"><a href="#Examples-5" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">exit</span>;</span><br><span class="line">@p  <span class="built_in">exit</span>;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/06/29/ptx-isa-%E4%B9%8B-control-flow-instructions/" data-id="ckg2zloiu009lcq9k4zv0fxu7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GPU/" rel="tag">GPU</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PTX-ISA/" rel="tag">PTX ISA</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/07/06/windows-%E5%92%8C-linux-%E7%B3%BB%E7%BB%9F-%E4%BB%8E%E7%A1%AC%E7%9B%98%E8%BF%81%E7%A7%BB%E5%88%B0ssd/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          windows 和 Linux 系统 从硬盘迁移到SSD
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/06/26/jetson-tx2-%E5%AE%89%E8%A3%85-jetpack-3-0-%E5%B0%8F%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Jetson TX2 安装 JetPack 3.0 小记 与 申请教育版链接</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DAC-SDC/">DAC-SDC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GPGPU/">GPGPU</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/es310/">es310</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E4%B8%AD%E5%BF%83%E6%A0%A1%E5%8C%BA/">中心校区</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E6%8B%9B%E8%81%98/">招聘</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E7%A0%94%E7%A9%B6%E7%94%9F/">研究生</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E7%A0%94%E7%A9%B6%E7%94%9F/%E8%BD%AF%E4%BB%B6%E5%9B%AD/">软件园</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E8%BD%AF%E4%BB%B6%E5%9B%AD/">软件园</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/gpu-computing/">gpu-computing</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/gpu-computing/GPGPU-Sim-Notes/">GPGPU-Sim Notes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/gpu-computing/GPU-PTX-ISA-Analysis/">GPU PTX ISA Analysis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/gpu-computing/Jetson-TX1-2/">Jetson TX1-2</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/C-C/">C/C++</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/C-C/CUDA-Programming/">CUDA Programming</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/CUDA-Programming/">CUDA Programming</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/Perl/">Perl</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/Python/">Python</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/tools/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E7%BB%B4%E6%8A%A4/">系统管理维护</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/uncategorized/">uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E6%AC%B2%E5%96%84%E5%85%B6%E4%BA%8B%E5%BF%85%E5%85%88%E5%88%A9%E5%85%B6%E5%99%A8/">工欲善其事必先利其器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E6%89%AF%E6%B7%A1/">日常扯淡</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F/">程序人生</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%80%9A%E7%94%A8%E7%BC%96%E8%AF%91%E6%8A%80%E6%9C%AF/">通用编译技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/">驱动安装</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/310/" rel="tag">310</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/" rel="tag">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CUDA/" rel="tag">CUDA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cache/" rel="tag">Cache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Caffe/" rel="tag">Caffe</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Faster-rcnn/" rel="tag">Faster rcnn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GOTURN/" rel="tag">GOTURN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GPGPU-Sim/" rel="tag">GPGPU-Sim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GPU/" rel="tag">GPU</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jetson/" rel="tag">Jetson</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PTX-ISA/" rel="tag">PTX ISA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSD-Caffe/" rel="tag">SSD-Caffe</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deeplearning/" rel="tag">deeplearning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/latex/" rel="tag">latex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/perl/" rel="tag">perl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/profiling/" rel="tag">profiling</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tx1/" rel="tag">tx1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tx2/" rel="tag">tx2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/voc2007/" rel="tag">voc2007</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yolo/" rel="tag">yolo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%8B%E7%BB%AD/" rel="tag">手续</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8B%9B%E8%81%98/" rel="tag">招聘</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8C%87%E5%8D%97/" rel="tag">指南</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82%E6%84%9F/" rel="tag">杂感</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A0%94%E7%A9%B6%E7%94%9F/" rel="tag">研究生</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AF%AE%E7%90%83/" rel="tag">篮球</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B5%84%E6%BA%90/" rel="tag">资源</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%9B%AD/" rel="tag">软件园</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%BF%E9%87%8C/" rel="tag">阿里</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/310/" style="font-size: 10px;">310</a> <a href="/tags/C-C/" style="font-size: 13.33px;">C/C++</a> <a href="/tags/CUDA/" style="font-size: 18.89px;">CUDA</a> <a href="/tags/Cache/" style="font-size: 11.11px;">Cache</a> <a href="/tags/Caffe/" style="font-size: 10px;">Caffe</a> <a href="/tags/Deep-learning/" style="font-size: 14.44px;">Deep learning</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Faster-rcnn/" style="font-size: 10px;">Faster rcnn</a> <a href="/tags/GOTURN/" style="font-size: 10px;">GOTURN</a> <a href="/tags/GPGPU-Sim/" style="font-size: 11.11px;">GPGPU-Sim</a> <a href="/tags/GPU/" style="font-size: 20px;">GPU</a> <a href="/tags/Jetson/" style="font-size: 11.11px;">Jetson</a> <a href="/tags/Linux/" style="font-size: 17.78px;">Linux</a> <a href="/tags/PTX-ISA/" style="font-size: 11.11px;">PTX ISA</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/SSD-Caffe/" style="font-size: 10px;">SSD-Caffe</a> <a href="/tags/Shell/" style="font-size: 16.67px;">Shell</a> <a href="/tags/deeplearning/" style="font-size: 10px;">deeplearning</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/latex/" style="font-size: 10px;">latex</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/perl/" style="font-size: 15.56px;">perl</a> <a href="/tags/profiling/" style="font-size: 10px;">profiling</a> <a href="/tags/tx1/" style="font-size: 10px;">tx1</a> <a href="/tags/tx2/" style="font-size: 11.11px;">tx2</a> <a href="/tags/voc2007/" style="font-size: 10px;">voc2007</a> <a href="/tags/yolo/" style="font-size: 10px;">yolo</a> <a href="/tags/%E6%89%8B%E7%BB%AD/" style="font-size: 10px;">手续</a> <a href="/tags/%E6%8B%9B%E8%81%98/" style="font-size: 10px;">招聘</a> <a href="/tags/%E6%8C%87%E5%8D%97/" style="font-size: 12.22px;">指南</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9D%82%E6%84%9F/" style="font-size: 10px;">杂感</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 12.22px;">生活</a> <a href="/tags/%E7%A0%94%E7%A9%B6%E7%94%9F/" style="font-size: 11.11px;">研究生</a> <a href="/tags/%E7%AF%AE%E7%90%83/" style="font-size: 10px;">篮球</a> <a href="/tags/%E8%B5%84%E6%BA%90/" style="font-size: 11.11px;">资源</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%9B%AD/" style="font-size: 10px;">软件园</a> <a href="/tags/%E9%98%BF%E9%87%8C/" style="font-size: 12.22px;">阿里</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.33px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/10/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/11/tvm-autotune%E4%BC%98%E5%8C%96%E7%9A%84%E7%AE%97%E5%AD%90%E9%85%8D%E7%BD%AE/">TVM autotune优化的算子配置</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/11/%E5%85%B3%E4%BA%8E%E6%A1%A3%E6%A1%88%E9%97%AE%E9%A2%98/">关于档案问题</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/03/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE/">环境变量设置</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/31/%E5%A6%82%E4%BD%95%E5%AF%BB%E6%89%BE%E5%B7%AE%E5%BC%82%E5%8C%96-%E5%A4%9A%E5%81%9A%E4%B8%80%E7%82%B9/">如何寻找差异化-多做一点</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

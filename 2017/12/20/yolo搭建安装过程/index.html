@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>YOLO搭建安装过程 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="yolo 搭建安装过程0.Over Viewyolo作为一个目标检测的模型,它相对突出的地方就是实时. 最新yolo9000这篇论文相对于SSD等模型也不落下风,由于我们要运行的平台是嵌入式平台,其计算资源非常有限,所以我们就需要对于实时性要求更高的模型. 前面踩得坑有 faster-rcnn,ssd,goturn等,也会有相关文章介绍. 1.安装过程首先,我们来到YOLO官方网站  https:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="YOLO搭建安装过程">
+<meta property="og:url" content="http://example.com/2017/12/20/yolo%E6%90%AD%E5%BB%BA%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="yolo 搭建安装过程0.Over Viewyolo作为一个目标检测的模型,它相对突出的地方就是实时. 最新yolo9000这篇论文相对于SSD等模型也不落下风,由于我们要运行的平台是嵌入式平台,其计算资源非常有限,所以我们就需要对于实时性要求更高的模型. 前面踩得坑有 faster-rcnn,ssd,goturn等,也会有相关文章介绍. 1.安装过程首先,我们来到YOLO官方网站  https:">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-12-20T03:59:23.000Z">
+<meta property="article:modified_time" content="2020-10-10T01:15:14.808Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-yolo搭建安装过程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/20/yolo%E6%90%AD%E5%BB%BA%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B/" class="article-date">
+  <time datetime="2017-12-20T03:59:23.000Z" itemprop="datePublished">2017-12-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      YOLO搭建安装过程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="yolo-搭建安装过程"><a href="#yolo-搭建安装过程" class="headerlink" title="yolo 搭建安装过程"></a><code>yolo</code> 搭建安装过程</h1><h2 id="0-Over-View"><a href="#0-Over-View" class="headerlink" title="0.Over View"></a>0.Over View</h2><p><code>yolo</code>作为一个目标检测的模型,它相对突出的地方就是实时.</p>
+<p>最新<code>yolo9000</code>这篇论文相对于<code>SSD</code>等模型也不落下风,由于我们要运行的平台是嵌入式平台,其计算资源非常有限,所以我们就需要对于实时性要求更高的模型.</p>
+<p>前面踩得坑有 faster-rcnn,ssd,goturn等,也会有相关文章介绍.</p>
+<h2 id="1-安装过程"><a href="#1-安装过程" class="headerlink" title="1.安装过程"></a>1.安装过程</h2><p>首先,我们来到<code>YOLO</code>官方网站</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://pjreddie.com/darknet/yolo/">https://pjreddie.com/darknet/yolo/</a></p>
+</blockquote>
+<p>我们按照这个网站 一步一步去做就好了,看下面</p>
+<ol>
+<li><p>相关依赖</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">both OpenCV 3.x and OpenCV 2.4.13</span><br><span class="line">both cuDNN 5 and cuDNN 6</span><br><span class="line">CUDA &gt;= 7.5</span><br></pre></td></tr></table></figure>
+
+<p>opencv的安装 <a target="_blank" rel="noopener" href="https://zangcq.me/?p=494">https://zangcq.me/?p=494</a></p>
+<p>cuda 安装 <a target="_blank" rel="noopener" href="https://zangcq.me/?p=160">https://zangcq.me/?p=160</a></p>
+<p>cudnn安装 <a target="_blank" rel="noopener" href="https://zangcq.me/?p=500">https://zangcq.me/?p=500</a></p>
+</li>
+</ol>
+<ol>
+<li><p>首先从<code>github</code>上克隆下来,并编译</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">git clone https://github.com/pjreddie/darknet</span><br><span class="line">cd darknet</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+
+<p>编译的时候请注意,看一下<code>Makefile</code>文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">GPU=0     #是否需要用GPU,当然需要了</span><br><span class="line">CUDNN=0   #是否需要用CUDNN,这是NVIDIA做的一些优化,实际上就是一些库文件,优化一些常用的矩阵操作</span><br><span class="line">OPENCV=0  #用来对图片进行操作,打开,画图等等,如果你不用的话,,在测试时就不会有直接显示图片的效果</span><br><span class="line">OPENMP=0  #CPU的多线程</span><br><span class="line"><span class="meta">#</span><span class="bash">Arch 就是GPU的架构版本 简单说一下</span></span><br><span class="line">ARCH= -gencode arch=compute_20,code=[sm_20,sm_21] \# Fermi 架构 常见 gtx480 gtx580</span><br><span class="line">      -gencode arch=compute_30,code=sm_30 \# Kepler 架构 常见 gtx680 </span><br><span class="line">      -gencode arch=compute_35,code=sm_35 \# Kepler 架构 常见 gtx780 </span><br><span class="line">      -gencode arch=compute_50,code=[sm_50,compute_50] \# Maxwell 架构 常见 gtx750Ti gtx8 到9 系列 M</span><br><span class="line">      -gencode arch=compute_52,code=[sm_52,compute_52]# Maxwell 架构 常见 gtx8 到9 系列</span><br><span class="line">      -gencode arch=compute_61,code=[sm_61,compute_61]# Pascal 架构 常见 gtx 10系列</span><br><span class="line">      -gencode arch=compute_70,code=[sm_70,compute_70]# Volta 架构 这个不常见,用作超算或者数据中心的,新出了一款2999刀的volta卡 Tesla V100,值得入手.</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">最后说明一下,高版本code不能在低版本的卡上跑,架构不同的其特性也有差距,所以尽量查一下你的显卡是在那个计算能力上的</span></span><br></pre></td></tr></table></figure>
+
+<p>特别说明一下,如果在嵌入板子 Jetson TX1 或者TX2的话,也要相应修改<code>arch</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">-gencode arch=compute_53,code=[sm_53,compute_53]# Maxwell 架构 TX1</span><br><span class="line">-gencode arch=compute_62,code=[sm_62,compute_62]# Pascal 架构  TX2</span><br></pre></td></tr></table></figure>
+
+<p>NVIDIA产品计算能力的链接</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-gpus">https://developer.nvidia.com/cuda-gpus</a></p>
+</blockquote>
+</li>
+<li><p>下载 已经训练好的权值文件</p>
+<p>我们有两权值模型,<code>yolo</code>应该是32层的网络,而<code>tiny-yolo</code> 是15层,更轻量级</p>
+<p><code>yolo.weights</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">wget https://pjreddie.com/media/files/yolo.weights</span><br></pre></td></tr></table></figure>
+
+<p><code>tiny-yolo-voc.weighs</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">wget https://pjreddie.com/media/files/tiny-yolo-voc.weights</span><br><span class="line">wget https://pjreddie.com/media/files/tiny-yolo.weights</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试一下是否能用</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">./darknet detect cfg/yolo.cfg yolo.weights data/dog.jpg</span><br><span class="line"></span><br><span class="line">./darknet detector test cfg/voc.data cfg/tiny-yolo-voc.cfg tiny-yolo-voc.weights data/dog.jpg</span><br></pre></td></tr></table></figure>
+
+<p>你还可以在<code>data</code>文件夹下,找到更多的图片进行测试,这里就不赘述了.</p>
+</li>
+<li><p>检测阈值的调节</p>
+<p>实际上不论 <code>yolo</code>还是<code>ssd</code>他们都是有好多候选框来检测这个目标的,我们总是去概率最大的几个来输出.</p>
+<p>我们可以用<code>-thresh value</code>,<code>value</code>来作为输出的阈值, 当<code>value = .5</code>含义就会只输出概率大于<code>50%</code>的候选框,,如果我们把阈值设置成0,那么我们会看到很多的候选框.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">./darknet detect cfg/yolo.cfg yolo.weights data/dog.jpg -thresh 0</span><br><span class="line">./darknet detect cfg/yolo.cfg yolo.weights data/dog.jpg -thresh .5</span><br></pre></td></tr></table></figure>
+
+<p>大家可以自己试一下,我就不放图了.</p>
+</li>
+<li><p>利用摄像头,实时检测</p>
+<p>这一步的话,我们就需要用 <code>opencv</code>来编译了,我们还需要用到一个摄像头,将它插在主机上.</p>
+<p>执行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">./darknet detector demo cfg/coco.data cfg/yolo.cfg yolo.weights</span><br></pre></td></tr></table></figure>
+
+<p>我们就可以看到摄像头的直接输出,还会显示当前是实时FPS,类别等等</p>
+</li>
+</ol>
+<h2 id="2-训练过程"><a href="#2-训练过程" class="headerlink" title="2.训练过程"></a>2.训练过程</h2><h3 id="2-1处理VOC的数据集"><a href="#2-1处理VOC的数据集" class="headerlink" title="2.1处理VOC的数据集"></a>2.1处理<code>VOC</code>的数据集</h3><ol>
+<li><p>下载</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">wget https://pjreddie.com/media/files/VOCtrainval_11-May-2012.tar</span><br><span class="line">wget https://pjreddie.com/media/files/VOCtrainval_06-Nov-2007.tar</span><br><span class="line">wget https://pjreddie.com/media/files/VOCtest_06-Nov-2007.tar</span><br><span class="line">tar xf VOCtrainval_11-May-2012.tar</span><br><span class="line">tar xf VOCtrainval_06-Nov-2007.tar</span><br><span class="line">tar xf VOCtest_06-Nov-2007.tar</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用脚本生成 Labels</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">wget https://pjreddie.com/media/files/voc_label.py</span><br><span class="line">python voc_label.py</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 生成对应的 train.txt</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>处理自己的数据集</p>
+<p>与处理VOC的数据集一致</p>
+<p>参考链接</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://blog.csdn.net/sinat_30071459/article/details/50723212">http://blog.csdn.net/sinat_30071459/article/details/50723212</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/qw12/p/6185126.html">http://www.cnblogs.com/qw12/p/6185126.html</a></p>
+</blockquote>
+</li>
+</ol>
+<h3 id="2-2-修改darknet-配置文件"><a href="#2-2-修改darknet-配置文件" class="headerlink" title="2.2 修改darknet 配置文件"></a>2.2 修改<code>darknet</code> 配置文件</h3><ol>
+<li><p>修改 <code>cfg/voc.data</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line">classes= 20   #对象的类</span><br><span class="line">train  = &lt;path-to-voc&gt;/train.txt #voc_label.py生成的 train.txt</span><br><span class="line">valid  = &lt;path-to-voc&gt;2007_test.txt ##voc_label.py生成的 test.txt</span><br><span class="line">names = data/voc.names #类的名字</span><br><span class="line">backup = backup #生成权值文件的地方</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改<code>cfg/tiny-yolo.cfg</code></p>
+<p>这主要是<code>tiny-yolo</code>定义的一些网络结构,炼金术士们通常会对这个做一下修改.</p>
+<p>我主要简单修改一下 目标的类别 和最后一层的 filters</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">classes = 98 </span><br><span class="line"><span class="meta">#</span><span class="bash">最后一层region</span></span><br><span class="line">filters=num×（classes + coords + 1）=5*(98+4+1)=515</span><br></pre></td></tr></table></figure>
+
+<p>就举个例子说明一下.</p>
+</li>
+<li><p>下载预训练模型</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">wget https://pjreddie.com/media/files/darknet19_448.conv.23</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>生成自己的预训练权值</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">./darknet partial cfg/darknet19_448.cfg darknet19_448.weights darknet19_448.conv.23 23</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<h3 id="2-3-训练模型"><a href="#2-3-训练模型" class="headerlink" title="2.3 训练模型"></a>2.3 训练模型</h3><ol>
+<li><p>训练<code>voc</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">./darknet detector train cfg/voc.data cfg/yolo-voc.cfg darknet19_448.conv.23</span><br></pre></td></tr></table></figure>
+
+<p>如果想训练其他的模型,我们修改这两个 配置文件就行了<code>cfg/voc.data</code> <code>cfg/yolo-voc.cfg</code></p>
+</li>
+<li><p>训练<code>coco</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">./darknet detector train cfg/coco.data cfg/yolo.cfg darknet19_448.conv.23</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>多个<code>gpu</code>训练(同一机器),似乎不能分布式训练</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">./darknet detector train cfg/coco.data cfg/yolo.cfg darknet19_448.conv.23 -gpus 0,1,2,3</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<h3 id="3-测试"><a href="#3-测试" class="headerlink" title="3.测试"></a>3.测试</h3><p><code>TX2</code>作为测试平台,编译安装过程是一样的,所以不在多说了.</p>
+<p>我们同时在 带有<code>1080Ti</code>的服务器和<code>Jetson TX2</code>上搭建环境,服务器用作训练,而嵌入式板卡<code>TX2</code>作为测试,效果测试会在后续优化的文章中说明</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://pjreddie.com/darknet/yolo/">https://pjreddie.com/darknet/yolo/</a></p>
+<p><a target="_blank" rel="noopener" href="http://blog.csdn.net/qq_14845119/article/details/53589282#t3">http://blog.csdn.net/qq_14845119/article/details/53589282#t3</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.yuthon.com/2016/11/12/Train-YOLO-on-our-own-dataset/">http://www.yuthon.com/2016/11/12/Train-YOLO-on-our-own-dataset/</a></p>
+<p><a target="_blank" rel="noopener" href="http://blog.csdn.net/u011475210/article/details/78090344">http://blog.csdn.net/u011475210/article/details/78090344</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/AlexeyAB/yolo2_light">https://github.com/AlexeyAB/yolo2_light</a></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/12/20/yolo%E6%90%AD%E5%BB%BA%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B/" data-id="ckg2zlojf00bycq9k00nz752u" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/12/20/yolo-%E6%90%AD%E5%BB%BA%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          yolo 搭建安装过程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/12/20/opencv2-4-13-%E5%AE%89%E8%A3%85/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">openCV2.4.13 安装</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DAC-SDC/">DAC-SDC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GPGPU/">GPGPU</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/es310/">es310</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E4%B8%AD%E5%BF%83%E6%A0%A1%E5%8C%BA/">中心校区</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E6%8B%9B%E8%81%98/">招聘</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E7%A0%94%E7%A9%B6%E7%94%9F/">研究生</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E7%A0%94%E7%A9%B6%E7%94%9F/%E8%BD%AF%E4%BB%B6%E5%9B%AD/">软件园</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E8%BD%AF%E4%BB%B6%E5%9B%AD/">软件园</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/gpu-computing/">gpu-computing</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/gpu-computing/GPGPU-Sim-Notes/">GPGPU-Sim Notes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/gpu-computing/GPU-PTX-ISA-Analysis/">GPU PTX ISA Analysis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/gpu-computing/Jetson-TX1-2/">Jetson TX1-2</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/C-C/">C/C++</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/C-C/CUDA-Programming/">CUDA Programming</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/CUDA-Programming/">CUDA Programming</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/Perl/">Perl</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/Python/">Python</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/tools/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E7%BB%B4%E6%8A%A4/">系统管理维护</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/uncategorized/">uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E6%AC%B2%E5%96%84%E5%85%B6%E4%BA%8B%E5%BF%85%E5%85%88%E5%88%A9%E5%85%B6%E5%99%A8/">工欲善其事必先利其器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E6%89%AF%E6%B7%A1/">日常扯淡</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F/">程序人生</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%80%9A%E7%94%A8%E7%BC%96%E8%AF%91%E6%8A%80%E6%9C%AF/">通用编译技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/">驱动安装</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/310/" rel="tag">310</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/" rel="tag">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CUDA/" rel="tag">CUDA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cache/" rel="tag">Cache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Caffe/" rel="tag">Caffe</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Faster-rcnn/" rel="tag">Faster rcnn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GOTURN/" rel="tag">GOTURN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GPGPU-Sim/" rel="tag">GPGPU-Sim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GPU/" rel="tag">GPU</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jetson/" rel="tag">Jetson</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PTX-ISA/" rel="tag">PTX ISA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSD-Caffe/" rel="tag">SSD-Caffe</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deeplearning/" rel="tag">deeplearning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/latex/" rel="tag">latex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/perl/" rel="tag">perl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/profiling/" rel="tag">profiling</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tx1/" rel="tag">tx1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tx2/" rel="tag">tx2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/voc2007/" rel="tag">voc2007</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yolo/" rel="tag">yolo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%8B%E7%BB%AD/" rel="tag">手续</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8B%9B%E8%81%98/" rel="tag">招聘</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8C%87%E5%8D%97/" rel="tag">指南</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82%E6%84%9F/" rel="tag">杂感</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A0%94%E7%A9%B6%E7%94%9F/" rel="tag">研究生</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AF%AE%E7%90%83/" rel="tag">篮球</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B5%84%E6%BA%90/" rel="tag">资源</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%9B%AD/" rel="tag">软件园</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%BF%E9%87%8C/" rel="tag">阿里</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/310/" style="font-size: 10px;">310</a> <a href="/tags/C-C/" style="font-size: 13.33px;">C/C++</a> <a href="/tags/CUDA/" style="font-size: 18.89px;">CUDA</a> <a href="/tags/Cache/" style="font-size: 11.11px;">Cache</a> <a href="/tags/Caffe/" style="font-size: 10px;">Caffe</a> <a href="/tags/Deep-learning/" style="font-size: 14.44px;">Deep learning</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Faster-rcnn/" style="font-size: 10px;">Faster rcnn</a> <a href="/tags/GOTURN/" style="font-size: 10px;">GOTURN</a> <a href="/tags/GPGPU-Sim/" style="font-size: 11.11px;">GPGPU-Sim</a> <a href="/tags/GPU/" style="font-size: 20px;">GPU</a> <a href="/tags/Jetson/" style="font-size: 11.11px;">Jetson</a> <a href="/tags/Linux/" style="font-size: 17.78px;">Linux</a> <a href="/tags/PTX-ISA/" style="font-size: 11.11px;">PTX ISA</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/SSD-Caffe/" style="font-size: 10px;">SSD-Caffe</a> <a href="/tags/Shell/" style="font-size: 16.67px;">Shell</a> <a href="/tags/deeplearning/" style="font-size: 10px;">deeplearning</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/latex/" style="font-size: 10px;">latex</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/perl/" style="font-size: 15.56px;">perl</a> <a href="/tags/profiling/" style="font-size: 10px;">profiling</a> <a href="/tags/tx1/" style="font-size: 10px;">tx1</a> <a href="/tags/tx2/" style="font-size: 11.11px;">tx2</a> <a href="/tags/voc2007/" style="font-size: 10px;">voc2007</a> <a href="/tags/yolo/" style="font-size: 10px;">yolo</a> <a href="/tags/%E6%89%8B%E7%BB%AD/" style="font-size: 10px;">手续</a> <a href="/tags/%E6%8B%9B%E8%81%98/" style="font-size: 10px;">招聘</a> <a href="/tags/%E6%8C%87%E5%8D%97/" style="font-size: 12.22px;">指南</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9D%82%E6%84%9F/" style="font-size: 10px;">杂感</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 12.22px;">生活</a> <a href="/tags/%E7%A0%94%E7%A9%B6%E7%94%9F/" style="font-size: 11.11px;">研究生</a> <a href="/tags/%E7%AF%AE%E7%90%83/" style="font-size: 10px;">篮球</a> <a href="/tags/%E8%B5%84%E6%BA%90/" style="font-size: 11.11px;">资源</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%9B%AD/" style="font-size: 10px;">软件园</a> <a href="/tags/%E9%98%BF%E9%87%8C/" style="font-size: 12.22px;">阿里</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.33px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/10/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/11/tvm-autotune%E4%BC%98%E5%8C%96%E7%9A%84%E7%AE%97%E5%AD%90%E9%85%8D%E7%BD%AE/">TVM autotune优化的算子配置</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/11/%E5%85%B3%E4%BA%8E%E6%A1%A3%E6%A1%88%E9%97%AE%E9%A2%98/">关于档案问题</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/03/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE/">环境变量设置</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/31/%E5%A6%82%E4%BD%95%E5%AF%BB%E6%89%BE%E5%B7%AE%E5%BC%82%E5%8C%96-%E5%A4%9A%E5%81%9A%E4%B8%80%E7%82%B9/">如何寻找差异化-多做一点</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
