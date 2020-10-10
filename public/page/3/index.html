@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-数据类型-char、signed-char、unsigned-char-的理解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/09/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-char%E3%80%81signed-char%E3%80%81unsigned-char-%E7%9A%84%E7%90%86%E8%A7%A3/" class="article-date">
+  <time datetime="2020-06-09T07:44:24.000Z" itemprop="datePublished">2020-06-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/programming/">programming</a>►<a class="article-category-link" href="/categories/programming/C-C/">C/C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/09/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-char%E3%80%81signed-char%E3%80%81unsigned-char-%E7%9A%84%E7%90%86%E8%A7%A3/">数据类型 char、signed char、unsigned char 的理解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/75191/what-is-an-unsigned-char">https://stackoverflow.com/questions/75191/what-is-an-unsigned-char</a></p>
+<p>占坑</p>
+<p>overview</p>
+<ul>
+<li>表示范围</li>
+<li>应用场景</li>
+<li>x86跟arm服务器中默认的数据类型是什么？<ul>
+<li>在迁移过程中出现的问题</li>
+</ul>
+</li>
+</ul>
+<p>错误实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">某程序以 char 作为返回值，在x86服务器上测试的时候结果正常。</span><br><span class="line"></span><br><span class="line">但是在arm服务器上测试的时候却出现异常，程序陷入死循环</span><br><span class="line"></span><br><span class="line">ch每次返回的都是255</span><br></pre></td></tr></table></figure>
+
+<p>原因分析</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">这个问题的根本原因就是gcc对于不同平台上的char类型定义不一样。</span><br><span class="line"></span><br><span class="line">x86 上的 gcc 都把 char 定义为 signed char；</span><br><span class="line">而arm64平台上使用的linux-gcc 却把 char 定义为 unsigned char 。所以造成了同样的代码在 X86 和arm平台上编译后执行的结果不一样</span><br></pre></td></tr></table></figure>
+
+<p>解决方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">对于这个来说，当然是要把 char ch 修改为 int ch ，因为这个函数本身返回的也是int 。</span><br><span class="line"></span><br><span class="line">但是如果对于那些本来就是char类型的变量怎么办？</span><br><span class="line"></span><br><span class="line">这里也有解决方案，这个可以参考华为之前给出的方案</span><br><span class="line"></span><br><span class="line">1） 在编译时加-fsigned-char 参数，指定 char 为 signed char</span><br><span class="line">举例： gcc -fsigned-char test.c -o test</span><br><span class="line"></span><br><span class="line">在 Makefile 中可以使用选项 CFLAGS&#x3D;&quot;-fsigned-char&quot;、 CXXFLAGS、 CPPFLAGS 按需</span><br><span class="line">添加</span><br><span class="line"></span><br><span class="line">2）代码开发时养成良好的编程规范，使用自定义的变量类型，比如代码中定义</span><br><span class="line">#define unsigned char UCHAR 或者#define signed char CHAR；这样可以跨平台</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">3） 修改编译器默认 char 为和 x86 的一致， 可以使用下面版本的 GCC</span><br><span class="line">gcc4.9.3_signedchar.rar</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/06/09/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-char%E3%80%81signed-char%E3%80%81unsigned-char-%E7%9A%84%E7%90%86%E8%A7%A3/" data-id="ckg2zlokb00f6cq9kbn5z84sw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-内存泄漏排查方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/09/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E6%8E%92%E6%9F%A5%E6%96%B9%E6%B3%95/" class="article-date">
+  <time datetime="2020-06-09T03:12:10.000Z" itemprop="datePublished">2020-06-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/programming/">programming</a>►<a class="article-category-link" href="/categories/programming/C-C/">C/C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/09/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E6%8E%92%E6%9F%A5%E6%96%B9%E6%B3%95/">内存泄漏排查方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><p>AddressSanitizer</p>
+<ul>
+<li>GCC 4.9 以上支持</li>
+<li>用<code>-fsanitize=address</code>选项编译和链接你的程序。</li>
+<li>用<code>-fno-omit-frame-pointer</code>编译，以得到更容易理解<code>stack trace</code>。</li>
+<li>可选择<code>-O1</code>或者更高的优化级别编译</li>
+</ul>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/3a2df9b">https://www.jianshu.com/p/3a2df9b</a></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -fsanitize&#x3D;address -fno-omit-frame-pointer -O1 -g use-after-free.c -o use-after-free</span><br></pre></td></tr></table></figure>
+
+<p>strace</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/strace.html">https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/strace.html</a></p>
+</blockquote>
+<p>跟踪进程执行时的系统调用和所接收的信号。</p>
+<p>tcmalloc</p>
+<p>aot wasm compiler 触发了 tcmalloc 在不停的保存上下文信息，导致内存疯狂增长。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/06/09/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E6%8E%92%E6%9F%A5%E6%96%B9%E6%B3%95/" data-id="ckg2zlojw00dpcq9kh3vu5621" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-买房的选择与建议（转）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/07/%E4%B9%B0%E6%88%BF%E7%9A%84%E9%80%89%E6%8B%A9%E4%B8%8E%E5%BB%BA%E8%AE%AE%EF%BC%88%E8%BD%AC%EF%BC%89/" class="article-date">
+  <time datetime="2020-06-07T11:44:03.000Z" itemprop="datePublished">2020-06-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%97%A5%E5%B8%B8%E6%89%AF%E6%B7%A1/">日常扯淡</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/07/%E4%B9%B0%E6%88%BF%E7%9A%84%E9%80%89%E6%8B%A9%E4%B8%8E%E5%BB%BA%E8%AE%AE%EF%BC%88%E8%BD%AC%EF%BC%89/">买房的选择与建议（转）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>通用建议</strong></p>
+<p>1，第一套房子不知道买在哪里：帮好几个同事买首套，看到亲们看遍整个上海各个片区，真是无限理解深表同情（周末一天要加班写周报，一天还要看房，太辛苦了）。传统中介往往对自己的片区比较了解，又不想失去客户，因此给到的建议会比较有指向性，无法做到中立。</p>
+<p>2，置换方案不合理：大部分同学都是通过置换的方式来购买新的房产，但是置换流程就好像一条铁链，铁链上牵涉到至少三个家庭，任何一个环节出错，都足以导致另外两个家庭的困局。我最多操作过三连环，也就是四个家庭三套房产的连环置换。其难度绝不亚于在阿里部门间的合作，何况，都是每个家庭切实经济利益相关的。但是每个环节的中介可能只会考虑自己的这单生意，催促你签约，没有考虑周全导致崩盘。那么首先建议小白尽量少涉及多家置换，如果是自己置换，<strong>尽量先卖后买</strong>，或者咨询专业人士，考虑流程中的各个可能出纰漏的环节，制定合理计划。</p>
+<p>3，“<strong>借呗</strong>”慎点：借呗后台对接的是各类借款结构，按照官方解释，是随机分配的。这些机构有些会上征信，有些不会上，所以你在使用借呗的时候无法控制征信上是否会体现，有些贷款银行十分厌恶小贷机构的记录，会给按揭造成不必要的麻烦。所以在房贷按揭没有发放到上家账户前，请避免使用借呗，先找钱过桥，等一切尘埃落定，再提取借呗的额度归还过桥，切记。</p>
+<p>4，<strong>额外的税费</strong>：陪朋友去谈过一套房子据说是“捡皮夹子”的房子，现在想来还是很惊险。上家一开始只讲房子是父亲的，房产证上有几个兄弟的名字，我神经立马紧张。追问之下，得知是父亲去世后的继承房产。继承房产不是不能买，但是一方面要把继承税费的支付问题谈清楚，一方面涉及几个子女的房产大概率会产生利益分配上的纠纷（几个子女都有家庭，所以你面对的是n×3的上家，让几个家庭就利益分配达成一致，这精力简直足以抵偿房子便宜的部分）。</p>
+<p><strong>在杭州</strong></p>
+<p>1，以后这个<strong>房子谁会买</strong>？</p>
+<p>没有人会确定，目前买的这套房子会住一辈子，更何况是阿里的同学，要相信自己一定会有机会换到更好的房子里。于是，最根本的问题就是，以后当你想要卖房的时候，谁会买这个房子。最典型的例子就是没有电梯的六楼，哪怕有阁楼，建议不要碰，因为出手太难。这种房子唯一的受众群是没有小孩的小夫妻，一旦有小孩了，也许老人还要来帮忙带，六楼就显得很尴尬了。千万不要因为六楼价格相对低而动心，缺钱卖房的时候才后悔不已（赌一把装电梯的除外）。</p>
+<p>2，离地铁的距离</p>
+<p><strong>1公里</strong>范围内是人走路的舒适距离，大于1公里的房子（并且以后也不会有地铁规划），请慎重考虑。自己可以有车，但是老人不一定会开车，以后的下家也不一定愿意开车（车位也许还要靠抢）。尤其是第一次买房的刚需房，请慎重考虑这条建议。</p>
+<p>3，房间数量</p>
+<p>如果有两套房子，价格楼层环境房型相差不多，但是一个是<strong>小三房</strong>，一个是大两房，你会选择哪套？我想一般人都会选三房，即使房间小一点，但毕竟多一个房间，可以多一个功能。因此，在差价可以接受的情况下，尽量跳一跳，考虑多一个房间的房子。</p>
+<p>先说这些最普通人的购房标准吧，每个人的需求不一样，方案也会不一样。</p>
+<p>我们将秉承“买房经纪人”的方式，完全站在买方的角度，帮助合理规划，选筹，谈判，贷款及可能涉及的学校后续问题，而费用绝不会高于传统中介。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/06/07/%E4%B9%B0%E6%88%BF%E7%9A%84%E9%80%89%E6%8B%A9%E4%B8%8E%E5%BB%BA%E8%AE%AE%EF%BC%88%E8%BD%AC%EF%BC%89/" data-id="ckg2zloji00cfcq9k8ybeb3tz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-工作中的自我定位" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/23/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E8%87%AA%E6%88%91%E5%AE%9A%E4%BD%8D/" class="article-date">
+  <time datetime="2020-05-23T08:21:03.000Z" itemprop="datePublished">2020-05-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%97%A5%E5%B8%B8%E6%89%AF%E6%B7%A1/">日常扯淡</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/23/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E8%87%AA%E6%88%91%E5%AE%9A%E4%BD%8D/">工作中的自我定位</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我的优势是什么？</p>
+<ul>
+<li>工作扎实</li>
+<li>工程能力强</li>
+<li>会时刻反思自己</li>
+<li>持续学习的能力</li>
+</ul>
+<p>我的劣势是什么？</p>
+<ul>
+<li>无法控制外部情况变化</li>
+<li>创新意识的缺失</li>
+<li>管理上级的能力</li>
+<li>如何最大化利用身边的资源</li>
+</ul>
+<p>我再市场中处于什么地位？</p>
+<ul>
+<li>目前是熟练工级别 SDE II</li>
+</ul>
+<p>我是否对现状满意？</p>
+<ul>
+<li>不满意，无法获得更高一级的突破</li>
+</ul>
+<p>我的目标是什么？</p>
+<ul>
+<li>行业专家</li>
+<li>基础软件领域</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/05/23/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E8%87%AA%E6%88%91%E5%AE%9A%E4%BD%8D/" data-id="ckg2zlok900evcq9k5m9uhhqp" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-1312" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/18/1312/" class="article-date">
+  <time datetime="2020-05-18T06:57:48.000Z" itemprop="datePublished">2020-05-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/uncategorized/">uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/18/1312/">Untitled Post - 29</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/05/18/1312/" data-id="ckg2zloga0005cq9k1trdfjet" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-c-协程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/17/c-%E5%8D%8F%E7%A8%8B/" class="article-date">
+  <time datetime="2020-05-17T09:48:23.000Z" itemprop="datePublished">2020-05-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/programming/">programming</a>►<a class="article-category-link" href="/categories/programming/C-C/">C/C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/17/c-%E5%8D%8F%E7%A8%8B/">C++ 协程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://blog.panicsoftware.com/category/evolution/coroutines/?spm=ata.13261165.0.0.347b47fc0kLzNT">https://blog.panicsoftware.com/category/evolution/coroutines/?spm=ata.13261165.0.0.347b47fc0kLzNT</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/05/17/c-%E5%8D%8F%E7%A8%8B/" data-id="ckg2zlohc0032cq9k0hmzc6l5" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-arm-crc32-指令加速" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/17/arm-crc32-%E6%8C%87%E4%BB%A4%E5%8A%A0%E9%80%9F/" class="article-date">
+  <time datetime="2020-05-17T09:00:01.000Z" itemprop="datePublished">2020-05-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%80%9A%E7%94%A8%E7%BC%96%E8%AF%91%E6%8A%80%E6%9C%AF/">通用编译技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/17/arm-crc32-%E6%8C%87%E4%BB%A4%E5%8A%A0%E9%80%9F/">ARM CRC32 指令加速</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="CRC32是什么？"><a href="#CRC32是什么？" class="headerlink" title="CRC32是什么？"></a>CRC32是什么？</h2><ul>
+<li>A cyclic redundancy check 32(CRC32)</li>
+<li>32 位的循环冗余检查</li>
+<li>第一次接触是在计算机网络的课上，用于<strong>网络传输</strong>的数据校验</li>
+<li>工作上是在数据库这种<strong>数据存储</strong>的场景</li>
+</ul>
+<p>功能与性能</p>
+<ul>
+<li><p>从其检错能力来看，它所不能发现的错误的几率仅为0.0047%以下。</p>
+</li>
+<li><p>从性能上和开销上考虑，均远远优于<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%A5%87%E5%81%B6%E6%A0%A1%E9%AA%8C">奇偶校验</a>及算术和校验等方式。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/CRC/1453359">https://baike.baidu.com/item/CRC/1453359</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/CRC32">https://baike.baidu.com/item/CRC32</a></p>
+</li>
+</ul>
+<p>CRC算法原理</p>
+<p><img src="https://bkimg.cdn.bcebos.com/pic/a50f4bfbfbedab64928a2448f036afc378311eb9?x-bce-process=image/watermark,g_7,image_d2F0ZXIvYmFpa2U2MA==,xp_5,yp_5"></p>
+<ul>
+<li><p>D（数据） 是一个待校验的长度为 k 的比特t流</p>
+</li>
+<li><p>数据D后添加(n-k)比特冗余位(又称帧检验序列，Frame Check Sequence，FCS)</p>
+</li>
+<li><p>形成n比特的传输帧T，再将其发送出去。</p>
+</li>
+<li><p>循环冗余校验提供一个预先设定的(n-k+1)比特整数P，</p>
+</li>
+<li><p>并且要求添加的(n-k)比特F满足：<strong>T mod P == 0</strong> （T对P取余=0）</p>
+</li>
+<li><p><strong>其中 T =2n-kD + F</strong> （D左移n-k 位 + F）</p>
+</li>
+</ul>
+<p>基于上述要求，实际应用时，发送方和接收方按以下方式通信：</p>
+<p>1. 发送方和接收方在通信前，约定好预设整数P。</p>
+<p>2. 发送方在发送前根据数据D确定满足(1)式的F，生成CRC码 T，T 即为数据位D与校验位F的拼接，发送T。</p>
+<p>3. 接收方收到CRC码 T，进行 result = T mod P 运算，当且仅当result = 0时接收方认为没有差错。</p>
+<p>模二运算采用无进位的二进制加法，恰好为异或(XOR)操作</p>
+<ul>
+<li><strong>F **=**2n-kD mod P</strong>eg</li>
+<li>P=1010 （自己编的）</li>
+<li>D=1100</li>
+<li><strong>F</strong>= <strong>1100 000</strong> mod <strong>1010</strong> = 110</li>
+<li>T=1100 110</li>
+</ul>
+<p>CRC的本质是模-2除法的余数，采用的除数不同，CRC的类型也就不一样。通常，CRC的<strong>除数用生成多项式来表示</strong>。最常用的CRC码的生成多项式如表1所示。最常用的CRC码及生成多项式名称生成多项式</p>
+<p><strong>自定义除数</strong></p>
+<p><img src="http://www.zangcq.com/wp-content/uploads/2020/05/image-1-1024x426.png"></p>
+<h2 id="查看-ARM-硬件支持"><a href="#查看-ARM-硬件支持" class="headerlink" title="查看 ARM 硬件支持"></a>查看 ARM 硬件支持</h2><p><img src="http://www.zangcq.com/wp-content/uploads/2020/05/image-1024x188.png"></p>
+<p>cat /proc/cpuinfo</p>
+<p>如果对应feature 存在，那么就可以使用了crc32硬件指令加速，编译器的作用，实际上就是一个enable 硬件feature的过程。</p>
+<h2 id="使能CRC32-ARM-Instruction"><a href="#使能CRC32-ARM-Instruction" class="headerlink" title="使能CRC32 ARM Instruction"></a>使能CRC32 ARM Instruction</h2><p><a target="_blank" rel="noopener" href="https://www.jiangwei.org/2016/04/25/armv8-crc32%E6%8C%87%E4%BB%A4%E9%9B%86%E6%B5%8B%E8%AF%95/">https://www.jiangwei.org/2016/04/25/armv8-crc32%E6%8C%87%E4%BB%A4%E9%9B%86%E6%B5%8B%E8%AF%95/</a></p>
+<p>android 实现：<a target="_blank" rel="noopener" href="https://blog.csdn.net/lyx2007825/article/details/77113256">https://blog.csdn.net/lyx2007825/article/details/77113256</a></p>
+<p>添加 intrinsic</p>
+<p>d 代表 double ：__crc32cd: 一次完成8个Byte的CRC32C计算，对应crc32cx指令。</p>
+<p>w 代表 word ：__crc32cw：一次完成4个Byte的CRC32C计算，对应crc32cw指令。</p>
+<p>h 代表 half： __crc32ch：一次完成2个Byte的CRC32C计算，对应crc32ch指令。</p>
+<p>b 代表 byte：__crc32cb: 一次完成1个Byte的CRC32C计算，对应crc32cb指令。</p>
+<p>添加对应编译选项</p>
+<p>-mcpu=cortex-a72+crc<br>-mcpu=generic+crc</p>
+<p>difference of CRC32 and CRC32C</p>
+<ul>
+<li>F 取值不一样<ul>
+<li>CRC32 ： 0x04C11DB7; its reversed form 0xEDB88320</li>
+<li>CRC32C (0x1EDC6F41, reversed 0x82F63B78)</li>
+</ul>
+</li>
+<li>CRC32 在Intel CPU 上，有加速效果，本来3 cycle 计算 32bit，现在一个cycle就可以完成。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/26429360/crc32-vs-crc32c">https://stackoverflow.com/questions/26429360/crc32-vs-crc32c</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/05/17/arm-crc32-%E6%8C%87%E4%BB%A4%E5%8A%A0%E9%80%9F/" data-id="ckg2zloh9002tcq9kcg9q6qcw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-nvidia-ampere-architecture-分析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/17/nvidia-ampere-architecture-%E5%88%86%E6%9E%90/" class="article-date">
+  <time datetime="2020-05-17T03:39:59.000Z" itemprop="datePublished">2020-05-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/GPGPU/">GPGPU</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/17/nvidia-ampere-architecture-%E5%88%86%E6%9E%90/">NVIDIA Ampere Architecture 分析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>官方博客</p>
+<p><a target="_blank" rel="noopener" href="https://devblogs.nvidia.com/nvidia-ampere-architecture-in-depth/">https://devblogs.nvidia.com/nvidia-ampere-architecture-in-depth/</a></p>
+<p>知乎讨论</p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/394863138">https://www.zhihu.com/question/394863138</a></p>
+<p>个人观点</p>
+<p>知乎回答</p>
+<ol>
+<li>7nm工艺下 108/128 的良品率还是挺高的</li>
+<li>单SM，FP32/INT32/FP64 没有变化，单个Tensor Core 从 4*4*4 变为 4*8*8 的计算核心，并且增加了硬件稀疏化的功能，这个确实令人佩服。L1 cache又加了几十KB。</li>
+<li>单GPU， MIG这个功能总算盼到了，云厂商的虚拟化工作应该更容易做了，L2 Cache扩到 40M 来服务于 108个SM</li>
+<li>多GPU互联，NVLINK 3.0，不太懂互联技术，感觉带宽提高了</li>
+<li>CPU-GPU互联，PCIE 4.0 的升级; 确实很多情况都是IO的瓶颈</li>
+<li>6显存HBM2 接口没变化，容量增大到40G</li>
+<li>其实，首先想到的是，互联网自研芯片，可能只是为了有跟nv议价的能力，但是像A100这种全能选手，平头哥含光800 好像不是一个公斤级的了。</li>
+</ol>
+<p>一些有趣的观点</p>
+<p>夏晶晶，很早关注的，应该是计算所的老哥。，海思的大佬，升腾、鲲鹏的芯片架构师，牛笔！</p>
+<p><a target="_blank" rel="noopener" href="https://www.linkedin.com/in/%E6%99%B6-%E5%A4%8F-49a9a5123/">https://www.linkedin.com/in/%E6%99%B6-%E5%A4%8F-49a9a5123/</a></p>
+<ul>
+<li>首先肯定了 A100 是 AI 炼丹神器</li>
+<li>其次讲了 NV 在 HPC (高性能计算领域) 的出局，（这个本人不了解）</li>
+<li>最后讲了 如 Intel Amd 华为的等公司将在HPC领域的崛起</li>
+</ul>
+<p>其实我们要从NV架构的历史看待这个问题的话，就容易理解这次新的升级了。</p>
+<ul>
+<li>7nm 工艺的红利，<ul>
+<li>更高的集成度 540 亿晶体管，826 mm2 ！</li>
+</ul>
+</li>
+<li>面向热门应用的芯片设计，由近及远<ul>
+<li>Ampere，Turing，Volta ：加持了Tenor Core 一个专门为做矩阵乘的ASIC，很明显就是为了Deep Learning 类的应用做的</li>
+<li>Pascal，Maxwell，Kepler，Fermi ： 主要以CUDA Core 用于 FP32/FP64, 主要解决的问题是 通用计算，也就是以前 CPU 干的活</li>
+<li>Tesla 之前的架构， 其实并没有进入 计算领域，主要用作图像的显示，也就通俗讲的消费级显卡。处理pixel</li>
+</ul>
+</li>
+<li>系统级别的全面优化<ul>
+<li>从GPU之间的互联，Nvlink ，nvswitch</li>
+<li>与CPU的互联技术，PCIE</li>
+<li>显存的接口，协议，增加带宽。</li>
+</ul>
+</li>
+</ul>
+<p>显而易见，NV明显吃到了深度学习的这波红利，并且押宝自动驾驶这个方向，所以夏总说，放弃了HPC也是正常的现象。因为体系结构，除非有突破性的变革，那就只能一点一点挤牙膏了，让单位面积的晶体管，发挥出他的最大能效。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/05/17/nvidia-ampere-architecture-%E5%88%86%E6%9E%90/" data-id="ckg2zloik0085cq9k1lf6343b" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-对于链接器的理解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/13/%E5%AF%B9%E4%BA%8E%E9%93%BE%E6%8E%A5%E5%99%A8%E7%9A%84%E7%90%86%E8%A7%A3/" class="article-date">
+  <time datetime="2020-05-13T04:47:17.000Z" itemprop="datePublished">2020-05-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%80%9A%E7%94%A8%E7%BC%96%E8%AF%91%E6%8A%80%E6%9C%AF/">通用编译技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/13/%E5%AF%B9%E4%BA%8E%E9%93%BE%E6%8E%A5%E5%99%A8%E7%9A%84%E7%90%86%E8%A7%A3/">对于链接器的理解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000016417397">https://segmentfault.com/a/1190000016417397</a></p>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000016433947">https://segmentfault.com/a/1190000016433947</a><br><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000016433897">https://segmentfault.com/a/1190000016433897</a></p>
+<h2 id="链接器的作用"><a href="#链接器的作用" class="headerlink" title="链接器的作用"></a>链接器的作用</h2><p>将目标文件 + 静态链接库 + 动态链接库 =&gt; 可执行文件</p>
+<h2 id="什么是静态链接？"><a href="#什么是静态链接？" class="headerlink" title="什么是静态链接？"></a>什么是静态链接？</h2><h3 id="目标文件-到-可执行文件"><a href="#目标文件-到-可执行文件" class="headerlink" title="目标文件 到 可执行文件"></a>目标文件 到 可执行文件</h3><p>每个目标文件，都有代码段、数据段，还有一些符号表。静态链接就是把每个目标文件的数据段和代码段，根据执行顺序，复制到可执行文件里。</p>
+<ul>
+<li>可执行文件和目标文件一样，也是由代码段和数据段组成。</li>
+<li>每个目标文件中的数据段都合并到了可执行文件的数据段，每个目标文件当中的代码段都合并到了可执行文件的代码段。</li>
+<li>目标文件当中的符号表并没有合并到可执行文件当中，因为可执行文件不需要这些字段。</li>
+</ul>
+<p>可执行文件和目标文件没有什么本质的不同，可执行文件区别于目标文件的地方在于，可执行文件有一个入口函数，这个函数也就是我们在C语言当中定义的main函数，main函数在执行过程中会用到所有可执行文件当中的代码和数据。</p>
+<h3 id="静态库-例如-libc-a"><a href="#静态库-例如-libc-a" class="headerlink" title="静态库 例如 libc.a"></a>静态库 例如 libc.a</h3><p>假设这样一个应用场景，基础设计团队设计了好多实用并且功能强大的工具函数，业务团队需要用到里面的各种函数。每次新添加其中一个函数，业务团队都要去找相应的实现文件并修改链接选项。使用静态库就可以解决这个问题。静态库在Windows下是以.lib为后缀的文件，Linux下是以.a为后缀的文件。</p>
+<h2 id="什么是动态链接？"><a href="#什么是动态链接？" class="headerlink" title="什么是动态链接？"></a>什么是动态链接？</h2><h3 id="动态库"><a href="#动态库" class="headerlink" title="动态库"></a>动态库</h3><p>动态库(Dynamic Library)，又叫共享库(Shared Library)，动态链接库等，在Windows下就是我们常见的大名鼎鼎的DLL文件了，Windows系统下大量使用了动态库。在Linux下动态库是以.so为后缀的文件，同时以lib为前缀，比如进行数字计算的动态库Math，编译链接后产生的动态库就叫做libMath.so。从名字中我们知道动态库也是库，本质上动态库同样包含我们已经熟悉的代码段、数据段、符号表。只不过动态库的<strong>使用方式以及使用时间</strong>和静态库不太一样。</p>
+<h3 id="动态链接"><a href="#动态链接" class="headerlink" title="动态链接"></a>动态链接</h3><p>动态库允许使用该库的可执行文件仅仅包含对动态库的引用而无需将该库拷贝到可执行文件当中。也就是说，同静态库进行整体拷贝的方式不同，对于动态库的使用仅仅需要可执行文件当中包含必要的信息即可，为了方便理解，你可以将可执行文件当中保存的必要信息仅仅理解为需要记录动态库的名字就可以了，如图所示，同静态库相比，动态库的使用减少了可执行文件的大小。</p>
+<h3 id="ldd-命令"><a href="#ldd-命令" class="headerlink" title="ldd 命令"></a>ldd 命令</h3><p>用来查看可执行文件，需要哪些动态链接库，常用于来排查问题</p>
+<p><a target="_blank" rel="noopener" href="https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/ldd.html">https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/ldd.html</a></p>
+<h2 id="重定向的作用是什么？"><a href="#重定向的作用是什么？" class="headerlink" title="重定向的作用是什么？"></a>重定向的作用是什么？</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/05/13/%E5%AF%B9%E4%BA%8E%E9%93%BE%E6%8E%A5%E5%99%A8%E7%9A%84%E7%90%86%E8%A7%A3/" data-id="ckg2zlok600emcq9kenxdg8po" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-编译器概念理解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/13/%E7%BC%96%E8%AF%91%E5%99%A8%E6%A6%82%E5%BF%B5%E7%90%86%E8%A7%A3/" class="article-date">
+  <time datetime="2020-05-13T03:15:00.000Z" itemprop="datePublished">2020-05-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%80%9A%E7%94%A8%E7%BC%96%E8%AF%91%E6%8A%80%E6%9C%AF/">通用编译技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/13/%E7%BC%96%E8%AF%91%E5%99%A8%E6%A6%82%E5%BF%B5%E7%90%86%E8%A7%A3/">编译器概念理解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>编译器的几个阶段</p>
+<ul>
+<li>前端 Parser + Lexer<ul>
+<li>词法分析 source code 转换为 token</li>
+<li>语法分析 token 转换 为 AST</li>
+<li>语义分析 AST 转换 为 IR</li>
+</ul>
+</li>
+<li>中端 Optimizer<ul>
+<li>代码优化 IR 优化</li>
+<li>SSA static single assignment<ul>
+<li>SSA 是如何生成的？</li>
+<li>基于SSA的一些优化</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>后端<ul>
+<li>Code Generate 代码生成 如 CPU(X86/ARM/RISCV)</li>
+</ul>
+</li>
+</ul>
+<p>如何看待memory的全局优化？</p>
+<p>对于模板函数的编译冲突如何消除？</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/05/13/%E7%BC%96%E8%AF%91%E5%99%A8%E6%A6%82%E5%BF%B5%E7%90%86%E8%A7%A3/" data-id="ckg2zlokq00gmcq9khn7u9zt5" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DAC-SDC/">DAC-SDC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GPGPU/">GPGPU</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/es310/">es310</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E4%B8%AD%E5%BF%83%E6%A0%A1%E5%8C%BA/">中心校区</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E6%8B%9B%E8%81%98/">招聘</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E7%A0%94%E7%A9%B6%E7%94%9F/">研究生</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E7%A0%94%E7%A9%B6%E7%94%9F/%E8%BD%AF%E4%BB%B6%E5%9B%AD/">软件园</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E8%BD%AF%E4%BB%B6%E5%9B%AD/">软件园</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/gpu-computing/">gpu-computing</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/gpu-computing/GPGPU-Sim-Notes/">GPGPU-Sim Notes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/gpu-computing/GPU-PTX-ISA-Analysis/">GPU PTX ISA Analysis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/gpu-computing/Jetson-TX1-2/">Jetson TX1-2</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/C-C/">C/C++</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/C-C/CUDA-Programming/">CUDA Programming</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/CUDA-Programming/">CUDA Programming</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/Perl/">Perl</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/Python/">Python</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/tools/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E7%BB%B4%E6%8A%A4/">系统管理维护</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/uncategorized/">uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E6%AC%B2%E5%96%84%E5%85%B6%E4%BA%8B%E5%BF%85%E5%85%88%E5%88%A9%E5%85%B6%E5%99%A8/">工欲善其事必先利其器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E6%89%AF%E6%B7%A1/">日常扯淡</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F/">程序人生</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%80%9A%E7%94%A8%E7%BC%96%E8%AF%91%E6%8A%80%E6%9C%AF/">通用编译技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/">驱动安装</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/310/" rel="tag">310</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/" rel="tag">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CUDA/" rel="tag">CUDA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cache/" rel="tag">Cache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Caffe/" rel="tag">Caffe</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Faster-rcnn/" rel="tag">Faster rcnn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GOTURN/" rel="tag">GOTURN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GPGPU-Sim/" rel="tag">GPGPU-Sim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GPU/" rel="tag">GPU</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jetson/" rel="tag">Jetson</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PTX-ISA/" rel="tag">PTX ISA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSD-Caffe/" rel="tag">SSD-Caffe</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deeplearning/" rel="tag">deeplearning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/latex/" rel="tag">latex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/perl/" rel="tag">perl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/profiling/" rel="tag">profiling</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tx1/" rel="tag">tx1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tx2/" rel="tag">tx2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/voc2007/" rel="tag">voc2007</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yolo/" rel="tag">yolo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%8B%E7%BB%AD/" rel="tag">手续</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8B%9B%E8%81%98/" rel="tag">招聘</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8C%87%E5%8D%97/" rel="tag">指南</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82%E6%84%9F/" rel="tag">杂感</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A0%94%E7%A9%B6%E7%94%9F/" rel="tag">研究生</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AF%AE%E7%90%83/" rel="tag">篮球</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B5%84%E6%BA%90/" rel="tag">资源</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%9B%AD/" rel="tag">软件园</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%BF%E9%87%8C/" rel="tag">阿里</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/310/" style="font-size: 10px;">310</a> <a href="/tags/C-C/" style="font-size: 13.33px;">C/C++</a> <a href="/tags/CUDA/" style="font-size: 18.89px;">CUDA</a> <a href="/tags/Cache/" style="font-size: 11.11px;">Cache</a> <a href="/tags/Caffe/" style="font-size: 10px;">Caffe</a> <a href="/tags/Deep-learning/" style="font-size: 14.44px;">Deep learning</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Faster-rcnn/" style="font-size: 10px;">Faster rcnn</a> <a href="/tags/GOTURN/" style="font-size: 10px;">GOTURN</a> <a href="/tags/GPGPU-Sim/" style="font-size: 11.11px;">GPGPU-Sim</a> <a href="/tags/GPU/" style="font-size: 20px;">GPU</a> <a href="/tags/Jetson/" style="font-size: 11.11px;">Jetson</a> <a href="/tags/Linux/" style="font-size: 17.78px;">Linux</a> <a href="/tags/PTX-ISA/" style="font-size: 11.11px;">PTX ISA</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/SSD-Caffe/" style="font-size: 10px;">SSD-Caffe</a> <a href="/tags/Shell/" style="font-size: 16.67px;">Shell</a> <a href="/tags/deeplearning/" style="font-size: 10px;">deeplearning</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/latex/" style="font-size: 10px;">latex</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/perl/" style="font-size: 15.56px;">perl</a> <a href="/tags/profiling/" style="font-size: 10px;">profiling</a> <a href="/tags/tx1/" style="font-size: 10px;">tx1</a> <a href="/tags/tx2/" style="font-size: 11.11px;">tx2</a> <a href="/tags/voc2007/" style="font-size: 10px;">voc2007</a> <a href="/tags/yolo/" style="font-size: 10px;">yolo</a> <a href="/tags/%E6%89%8B%E7%BB%AD/" style="font-size: 10px;">手续</a> <a href="/tags/%E6%8B%9B%E8%81%98/" style="font-size: 10px;">招聘</a> <a href="/tags/%E6%8C%87%E5%8D%97/" style="font-size: 12.22px;">指南</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9D%82%E6%84%9F/" style="font-size: 10px;">杂感</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 12.22px;">生活</a> <a href="/tags/%E7%A0%94%E7%A9%B6%E7%94%9F/" style="font-size: 11.11px;">研究生</a> <a href="/tags/%E7%AF%AE%E7%90%83/" style="font-size: 10px;">篮球</a> <a href="/tags/%E8%B5%84%E6%BA%90/" style="font-size: 11.11px;">资源</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%9B%AD/" style="font-size: 10px;">软件园</a> <a href="/tags/%E9%98%BF%E9%87%8C/" style="font-size: 12.22px;">阿里</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.33px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/10/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/11/tvm-autotune%E4%BC%98%E5%8C%96%E7%9A%84%E7%AE%97%E5%AD%90%E9%85%8D%E7%BD%AE/">TVM autotune优化的算子配置</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/11/%E5%85%B3%E4%BA%8E%E6%A1%A3%E6%A1%88%E9%97%AE%E9%A2%98/">关于档案问题</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/03/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE/">环境变量设置</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/31/%E5%A6%82%E4%BD%95%E5%AF%BB%E6%89%BE%E5%B7%AE%E5%BC%82%E5%8C%96-%E5%A4%9A%E5%81%9A%E4%B8%80%E7%82%B9/">如何寻找差异化-多做一点</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

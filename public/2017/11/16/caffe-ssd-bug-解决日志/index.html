@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>caffe-ssd bug 解决日志 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="０．SSD测试时出现1234567891011121314151617181920I1122 13:34:31.285167  2869 layer_factory.hpp:77] Creating layer inputI1122 13:34:31.285254  2869 net.cpp:100] Creating Layer inputI1122 13:34:31.285285  2869">
+<meta property="og:type" content="article">
+<meta property="og:title" content="caffe-ssd bug 解决日志">
+<meta property="og:url" content="http://example.com/2017/11/16/caffe-ssd-bug-%E8%A7%A3%E5%86%B3%E6%97%A5%E5%BF%97/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="０．SSD测试时出现1234567891011121314151617181920I1122 13:34:31.285167  2869 layer_factory.hpp:77] Creating layer inputI1122 13:34:31.285254  2869 net.cpp:100] Creating Layer inputI1122 13:34:31.285285  2869">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-11-16T12:56:42.000Z">
+<meta property="article:modified_time" content="2020-10-10T01:15:14.782Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="deeplearning">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-caffe-ssd-bug-解决日志" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/16/caffe-ssd-bug-%E8%A7%A3%E5%86%B3%E6%97%A5%E5%BF%97/" class="article-date">
+  <time datetime="2017-11-16T12:56:42.000Z" itemprop="datePublished">2017-11-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      caffe-ssd bug 解决日志
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="０．SSD测试时出现"><a href="#０．SSD测试时出现" class="headerlink" title="０．SSD测试时出现"></a>０．SSD测试时出现</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">I1122 13:34:31.285167  2869 layer_factory.hpp:77] Creating layer input</span><br><span class="line">I1122 13:34:31.285254  2869 net.cpp:100] Creating Layer input</span><br><span class="line">I1122 13:34:31.285285  2869 net.cpp:408] input -&gt; data</span><br><span class="line">F1122 13:34:37.337718  2869 syncedmem.hpp:18] Check failed: error == cudaSuccess (30 vs. 0)  unknown error</span><br><span class="line">*** Check failure stack trace: ***</span><br><span class="line">    @       0x7fb1bb1718  google::LogMessage::Fail()</span><br><span class="line">    @       0x7fb1bb3614  google::LogMessage::SendToLog()</span><br><span class="line">    @       0x7fb1bb1290  google::LogMessage::Flush()</span><br><span class="line">    @       0x7fb1bb3eb4  google::LogMessageFatal::~LogMessageFatal()</span><br><span class="line">    @       0x7fb1e53068  caffe::SyncedMemory::mutable_cpu_data()</span><br><span class="line">    @       0x7fb1fe87f0  caffe::Blob&lt;&gt;::Reshape()</span><br><span class="line">    @       0x7fb1fe8d54  caffe::Blob&lt;&gt;::Reshape()</span><br><span class="line">    @       0x7fb1e78e54  caffe::InputLayer&lt;&gt;::LayerSetUp()</span><br><span class="line">    @       0x7fb1fd7c54  caffe::Net&lt;&gt;::Init()</span><br><span class="line">    @       0x7fb1fd99ac  caffe::Net&lt;&gt;::Net()</span><br><span class="line">    @           0x408f6c  Detector::Detector()</span><br><span class="line">    @           0x4058e4  main</span><br><span class="line">    @       0x7fb141e8a0  __libc_start_main</span><br><span class="line">Aborted (core dumped)</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方法</strong></p>
+<p><strong><code>sudo</code> 运行起来！！！</strong></p>
+<h4 id="1-hdf5文件目录找不到"><a href="#1-hdf5文件目录找不到" class="headerlink" title="1.hdf5文件目录找不到"></a>1.<code>hdf5</code>文件目录找不到</h4><p><code>src/caffe/net.cpp:8:18: fatal error: hdf5.h: 没有那个文件或目录</code></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/NVIDIA/DIGITS/issues/156">https://github.com/NVIDIA/DIGITS/issues/156</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.linuxdiyf.com/linux/21717.html">http://www.linuxdiyf.com/linux/21717.html</a></p>
+</blockquote>
+<ul>
+<li>如果从lib中找到<code>hdf</code>相关文件</li>
+</ul>
+<p>通过新建软链接来使<code>hdf5.h</code> 生效。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">cd /usr/lib/x86_64-linux-gnu</span><br><span class="line"><span class="meta">#</span><span class="bash">建立软链接</span></span><br><span class="line">sudo ln -s libhdf5_serial.so.100.0.1 libhdf5.so</span><br><span class="line">sudo ln -s libhdf5_serial_hl.so.100.0.0 libhdf5_hl.so</span><br></pre></td></tr></table></figure>
+
+<p>修改 <code>～/caffe/Makefile.config</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/</span><br><span class="line">LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu/hdf5/serial/</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果没有安装的话，请如下操作</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// install </span><br><span class="line">sudo apt-get install libhdf5-10 libhdf5-serial-dev libhdf5-dev libhdf5-cpp-11</span><br><span class="line">// config path</span><br><span class="line">find /usr -iname &quot;*hdf5.h*&quot;</span><br><span class="line">/usr/include/hdf5/serial/hdf5.h</span><br><span class="line">export CPATH=&quot;/usr/include/hdf5/serial/&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-找不到-lopenblas"><a href="#2-找不到-lopenblas" class="headerlink" title="2.找不到 -lopenblas"></a>2.找不到 <code>-lopenblas</code></h4><p><code>/usr/bin/ld: 找不到 -lopenblas collect2: error: ld returned 1 exit status</code></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/32353509/usr-bin-ld-cannot-find-lopenblas-error-in-caffe-compilation">https://stackoverflow.com/questions/32353509/usr-bin-ld-cannot-find-lopenblas-error-in-caffe-compilation</a></p>
+</blockquote>
+<p>可能<code>openblas</code>未安装，或者没有建立软链接</p>
+<ul>
+<li><p>安装<code>openblas</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install liblapack-dev liblapack3 libopenblas-base libopenblas-dev</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<p>或者软链接为正常建立</p>
+<ul>
+<li><p>建立软链接</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /opt/OpenBLAS/lib/libopenblas.so /usr/lib/libopenblas.so</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h4 id="3-boost-未定义的引用"><a href="#3-boost-未定义的引用" class="headerlink" title="3.boost 未定义的引用"></a>3.boost 未定义的引用</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">build_release/lib/libcaffe.so：对‘boost::re_detail_106200::cpp_regex_traits_implementation&lt;char&gt;::transform(char const, char const) const’未定义的引用</span><br><span class="line">build_release/lib/libcaffe.so：对‘boost::re_detail_106200::cpp_regex_traits_implementation&lt;char&gt;::transform_primary(char const, char const) const’未定义的引用</span><br><span class="line">collect2: error: ld returned 1 exit status</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.bountysource.com/issues/44327039-compile-issue-about-boost-and-cv">https://www.bountysource.com/issues/44327039-compile-issue-about-boost-and-cv</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.questarter.com/q/error-in-compiling-caffe-on-ubuntu-17-04-27_46691614.html">https://www.questarter.com/q/error-in-compiling-caffe-on-ubuntu-17-04-27_46691614.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/17588440/cannot-link-boost-regex">https://stackoverflow.com/questions/17588440/cannot-link-boost-regex</a></p>
+</blockquote>
+<p>解决方案：</p>
+<p>修改Makefile ,line181</p>
+<p>加入boost_regex</p>
+<p>but 无效</p>
+<p>Add <code>boost_regex</code> to <code>LIBRARIES</code> variable in Makefile in case you use Makefile.config compilation, or to <code>find_package(Boost 1.54 REQUIRED COMPONENTS system thread filesystem)</code> line in caffe/cmake/Dependencies.cmake</p>
+<h4 id="unsolved"><a href="#unsolved" class="headerlink" title="unsolved"></a>unsolved</h4><blockquote>
+<p><a target="_blank" rel="noopener" href="https://bbs.archlinux.org/viewtopic.php?id=223497">https://bbs.archlinux.org/viewtopic.php?id=223497</a>最后</p>
+</blockquote>
+<p>放弃治疗了。。重新装上原版的caffe。。。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/11/16/caffe-ssd-bug-%E8%A7%A3%E5%86%B3%E6%97%A5%E5%BF%97/" data-id="ckg2zlohe003fcq9khns96k0e" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deeplearning/" rel="tag">deeplearning</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/17/caffe-goturn-%E5%AE%89%E8%A3%85%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          caffe - goturn 安装问题汇总
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/15/%E4%BD%9C%E6%8A%A5%E5%91%8A%E8%AE%B2%E6%95%85%E4%BA%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">作报告==讲故事 by 赵梦莹老师</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DAC-SDC/">DAC-SDC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GPGPU/">GPGPU</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/es310/">es310</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E4%B8%AD%E5%BF%83%E6%A0%A1%E5%8C%BA/">中心校区</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E6%8B%9B%E8%81%98/">招聘</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E7%A0%94%E7%A9%B6%E7%94%9F/">研究生</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E7%A0%94%E7%A9%B6%E7%94%9F/%E8%BD%AF%E4%BB%B6%E5%9B%AD/">软件园</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E8%BD%AF%E4%BB%B6%E5%9B%AD/">软件园</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/gpu-computing/">gpu-computing</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/gpu-computing/GPGPU-Sim-Notes/">GPGPU-Sim Notes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/gpu-computing/GPU-PTX-ISA-Analysis/">GPU PTX ISA Analysis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/gpu-computing/Jetson-TX1-2/">Jetson TX1-2</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/C-C/">C/C++</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/C-C/CUDA-Programming/">CUDA Programming</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/CUDA-Programming/">CUDA Programming</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/Perl/">Perl</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/Python/">Python</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/tools/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E7%BB%B4%E6%8A%A4/">系统管理维护</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/uncategorized/">uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E6%AC%B2%E5%96%84%E5%85%B6%E4%BA%8B%E5%BF%85%E5%85%88%E5%88%A9%E5%85%B6%E5%99%A8/">工欲善其事必先利其器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E6%89%AF%E6%B7%A1/">日常扯淡</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F/">程序人生</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%80%9A%E7%94%A8%E7%BC%96%E8%AF%91%E6%8A%80%E6%9C%AF/">通用编译技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/">驱动安装</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/310/" rel="tag">310</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/" rel="tag">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CUDA/" rel="tag">CUDA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cache/" rel="tag">Cache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Caffe/" rel="tag">Caffe</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Faster-rcnn/" rel="tag">Faster rcnn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GOTURN/" rel="tag">GOTURN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GPGPU-Sim/" rel="tag">GPGPU-Sim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GPU/" rel="tag">GPU</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jetson/" rel="tag">Jetson</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PTX-ISA/" rel="tag">PTX ISA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSD-Caffe/" rel="tag">SSD-Caffe</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deeplearning/" rel="tag">deeplearning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/latex/" rel="tag">latex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/perl/" rel="tag">perl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/profiling/" rel="tag">profiling</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tx1/" rel="tag">tx1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tx2/" rel="tag">tx2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/voc2007/" rel="tag">voc2007</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yolo/" rel="tag">yolo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%8B%E7%BB%AD/" rel="tag">手续</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8B%9B%E8%81%98/" rel="tag">招聘</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8C%87%E5%8D%97/" rel="tag">指南</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82%E6%84%9F/" rel="tag">杂感</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A0%94%E7%A9%B6%E7%94%9F/" rel="tag">研究生</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AF%AE%E7%90%83/" rel="tag">篮球</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B5%84%E6%BA%90/" rel="tag">资源</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%9B%AD/" rel="tag">软件园</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%BF%E9%87%8C/" rel="tag">阿里</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/310/" style="font-size: 10px;">310</a> <a href="/tags/C-C/" style="font-size: 13.33px;">C/C++</a> <a href="/tags/CUDA/" style="font-size: 18.89px;">CUDA</a> <a href="/tags/Cache/" style="font-size: 11.11px;">Cache</a> <a href="/tags/Caffe/" style="font-size: 10px;">Caffe</a> <a href="/tags/Deep-learning/" style="font-size: 14.44px;">Deep learning</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Faster-rcnn/" style="font-size: 10px;">Faster rcnn</a> <a href="/tags/GOTURN/" style="font-size: 10px;">GOTURN</a> <a href="/tags/GPGPU-Sim/" style="font-size: 11.11px;">GPGPU-Sim</a> <a href="/tags/GPU/" style="font-size: 20px;">GPU</a> <a href="/tags/Jetson/" style="font-size: 11.11px;">Jetson</a> <a href="/tags/Linux/" style="font-size: 17.78px;">Linux</a> <a href="/tags/PTX-ISA/" style="font-size: 11.11px;">PTX ISA</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/SSD-Caffe/" style="font-size: 10px;">SSD-Caffe</a> <a href="/tags/Shell/" style="font-size: 16.67px;">Shell</a> <a href="/tags/deeplearning/" style="font-size: 10px;">deeplearning</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/latex/" style="font-size: 10px;">latex</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/perl/" style="font-size: 15.56px;">perl</a> <a href="/tags/profiling/" style="font-size: 10px;">profiling</a> <a href="/tags/tx1/" style="font-size: 10px;">tx1</a> <a href="/tags/tx2/" style="font-size: 11.11px;">tx2</a> <a href="/tags/voc2007/" style="font-size: 10px;">voc2007</a> <a href="/tags/yolo/" style="font-size: 10px;">yolo</a> <a href="/tags/%E6%89%8B%E7%BB%AD/" style="font-size: 10px;">手续</a> <a href="/tags/%E6%8B%9B%E8%81%98/" style="font-size: 10px;">招聘</a> <a href="/tags/%E6%8C%87%E5%8D%97/" style="font-size: 12.22px;">指南</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9D%82%E6%84%9F/" style="font-size: 10px;">杂感</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 12.22px;">生活</a> <a href="/tags/%E7%A0%94%E7%A9%B6%E7%94%9F/" style="font-size: 11.11px;">研究生</a> <a href="/tags/%E7%AF%AE%E7%90%83/" style="font-size: 10px;">篮球</a> <a href="/tags/%E8%B5%84%E6%BA%90/" style="font-size: 11.11px;">资源</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%9B%AD/" style="font-size: 10px;">软件园</a> <a href="/tags/%E9%98%BF%E9%87%8C/" style="font-size: 12.22px;">阿里</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.33px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/10/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/11/tvm-autotune%E4%BC%98%E5%8C%96%E7%9A%84%E7%AE%97%E5%AD%90%E9%85%8D%E7%BD%AE/">TVM autotune优化的算子配置</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/11/%E5%85%B3%E4%BA%8E%E6%A1%A3%E6%A1%88%E9%97%AE%E9%A2%98/">关于档案问题</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/03/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE/">环境变量设置</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/31/%E5%A6%82%E4%BD%95%E5%AF%BB%E6%89%BE%E5%B7%AE%E5%BC%82%E5%8C%96-%E5%A4%9A%E5%81%9A%E4%B8%80%E7%82%B9/">如何寻找差异化-多做一点</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

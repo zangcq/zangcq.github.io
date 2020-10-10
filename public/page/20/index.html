@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/20/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-perl-syntax-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/10/perl-syntax-1/" class="article-date">
+  <time datetime="2017-08-10T09:17:37.000Z" itemprop="datePublished">2017-08-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/programming/">programming</a>►<a class="article-category-link" href="/categories/programming/Perl/">Perl</a>►<a class="article-category-link" href="/categories/%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F/">程序人生</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/10/perl-syntax-1/">perl syntax 1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/perl</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#context 上下文</span></span><br><span class="line"><span class="comment">#perl 最独特的特性就在于 它的代码对于上下文是敏感的。</span></span><br><span class="line"><span class="comment">#每个perl的表达式要么在 scalar 上下文中求值，要么在列表上下文求值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">my</span> $scalar = <span class="string">&quot;mendeleev&quot;</span>;<span class="comment">#赋值</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#初始化 array 和 hash</span></span><br><span class="line"><span class="keyword">my</span> @array = (<span class="string">&quot;Alpha&quot;</span>, <span class="string">&quot;Beta&quot;</span>, <span class="string">&quot;Gamma&quot;</span>, <span class="string">&quot;Pie&quot;</span>);</span><br><span class="line"><span class="keyword">my</span> %hash = (<span class="string">&quot;Alpha&quot;</span> =&gt; <span class="string">&quot;Beta&quot;</span>, <span class="string">&quot;Gamma&quot;</span> =&gt; <span class="string">&quot;Pie&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">#在scalar上下文中求值的列表表达式会返回 列表 中的最后一个scalar：</span></span><br><span class="line"><span class="keyword">my</span> $scalar = (<span class="string">&quot;Alpha&quot;</span>, <span class="string">&quot;Beta&quot;</span>, <span class="string">&quot;Gamma&quot;</span>, <span class="string">&quot;Pie&quot;</span>);<span class="comment"># $scalar的值现在是&quot;Pie&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#在scalar上下文中求值的array（还记得array和列表不同吗？）表达式返回该数组的长度：</span></span><br><span class="line"><span class="keyword">my</span> @array = (<span class="string">&quot;Alpha&quot;</span>, <span class="string">&quot;Beta&quot;</span>, <span class="string">&quot;Gamma&quot;</span>, <span class="string">&quot;Pie&quot;</span>);</span><br><span class="line"><span class="keyword">my</span> $scalar = @array; <span class="comment"># $scalar的值现在是4</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#print内置函数在列表上下文中求对所有的参数求值。</span></span><br><span class="line"><span class="comment">#事实上，print能够接受无限个参数的列表，并且一个接一个地打印它们，这就意味着我们可以直接用它来打印array：</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">my</span> @array = (<span class="string">&quot;Alpha&quot;</span>, <span class="string">&quot;Beta&quot;</span>, <span class="string">&quot;Goo&quot;</span>);</span><br><span class="line"><span class="keyword">my</span> $scalar = <span class="string">&quot;-X-&quot;</span>;</span><br><span class="line"><span class="keyword">print</span> @array;              <span class="comment"># &quot;AlphaBetaGoo&quot;;</span></span><br><span class="line"><span class="keyword">print</span> $scalar, @array, <span class="number">98</span>; <span class="comment"># &quot;-X-AlphaBetaGoo98&quot;;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#引用和嵌套数据结构</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#列表无法包含列表作为其元素，array也同样无法包含其他array和hash作为其元素，它们只能包含scalar。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#那么我们就可以用，scalar来 进行引用和赋值</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#声明数据结构</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Array函数"><a href="#Array函数" class="headerlink" title="Array函数"></a>Array函数</h2><h3 id="原地（In-place）array修改函数"><a href="#原地（In-place）array修改函数" class="headerlink" title="原地（In-place）array修改函数"></a>原地（In-place）array修改函数</h3><p>我们用<code>@stack</code>来演示这些函数：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">my</span> @stack = (<span class="string">&quot;Fred&quot;</span>, <span class="string">&quot;Eileen&quot;</span>, <span class="string">&quot;Denise&quot;</span>, <span class="string">&quot;Charlie&quot;</span>);</span><br><span class="line"><span class="comment">#这个数组 ，可以理解为一个栈，Fred 为栈底元素、Charlie 为 栈顶元素</span></span><br><span class="line"><span class="keyword">print</span> @stack; <span class="comment"># &quot;FredEileenDeniseCharlie&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>pop</code>抽取并返回array的最后一个元素，可以认为是栈顶的元素：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="keyword">pop</span> @stack; <span class="comment"># &quot;Charlie&quot;</span></span><br><span class="line"><span class="keyword">print</span> @stack;     <span class="comment"># &quot;FredEileenDenise&quot;</span></span><br><span class="line"><span class="comment">#出栈，从栈顶 取出 元素并返回</span></span><br></pre></td></tr></table></figure>
+
+<p><code>push</code>向array末尾添加一个元素：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">push</span> @stack, <span class="string">&quot;Bob&quot;</span>, <span class="string">&quot;Alice&quot;</span>;</span><br><span class="line"><span class="keyword">print</span> @stack; <span class="comment"># &quot;FredEileenDeniseBobAlice&quot;</span></span><br><span class="line"><span class="comment">#入栈，在栈顶位置，添加元素到数组</span></span><br></pre></td></tr></table></figure>
+
+<p><code>shift</code>抽取并返回array的第一个元素：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="keyword">shift</span> @stack; <span class="comment"># &quot;Fred&quot;</span></span><br><span class="line"><span class="keyword">print</span> @stack;       <span class="comment"># &quot;EileenDeniseBobAlice&quot;</span></span><br><span class="line"><span class="comment">#相当于一个 有头指针单链表，在头部位置 取出元素并且返回</span></span><br></pre></td></tr></table></figure>
+
+<p><code>unshift</code>向array的头部插入一个元素：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">unshift</span> @stack, <span class="string">&quot;Hank&quot;</span>, <span class="string">&quot;Grace&quot;</span>;</span><br><span class="line"><span class="keyword">print</span> @stack; <span class="comment"># &quot;HankGraceEileenDeniseBobAlice&quot;</span></span><br><span class="line"><span class="comment">#相当于一个 单链表，从头部 插入元素</span></span><br></pre></td></tr></table></figure>
+
+<p><code>pop</code>、<code>push</code>、<code>shift</code>和<code>unshift</code>都是<code>splice</code>的特例。<code>splice</code>返回删除的一个array的切片，并且用另一个array的切片在原array中替换之：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="keyword">splice</span>(@stack, <span class="number">1</span>, <span class="number">4</span>, <span class="string">&quot;&lt;&lt;&lt;&quot;</span>, <span class="string">&quot;&gt;&gt;&gt;&quot;</span>); <span class="comment"># &quot;GraceEileenDeniseBob&quot;</span></span><br><span class="line"><span class="keyword">print</span> @stack;                             <span class="comment"># &quot;Hank&lt;&lt;&lt;&gt;&gt;&gt;Alice&quot;</span></span><br><span class="line"><span class="comment">#用 &lt;&lt;&lt; &gt;&gt;&gt; 替换 从 stack[1] 到stack[4]之间的 字符串</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="从现有的array创建新的array"><a href="#从现有的array创建新的array" class="headerlink" title="从现有的array创建新的array"></a>从现有的array创建新的array</h3><p>Perl提供下面这些函数，可以操作现有的array产生新的array。</p>
+<p><code>join</code>函数把多个字符串连接成一个字符串：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">my</span> @elements = (<span class="string">&quot;Antimony&quot;</span>, <span class="string">&quot;Arsenic&quot;</span>, <span class="string">&quot;Aluminum&quot;</span>, <span class="string">&quot;Selenium&quot;</span>);</span><br><span class="line"><span class="keyword">print</span> @elements;             <span class="comment"># &quot;AntimonyArsenicAluminumSelenium&quot;</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">&quot;@elements&quot;</span>;           <span class="comment"># &quot;Antimony Arsenic Aluminum Selenium&quot;</span></span><br><span class="line"><span class="keyword">print</span> <span class="keyword">join</span>(<span class="string">&quot;, &quot;</span>, @elements); <span class="comment"># &quot;Antimony, Arsenic, Aluminum, Selenium&quot;</span></span><br><span class="line"><span class="comment">#将 elements 数组中 各个元素 用&quot;, ” 连成一个字符串</span></span><br><span class="line"><span class="comment">#可以把 第一个参数 理解成胶水，通过他来将 各个元素 粘起来；</span></span><br></pre></td></tr></table></figure>
+
+<p>在列表上下文，<code>reverse</code>函数把传入的列表逆序返回，在scalar上下文，<code>reverse</code>先把字符串列表连接起来，再将这个字符串反转。</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="keyword">reverse</span>(<span class="string">&quot;Hello&quot;</span>, <span class="string">&quot;World&quot;</span>);        <span class="comment"># &quot;WorldHello&quot;</span></span><br><span class="line"><span class="keyword">print</span> <span class="keyword">reverse</span>(<span class="string">&quot;HelloWorld&quot;</span>);            <span class="comment"># &quot;HelloWorld&quot;</span></span><br><span class="line"><span class="keyword">print</span> <span class="keyword">scalar</span> <span class="keyword">reverse</span>(<span class="string">&quot;HelloWorld&quot;</span>);     <span class="comment"># &quot;dlroWolleH&quot;</span></span><br><span class="line"><span class="keyword">print</span> <span class="keyword">scalar</span> <span class="keyword">reverse</span>(<span class="string">&quot;Hello&quot;</span>, <span class="string">&quot;World&quot;</span>); <span class="comment"># &quot;dlroWolleH&quot;</span></span><br><span class="line"><span class="comment">#逆序字符串，很好理解</span></span><br></pre></td></tr></table></figure>
+
+<p><code>map</code>函数接受一个array，并将一个操作应用于这个array中的每一个scalar <code>$_</code>，然后返回用这些scalar创建的array。这个操作用在花括号中的一个表达式来表示：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">my</span> @capitals = (<span class="string">&quot;Baton Rouge&quot;</span>, <span class="string">&quot;Indianapolis&quot;</span>, <span class="string">&quot;Columbus&quot;</span>, <span class="string">&quot;Montgomery&quot;</span>, <span class="string">&quot;Helena&quot;</span>, <span class="string">&quot;Denver&quot;</span>, <span class="string">&quot;Boise&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="keyword">join</span> <span class="string">&quot;, &quot;</span>, <span class="keyword">map</span> &#123; <span class="keyword">uc</span> $_ &#125; @capitals;</span><br><span class="line"><span class="comment">#perl uc()函数例子，uc()函数实例代码 - 返回一个大写的版本EXPR，或$_ 如果没有指定</span></span><br><span class="line"><span class="comment"># &quot;BATON ROUGE, INDIANAPOLIS, COLUMBUS, MONTGOMERY, HELENA, DENVER, BOISE&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>grep</code>函数接受一个array，并返回一个经过筛选的array。语法与<code>map</code>类似，而第二个参数会对array中的每个scalar <code>$_</code>求值，如果返回true，这个scalar就会被放到输出array中，否则就不会。</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="keyword">join</span> <span class="string">&quot;, &quot;</span>, <span class="keyword">grep</span> &#123; <span class="keyword">length</span> $_ == <span class="number">6</span> &#125; @capitals;</span><br><span class="line"><span class="comment"># &quot;Helena, Denver&quot;</span></span><br><span class="line"><span class="comment">#筛选出 字符长度等于 6 的 元素</span></span><br></pre></td></tr></table></figure>
+
+<p>显然，返回的array长度是_满足条件的元素个数_，这就意味着你可以用<code>grep</code>检查array中是否包含某个元素：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="keyword">scalar</span> <span class="keyword">grep</span> &#123; $_ eq <span class="string">&quot;Columbus&quot;</span> &#125; @capitals; <span class="comment"># &quot;1&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>grep</code>和<code>map</code>的组合形成了_list comprehensions_这种许多其他语言中欠缺的非常强大特性。（译者注：list comprehensions大致的意思是利用map和filter从现有的列表构造新的列表，表达的含义是对一个列表中满足某个条件的所有元素上应用某个操作，而形成一个新的列表。）</p>
+<p>默认情况下，<code>sort</code>函数对输入的array按字母序进行排序：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">my</span> @elevations = (<span class="number">19</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">100</span>, <span class="number">3</span>, <span class="number">98</span>, <span class="number">100</span>, <span class="number">1056</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="keyword">join</span> <span class="string">&quot;, &quot;</span>, <span class="keyword">sort</span> @elevations;</span><br><span class="line"><span class="comment"># &quot;1, 100, 100, 1056, 19, 2, 3, 98&quot;</span></span><br><span class="line"><span class="comment">#根据内部的字符编码进行顺序 进行排序；</span></span><br></pre></td></tr></table></figure>
+
+<p>然而，与<code>grep</code>和<code>map</code>类似，排序总是通过一系列元素的两两比较来进行的。你的代码块接受<code>$a</code>和<code>$b</code>作为输入，如果<code>$a</code>“小于”<code>$b</code>则返回-1，如果“相等”则返回0，而如果<code>$a</code>“大于”<code>$b</code>则返回1。</p>
+<p><code>cmp</code>运算符适用于字符串（译者注：按字母序比较）：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="keyword">join</span> <span class="string">&quot;, &quot;</span>, <span class="keyword">sort</span> &#123; $a cmp $b &#125; @elevations;</span><br><span class="line"><span class="comment"># &quot;1, 100, 100, 1056, 19, 2, 3, 98&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>这个“宇宙飞船运算符”<code>&lt;=&gt;</code>适用于数值：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="keyword">join</span> <span class="string">&quot;, &quot;</span>, <span class="keyword">sort</span> &#123; $a &lt;=&gt; $b &#125; @elevations;</span><br><span class="line"><span class="comment"># &quot;1, 2, 3, 19, 98, 100, 100, 1056&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>$a</code>和<code>$b</code>总是scalar，但是它们也许是某个复杂对象的引用，那样就很难直接进行比较。如果你需要更多篇幅来描述这种比较，你可以单独创建一个子程序来描述它，并在用到它的地方提供这个子程序的名字：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">sub</span> <span class="title">comparator</span> </span>&#123;</span><br><span class="line"><span class="comment"># lots of code...</span></span><br><span class="line"><span class="comment"># return -1, 0 or 1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="keyword">join</span> <span class="string">&quot;, &quot;</span>, <span class="keyword">sort</span> comparator @elevations;</span><br></pre></td></tr></table></figure>
+
+<p>不过你不能对<code>grep</code>或<code>map</code>这样做。</p>
+<p>请注意，我们从来没有显式提供<code>$a</code>和<code>$b</code>给子程序和语句块。就像<code>$_</code>一样，<code>$a</code>和<code>$b</code>实际上是当一对值需要比较时被_填入_的全局变量。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/08/10/perl-syntax-1/" data-id="ckg2zloip008ycq9kaf6feefd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/perl/" rel="tag">perl</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-perl-syntax" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/10/perl-syntax/" class="article-date">
+  <time datetime="2017-08-10T09:12:25.000Z" itemprop="datePublished">2017-08-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/programming/">programming</a>►<a class="article-category-link" href="/categories/programming/Perl/">Perl</a>►<a class="article-category-link" href="/categories/%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F/">程序人生</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/10/perl-syntax/">perl syntax 0</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#! /usr/bin/perl</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> warnings;</span><br><span class="line"><span class="keyword">use</span> diagnostics;</span><br><span class="line"><span class="comment"># 1.编译指示，给perl的一个提示，在程序开始之前的语法验证阶段会发挥作用，</span></span><br><span class="line"><span class="comment"># 脚本语句实际执行的时候，对运行结果没有影响</span></span><br><span class="line"><span class="keyword">use</span> utf8;</span><br><span class="line"><span class="keyword">require</span> <span class="number">5.22</span>.<span class="number">2</span>;</span><br><span class="line"><span class="comment">#2.变量 共有三类：标量（scalar）、数组（array）、哈希（hashes）</span></span><br><span class="line"><span class="comment">#2.1 Scalar variables</span></span><br><span class="line">$what = <span class="string">&quot;your name&quot;</span>;</span><br><span class="line">$n = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">print</span> <span class="string">&quot;what is $what ?\n&quot;</span>;</span><br><span class="line"><span class="keyword">print</span> <span class="string">&quot;what is <span class="subst">$&#123;what&#125;</span>s $n?\n&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># others 特殊符号</span></span><br><span class="line">$alef = <span class="keyword">chr</span>(<span class="number">0x05D0</span>);</span><br><span class="line">$alpha = <span class="keyword">chr</span>(<span class="keyword">hex</span>(<span class="string">&#x27;03B1&#x27;</span>));</span><br><span class="line">$omega = <span class="keyword">chr</span>(<span class="number">0x03C9</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">&quot;$alef,&quot;</span>;</span><br><span class="line"><span class="keyword">print</span> <span class="string">&quot;$alpha,&quot;</span>;</span><br><span class="line"><span class="keyword">print</span> <span class="string">&quot;$omega \n&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">#booleans perl 没有内置布尔类型。if语句中，scalar变量仅在一下情况被认为是“false”</span></span><br><span class="line"><span class="comment">#undef</span></span><br><span class="line"><span class="comment">#数值 0</span></span><br><span class="line"><span class="comment">#字符串 ””</span></span><br><span class="line"><span class="comment">#字符串 “0”</span></span><br><span class="line"><span class="keyword">my</span> $undef = <span class="keyword">undef</span>;</span><br><span class="line"><span class="keyword">print</span> $undef,<span class="string">&quot;\n&quot;</span>;</span><br><span class="line"><span class="comment">#弱类型</span></span><br><span class="line"><span class="comment">#无法判定一个scalar包含的是一个数值还是字符串。</span></span><br><span class="line"><span class="comment">#因为这完全是取决于 运算符的。</span></span><br><span class="line"><span class="keyword">my</span> $str1 = <span class="string">&quot;4G&quot;</span>;</span><br><span class="line"><span class="keyword">my</span> $str2 = <span class="string">&quot;4H&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> $str1 .  $str2,<span class="string">&quot;\n&quot;</span>; <span class="comment"># &quot;4G4H&quot;</span></span><br><span class="line"><span class="keyword">print</span> $str1 +  $str2,<span class="string">&quot;\n&quot;</span>; <span class="comment"># &quot;8&quot; 并且抛出两个警告</span></span><br><span class="line"><span class="keyword">print</span> $str1 eq $str2,<span class="string">&quot;\n&quot;</span>; <span class="comment"># &quot;&quot; （空字符串，也就是false）</span></span><br><span class="line"><span class="keyword">print</span> $str1 == $str2,<span class="string">&quot;\n&quot;</span>; <span class="comment"># &quot;1&quot; 并且抛出两个警告</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 经典错误</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">&quot;yes&quot;</span> == <span class="string">&quot;no&quot;</span>; <span class="comment"># &quot;1&quot; 并且抛出两个警告，按数值方式参与运算，两边求值结果都是0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在恰当的情况下使用正确的运算符，对于比较数值和字符串有两套不同的运算符：</span></span><br><span class="line"><span class="comment"># 数值运算符：  &lt;,  &gt;, &lt;=, &gt;=, ==, !=, &lt;=&gt;, +, *</span></span><br><span class="line"><span class="comment"># 字符串运算符：    lt, gt, le, ge, eq, ne, cmp, ., x</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#2.2 array variables</span></span><br><span class="line"><span class="comment"># Array变量是包含一个scalar列表的、由从0开始的整形数为下标存取的变量。</span></span><br><span class="line"><span class="comment"># 在Python里被称为list，而在PHP里被称为array。数组可以用一个圆括号包围的scalar列表来声明</span></span><br><span class="line"><span class="keyword">my</span> @array = (</span><br><span class="line"><span class="string">&quot;print&quot;</span>,</span><br><span class="line"><span class="string">&quot;these&quot;</span>,</span><br><span class="line"><span class="string">&quot;string&quot;</span>,</span><br><span class="line"><span class="string">&quot;out&quot;</span>,</span><br><span class="line"><span class="string">&quot;for&quot;</span>,</span><br><span class="line"><span class="string">&quot;me&quot;</span></span><br><span class="line">);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">my</span> $var = <span class="number">0</span>; $var &lt; <span class="number">7</span>; $var++) &#123;</span><br><span class="line"><span class="keyword">print</span> $array[$var],<span class="string">&quot; &quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">print</span> <span class="string">&quot;\n&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">#length of array</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">&quot;this array has &quot;</span>.(<span class="keyword">scalar</span> @array).<span class="string">&quot;  elements \n&quot;</span>;</span><br><span class="line"><span class="keyword">print</span> <span class="string">&quot;The last populated index is &quot;</span>.$#array.<span class="string">&quot;\n&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># reverse output</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">my</span> $var = -<span class="number">1</span>; $var &gt;=-<span class="number">7</span>; $var--) &#123;</span><br><span class="line"><span class="keyword">print</span> $array[$var],<span class="string">&quot; &quot;</span>;</span><br><span class="line"><span class="comment"># body...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">print</span> <span class="string">&quot;\n&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 当@当做邮箱地址使用时，要注意进行转义，或者将双引号改为单引号</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">&quot;Hello \$string&quot;</span>,<span class="string">&quot;\n&quot;</span>; <span class="comment"># &quot;Hello $string&quot;</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">&#x27;Hello $string&#x27;</span>,<span class="string">&quot;\n&quot;</span>;  <span class="comment"># &quot;Hello $string&quot;</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">&quot;\@array&quot;</span>,<span class="string">&quot;\n&quot;</span>;        <span class="comment"># &quot;@array&quot;</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">&#x27;@array&#x27;</span>,<span class="string">&quot;\n&quot;</span>;         <span class="comment"># &quot;@array&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#hash variables</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">my</span> %architecture = (</span><br><span class="line"><span class="string">&quot;Tesla&quot;</span>   =&gt; <span class="string">&quot;first  generation&quot;</span>,</span><br><span class="line"><span class="string">&quot;Fermi&quot;</span>   =&gt; <span class="string">&quot;second generation&quot;</span>,</span><br><span class="line"><span class="string">&quot;Kepler&quot;</span>  =&gt; <span class="string">&quot;third  generation&quot;</span>,</span><br><span class="line"><span class="string">&quot;Maxwell&quot;</span> =&gt; <span class="string">&quot;fourth generation&quot;</span>,</span><br><span class="line"><span class="string">&quot;Pascal&quot;</span>  =&gt; <span class="string">&quot;fifth  generation&quot;</span>,</span><br><span class="line">);</span><br><span class="line"><span class="keyword">print</span> <span class="string">&quot;Fermi is &quot;</span>.$architecture&#123;<span class="string">&quot;Fermi&quot;</span>&#125;.<span class="string">&quot; of Nvidia GPU architecture !\n&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">#You can convert a hash straight to an array with twice as many entries, alternating between key and value</span></span><br><span class="line"><span class="keyword">my</span> @architecture = %architecture;</span><br><span class="line"><span class="keyword">print</span> <span class="string">&quot;@architecture \n&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">#use square brackets to retrieve a value from an array, but you have to use braces to retrieve a value from a hash.</span></span><br><span class="line"><span class="keyword">my</span> $data = <span class="string">&quot;orange&quot;</span>;</span><br><span class="line"><span class="keyword">my</span> @data = (<span class="string">&quot;purple&quot;</span>);</span><br><span class="line"><span class="keyword">my</span> %data = ( <span class="string">&quot;0&quot;</span> =&gt; <span class="string">&quot;blue&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> $data,<span class="string">&quot; 1 \n&quot;</span>;      <span class="comment"># &quot;orange&quot;</span></span><br><span class="line"><span class="keyword">print</span> $data[<span class="number">0</span>],<span class="string">&quot; 2 \n&quot;</span>;   <span class="comment"># &quot;purple&quot;</span></span><br><span class="line"><span class="keyword">print</span> $data[<span class="string">&quot;0&quot;</span>],<span class="string">&quot; 3 \n&quot;</span>; <span class="comment"># &quot;purple&quot;</span></span><br><span class="line"><span class="keyword">print</span> $data<span class="string">&#123;0&#125;</span>,<span class="string">&quot; 4 \n&quot;</span>;   <span class="comment"># &quot;blue&quot;</span></span><br><span class="line"><span class="keyword">print</span> $data&#123;<span class="string">&quot;0&quot;</span>&#125;,<span class="string">&quot; 5 \n&quot;</span>; <span class="comment"># &quot;blue&quot;</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">&quot;hello perl !\n&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">#list</span></span><br><span class="line"><span class="comment">#列表不是一个变量，只是一个暂存的值，可以被赋值到一个array或者哈市变量中。</span></span><br><span class="line"><span class="comment">#这就是为什么array和hash的语法竟然完全一样的原因了。</span></span><br><span class="line"><span class="comment"># =&gt; 只是 .  的伪装</span></span><br><span class="line"><span class="comment">#列表不能嵌套，perl将其扁平化为一个 一维列表</span></span><br><span class="line">(</span><br><span class="line"><span class="string">&quot;print&quot;</span>,</span><br><span class="line"><span class="string">&quot;these&quot;</span>,</span><br><span class="line"><span class="string">&quot;strings&quot;</span>,</span><br><span class="line"><span class="string">&quot;out&quot;</span>,</span><br><span class="line"><span class="string">&quot;for&quot;</span>,</span><br><span class="line"><span class="string">&quot;me&quot;</span>,</span><br><span class="line">);</span><br><span class="line">(</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;Newton&quot;</span>   =&gt; <span class="string">&quot;Isaac&quot;</span>,</span><br><span class="line"><span class="string">&quot;Einstein&quot;</span> =&gt; <span class="string">&quot;Albert&quot;</span>,</span><br><span class="line"><span class="string">&quot;Darwin&quot;</span>   =&gt; <span class="string">&quot;Charles&quot;</span>,</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>END</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/08/10/perl-syntax/" data-id="ckg2zloiq0091cq9k28ue318y" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/perl/" rel="tag">perl</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-gpgpu-sim-ispass2009-编译问题０" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/09/gpgpu-sim-ispass2009-%E7%BC%96%E8%AF%91%E9%97%AE%E9%A2%98%EF%BC%90/" class="article-date">
+  <time datetime="2017-08-09T01:41:44.000Z" itemprop="datePublished">2017-08-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/gpu-computing/">gpu-computing</a>►<a class="article-category-link" href="/categories/gpu-computing/GPGPU-Sim-Notes/">GPGPU-Sim Notes</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/09/gpgpu-sim-ispass2009-%E7%BC%96%E8%AF%91%E9%97%AE%E9%A2%98%EF%BC%90/">GPGPU-Sim ispass2009 编译问题０</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="GPGPU-Sim-ispass2009-编译问题０"><a href="#GPGPU-Sim-ispass2009-编译问题０" class="headerlink" title="GPGPU-Sim ispass2009 编译问题０"></a>GPGPU-Sim ispass2009 编译问题０</h1><p>最早接触GPU-SIM时的几个问题．<strong>thanks the reply for wdw</strong></p>
+<h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><ol>
+<li><p>AES</p>
+<p>在编译AES的时候，一直出现这个错误<code>“fatal error: boost/filesystem/operations.hpp: No such file or directory”</code> 是不是缺少了什么依赖呢 <code>Google</code>了一下 安装<code>了libboost-all-dev,</code>但是还是没有用，</p>
+</li>
+<li><p>DG</p>
+<p>编译时老出现“<code>fatal error: mpi.h: No such file or directory</code>” 但是我在系统上也安装了<code>libcr-dev mpich2</code>的依赖了，<code>include</code>的时候是&lt;&gt;还是找不到对应<code>mpi.h</code></p>
+</li>
+<li><p>WP</p>
+<p>WP已经被我编译完成了，但是根据<code>readme</code>运行的时候老是出现错误，程序不能找到输入文件，，但是文件确实在<code>/data</code>中</p>
+</li>
+</ol>
+<h2 id="response"><a href="#response" class="headerlink" title="response"></a>response</h2><p>关于你的问题回答如下：</p>
+<ol>
+<li><p>我的<code>AES</code>已经编译成功，你需要安装<code>boost</code>的库才可以，正确的包含头文件和库文件，就没有问题</p>
+</li>
+<li><p><code>DG</code>你缺少的是mpi， 他需要一个库文件，就是他的文件夹下面的那个<code>3rdparty</code>， 你在编译<code>DG</code>之前首先需要编译成功这个库，他生成两个.a的文件，后续的DG的编译需要调用。我的理解是这个第三方库的编译需要<code>mpi</code>，同样的是安装<code>mpi</code>之后使用<code>mipcc</code>编译。但是我的第三方库编译成功之后，正常的文件的编译遇到了很多的问题。</p>
+</li>
+<li><p>我刚才由看了一下我的<code>wp</code>， 已经编译成功并运行起来了，你需要输入命令：</p>
+<p><code>sh README.GPGPU-Sim</code></p>
+<p>这个文件其实是运行的脚本程序，<code>readme</code>里面的东西很多确实是不存在的</p>
+</li>
+</ol>
+<h2 id="WP编译过程"><a href="#WP编译过程" class="headerlink" title="WP编译过程"></a>WP编译过程</h2><p>ispass2009中一共有12个benchmarks，直接编译能用的有9个。 WP是（weather forecast）天气预测的意思。 这是第十二个，我想用一下，因此单独编译。 在WP文件夹中也是有单独的makefile 的。</p>
+<p><strong>0. 编译一下</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">cd ispassbenchmark/WP</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+
+<p>出现如下结果</p>
+<p><img src="http://img.blog.csdn.net/20160601211000737?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<ol>
+<li><p><code>gfortran :not found</code></p>
+<p>缺少了一个编译器，<code>gFortran</code> 类似<code>gcc/g++</code>的编译器。</p>
+<p>这个好办，装上就行了,</p>
+<p>$$sudo apt-get install gfortran$$</p>
+<p>下面这个链接就是怎装gfortran的，参考一下</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://askubuntu.com/questions/358907/how-do-i-install-gfortran">http://askubuntu.com/questions/358907/how-do-i-install-gfortran</a></p>
+</blockquote>
+</li>
+<li><p><code>在/usr/bin/ld 找不到 -lcutil_x86_64</code></p>
+<p>继续编译后出现错误</p>
+<p><img src="http://img.blog.csdn.net/20160601212125841?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast"></p>
+<p>在/usr/bin/ld 找不到 -lcutil_x86_64 那么直接的方法，就是找到它</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">find -name “libcutil_x86_64*”</span><br></pre></td></tr></table></figure>
+
+<p>发现在 <code>/home/gpgpu-sim/cuda/sdk/4.2/CUDALibraries/common/lib</code></p>
+<p>走了一些弯路</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://blog.sina.com.cn/s/blog_4156950c0100sfzz.html">http://blog.sina.com.cn/s/blog_4156950c0100sfzz.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://devtalk.nvidia.com/default/topic/513646/ld-cannot-find-lcutil-have-make-cuda-sdk-/">https://devtalk.nvidia.com/default/topic/513646/ld-cannot-find-lcutil-have-make-cuda-sdk-/</a></p>
+</blockquote>
+<p>上边两个链接对着个来说也没啥用，原来是<code>cuda sdk</code> 的路径不对，在<code>makefile</code> 里加上绝对路径就好了</p>
+<p>如下图</p>
+<p><img src="http://img.blog.csdn.net/20160601220118321?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="img"></p>
+</li>
+<li><p><code>wsm.f.cu.cpp:no such file or directory</code></p>
+<p><img src="http://img.blog.csdn.net/20160601220231963?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast"></p>
+<p>没有这文件，好吧，，看了一眼makefile，又看了WP的目录，确实不匹配，改makefile。 在编译的时候，没有***.cpp,目录里是。cpp.ii</p>
+<p>改一下</p>
+<p><img src="http://img.blog.csdn.net/20160601220556844?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="img"></p>
+</li>
+<li><p>错误解决完了，编译成功！</p>
+<p><img src="http://img.blog.csdn.net/20160601221035802?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="img"></p>
+<p>生成可执行文件．</p>
+</li>
+<li><p>运行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sh README.GPGPU-Sim</span><br><span class="line">or</span><br><span class="line">echo &quot;10 ./data/&quot; ./bin/release/WP</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：</p>
+<p>出现了点问题，gpgpusim.config文件和gpuwattch_gtx480.xml ，，还有这个config_fermi_islip.icnt没找到。。 从GTX480 RUNDIR 中copy到WP目录下过去就行。</p>
+</li>
+<li><p>done</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/08/09/gpgpu-sim-ispass2009-%E7%BC%96%E8%AF%91%E9%97%AE%E9%A2%98%EF%BC%90/" data-id="ckg2zloi40061cq9kal6iclhi" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GPGPU-Sim/" rel="tag">GPGPU-Sim</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GPU/" rel="tag">GPU</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-c-垃圾回收-智能指针shared-ptr" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/07/c-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88shared-ptr/" class="article-date">
+  <time datetime="2017-08-07T15:33:42.000Z" itemprop="datePublished">2017-08-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/programming/">programming</a>►<a class="article-category-link" href="/categories/programming/C-C/">C/C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/07/c-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88shared-ptr/">C++ 垃圾回收 智能指针shared_ptr</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="C-垃圾回收-智能指针shared-ptr"><a href="#C-垃圾回收-智能指针shared-ptr" class="headerlink" title="C++ 垃圾回收 智能指针shared_ptr"></a>C++ 垃圾回收 智能指针shared_ptr</h1><blockquote>
+<p>转载自<a target="_blank" rel="noopener" href="http://www.cnblogs.com/qicosmos/p/3282779.html">http://www.cnblogs.com/qicosmos/p/3282779.html</a></p>
+</blockquote>
+<p>C#和Java 中都有自动垃圾回收机制，.net 和 java虚拟机可以管理分配的堆内存，在对象失去引用时自动回收，因此在这两种语言中，内存管理不是大问题。</p>
+<p>C++中没有垃圾回收机制，必须自己去释放分配的堆内存，否则会造成内存泄露。</p>
+<p>而这个问题，在C++中的解决办法就是，使用<strong>智能指针</strong>！因为智能指针可以自动删除分配的内存。</p>
+<h2 id="智能指针"><a href="#智能指针" class="headerlink" title="智能指针"></a>智能指针</h2><p>是指向动态分配（堆）对象指针，用于生存期控制，能够确保自动正确的销毁动态分配的对象，防止内存泄露。</p>
+<p>例如 shared_ptr</p>
+<p><img src="https://i-msdn.sec.s-msft.com/dynimg/IC684644.jpeg"></p>
+<p>它的一种通用实现技术是使用引用计数。每次使用它，内部的引用计数+1，每次 析构一次，内部引用计数-1，当减到0时，删除所指向的堆内存。</p>
+<p>C++11之前，C++没有内置智能指针。只能借助boost的智能指针或者自己写。现在C++11已内置：</p>
+<ul>
+<li><code>std::shared_ptr</code></li>
+<li><code>std::unique_ptr</code></li>
+<li><code>std::weak_ptr</code></li>
+</ul>
+<p>那么下面分别说一下要怎么用</p>
+<h2 id="std-shared-ptr"><a href="#std-shared-ptr" class="headerlink" title="std::shared_ptr"></a><code>std::shared_ptr</code></h2><p>使用引用计数，每一个<code>shared_ptr</code>的拷贝都指向相同的内存。在最后一个 <code>shared_ptr</code>析构的时候，内存才会被释放。</p>
+<ol>
+<li>初始化</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//智能指针的初始化</span></span><br><span class="line"><span class="function"><span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;<span class="keyword">int</span>&gt; <span class="title">p</span><span class="params">(<span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">2</span>))</span></span>;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;<span class="keyword">int</span>&gt; p2 = p;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;BaseConnector&gt; m_connt = make_shared&lt;Connector&gt;(m_ios, m_strIP, m_port);</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>智能指针中的原始指针，通过 get 获取</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">char</span>* pData = pBuf.get();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注意事项</p>
+<ul>
+<li>不要把原声指针给多个 shared_ptr管理</li>
+<li>不要把this指针给shared_ptr</li>
+<li>不要在函数实参里创建shared_ptr</li>
+<li>在对象内部生成this的shared_ptr</li>
+</ul>
+</li>
+</ol>
+<h2 id="std-weak-ptr"><a href="#std-weak-ptr" class="headerlink" title="std::weak_ptr"></a><code>std::weak_ptr</code></h2><p>弱引用指针，用来监视智能指针，不会使引用计数加1。在访问所引用的对象前必须先转换为 std::shared_ptr。</p>
+<p>用来表达临时所有权的概念：当某个对象只有存在时才需要被访问，而且随时可能被他人删除时，可以使用</p>
+<p>来跟踪该对象。需要获得临时所有权时，则将其转换为 std::shared_ptr，此时如果原来的std::shared_ptr 被销毁，则该对象的生命期将被延长至这个临时的 std::shared_ptr 同样被销毁为止。</p>
+<h2 id="std-unique-ptr"><a href="#std-unique-ptr" class="headerlink" title="std::unique_ptr"></a><code>std::unique_ptr</code></h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">unique_ptr</span>不会共享它的指针。 无法将它复制到另一个<span class="built_in">unique_ptr</span>， <span class="built_in">unique_ptr</span>只能移动。 这意味着内存资源的所有权将转移到新的<span class="built_in">unique_ptr</span>和原始<span class="built_in">unique_ptr</span>不再拥有它</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>;</span><br><span class="line"><span class="function"><span class="built_in">std</span>::<span class="built_in">unique_ptr</span>&lt;<span class="keyword">int</span>&gt; <span class="title">ptr</span><span class="params">(p)</span></span>;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">unique_ptr</span>&lt;<span class="keyword">int</span>&gt; ptr1 = ptr; <span class="comment">//不能复制，编译报错</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">auto</span> ptr2 = <span class="built_in">std</span>::move(ptr); <span class="comment">//转移所有权, 现在ptr那块内存归ptr2所有, ptr成为无效的指针.</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/08/07/c-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88shared-ptr/" data-id="ckg2zlohc0034cq9k8cf371cn" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/" rel="tag">C/C++</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-gpgpu-sim-notes-0" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/07/gpgpu-sim-notes-0/" class="article-date">
+  <time datetime="2017-08-07T14:47:50.000Z" itemprop="datePublished">2017-08-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/gpu-computing/">gpu-computing</a>►<a class="article-category-link" href="/categories/gpu-computing/GPGPU-Sim-Notes/">GPGPU-Sim Notes</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/07/gpgpu-sim-notes-0/">GPGPU-Sim Notes 0</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="GPGPU-Sim-笔记整理-0"><a href="#GPGPU-Sim-笔记整理-0" class="headerlink" title="GPGPU-Sim 笔记整理 0"></a>GPGPU-Sim 笔记整理 0</h1><h2 id="gpgpu-sim-cc"><a href="#gpgpu-sim-cc" class="headerlink" title="gpgpu-sim.cc"></a><code>gpgpu-sim.cc</code></h2><p>本文件是所有函数的配置和初始化</p>
+<ul>
+<li><code>power_config</code></li>
+<li><code>memory_config</code></li>
+<li><code>shader_core_config</code></li>
+<li><code>gpgpu_sim_config</code></li>
+<li>初始化模拟器</li>
+<li>周期激活</li>
+<li>打印状态</li>
+<li>更新状态</li>
+<li>死锁检查</li>
+</ul>
+<p>手册解释：</p>
+<p>Gluing different timing models in GPGPU-Sim into one. It contains implementations to support multiple clock domains and implements the</p>
+<p>thread block dispatcher</p>
+<p>翻译：</p>
+<p>将GPGPU中不同的时间模型粘合成一个时间模型。其中包括了支持多个时钟域的实现和线程块调度程序的实现</p>
+<p>这两个文件是gpgpu-sim的一个总的架构文件，相当于main函数</p>
+<p>实现的功能</p>
+<ol>
+<li>将能耗、存储、核等需要的参数从gpgpusim.config中读取出来</li>
+<li>实现自己的一些方法  </li>
+</ol>
+<h2 id="dram-cc"><a href="#dram-cc" class="headerlink" title="dram.cc"></a>dram.cc</h2><p>本文件为主存相关的模拟函数。</p>
+<h4 id="存储层次"><a href="#存储层次" class="headerlink" title="存储层次"></a>存储层次</h4><p>由大到小为</p>
+<ul>
+<li>chip</li>
+<li>bank</li>
+<li>row</li>
+<li>column</li>
+</ul>
+<p>主要类</p>
+<ul>
+<li><p><code>dram_t</code></p>
+</li>
+<li><p><code>dram_req_t</code></p>
+<ul>
+<li>row</li>
+<li>col</li>
+<li>bk</li>
+<li><code>nbytes</code></li>
+<li>txbytes</li>
+<li>dqbytes</li>
+<li>age</li>
+<li>timestamp 时间戳 LRU</li>
+<li>rw 判读读写</li>
+<li>addr</li>
+<li><code>mem_fetch</code> data</li>
+</ul>
+</li>
+</ul>
+<h3 id="DRAM延迟参数"><a href="#DRAM延迟参数" class="headerlink" title="DRAM延迟参数"></a>DRAM延迟参数</h3><h4 id="tRCD"><a href="#tRCD" class="headerlink" title="tRCD"></a>tRCD</h4><p>读延迟</p>
+<p>array read 【 】buffer read/write</p>
+<p>between array read and buffer read/write command</p>
+<h4 id="tCL，tWL-tCCD-tWTR"><a href="#tCL，tWL-tCCD-tWTR" class="headerlink" title="tCL，tWL,tCCD,tWTR"></a>tCL，tWL,tCCD,tWTR</h4><p>限制连续的buffer 命令</p>
+<p>独立存储单元</p>
+<h4 id="tWR，tRTP"><a href="#tWR，tRTP" class="headerlink" title="tWR，tRTP"></a>tWR，tRTP</h4><p>between buffer read/write command and array read</p>
+<p>buffer read/write 【 】 array read</p>
+<h4 id="tRP"><a href="#tRP" class="headerlink" title="tRP"></a>tRP</h4><p>写延迟</p>
+<p>an array write and a following array read</p>
+<p>array write 【】array read</p>
+<h4 id="tRRD-act-，tRRD-pre"><a href="#tRRD-act-，tRRD-pre" class="headerlink" title="tRRD act ，tRRD pre"></a>tRRD act ，tRRD pre</h4><p>限制访问频率来满足功耗预算  </p>
+<p>only when a read evicts dirty buffer contents</p>
+<h4 id="添加NVM的延时参数"><a href="#添加NVM的延时参数" class="headerlink" title="添加NVM的延时参数"></a>添加NVM的延时参数</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> RRDactc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> RRDprec;</span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> RRDactc_PCM;</span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> RRDprec_PCM;<span class="comment">//hybrid memory structure latency paramater</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="addrdec-cc"><a href="#addrdec-cc" class="headerlink" title="addrdec.cc"></a>addrdec.cc</h3><p>手册解释： Address decoder - Maps a given address to a specific row, bank, column, in a DRAM channel 翻译： 地址解码器 - 在一个DRAM channel 里 将一个给定的地址映射成 行 ，bank ，列</p>
+<p>其中比较重要的函数 ： 1.<code>void linear_to_raw_address_translation::addrdec_tlx(new_addr_type addr, addrdec_t *tlx) const</code> 将线性地址转换成物理地址 ，地址解码转换功能 2.<code>void linear_to_raw_address_translation::init(unsigned int n_channel, unsigned int n_sub_partition_in_channel)</code> 地址转换的初始化函数，从这个函数开始，逐步调用相应的功能 3.<code>static new_addr_type addrdec_packbits( new_addr_type mask, new_addr_type val, unsigned char high, unsigned char low)</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/08/07/gpgpu-sim-notes-0/" data-id="ckg2zloi40063cq9k1ke6dsgq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GPGPU-Sim/" rel="tag">GPGPU-Sim</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-cc-main-function-parameter" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/07/cc-main-function-parameter/" class="article-date">
+  <time datetime="2017-08-07T14:27:45.000Z" itemprop="datePublished">2017-08-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/programming/">programming</a>►<a class="article-category-link" href="/categories/programming/C-C/">C/C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/07/cc-main-function-parameter/">C/C++　main function parameter</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="Main-函数原型"><a href="#Main-函数原型" class="headerlink" title="Main 函数原型"></a>Main 函数原型</h1><p>C/C++ 中的main 函数，经常带有参数 argc，argv，如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc,<span class="keyword">char</span>** argv)</span></span></span><br><span class="line"><span class="function">      </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc,<span class="keyword">char</span>* argv[])</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[], <span class="keyword">char</span>* env[] )</span></span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Main-函数参数"><a href="#Main-函数参数" class="headerlink" title="Main 函数参数"></a>Main 函数参数</h1><p>参数的作用：</p>
+<p>$$argc 命令行输入参数的个数 （以空白符为分隔）$$</p>
+<p>$$argv 存储了所有命令行参数 ，以NULL 结束$$</p>
+<p>$$env 环境变量，以NULL 结束$$</p>
+<p>eg</p>
+<p>$$运行hello如下：$$</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">hello sduer <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>那么 argc = 3 argv[] 中 则存储了 ”hello.exe“ “sduer” “1”这三个字符串 env[] 中存储了系统的环境变量</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> ** argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i &lt; argc; i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Argument %d is %s.\n&quot;</span>, i, argv[i]);</span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">0</span>; env[i] != <span class="literal">NULL</span>; i++)  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;env[%d]=%s\n&quot;</span>,i,env[i]);  </span><br><span class="line">&#125; </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>terminal 运行情况如下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">~$ ./hello sduer <span class="number">1</span></span><br><span class="line">Argument <span class="number">0</span> is ./hello.</span><br><span class="line">Argument <span class="number">1</span> is sduer.</span><br><span class="line">Argument <span class="number">2</span> is <span class="number">1.</span></span><br><span class="line">env[<span class="number">0</span>]=LC_PAPER=zh_CN.UTF<span class="number">-8</span></span><br><span class="line">env[<span class="number">1</span>]=XDG_VTNR=<span class="number">2</span></span><br><span class="line">env[<span class="number">2</span>]=LC_ADDRESS=zh_CN.UTF<span class="number">-8</span></span><br><span class="line">env[<span class="number">3</span>]=SSH_AGENT_PID=<span class="number">1912</span></span><br><span class="line">env[<span class="number">4</span>]=XDG_SESSION_ID=<span class="number">3</span></span><br><span class="line">env[<span class="number">5</span>]=CLUTTER_IM_MODULE=xim</span><br><span class="line">env[<span class="number">6</span>]=LC_MONETARY=zh_CN.UTF<span class="number">-8</span></span><br><span class="line">....</span><br></pre></td></tr></table></figure>
+
+<h1 id="Main-函数-返回值"><a href="#Main-函数-返回值" class="headerlink" title="Main 函数 返回值"></a>Main 函数 返回值</h1><p>main函数的返回值是返回给父进程的，父进程调用以下函数来获取子进程的退出码（即main函数的返回值）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">pid_t</span> <span class="title">wait</span><span class="params">(<span class="keyword">int</span>* status)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">pid_t</span> <span class="title">waitpid</span><span class="params">(<span class="keyword">pid_t</span> pid, <span class="keyword">int</span>* status, <span class="keyword">int</span> option)</span></span>;</span><br><span class="line"> </span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello World!\n&quot;</span>);    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">100</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在bash在，执行一个命令后（bash里是父进程，命令是子进程），$?里存放的是这个命令的退出码 <code>./hellowrold ; echo $?</code></p>
+<p>运行結果： <code>Hello World!</code> <code>100</code></p>
+<h1 id="Main-函数不是第一个执行的函数"><a href="#Main-函数不是第一个执行的函数" class="headerlink" title="Main 函数不是第一个执行的函数"></a>Main 函数不是第一个执行的函数</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;  </span></span></span><br><span class="line">__attribute ((constructor)) <span class="function"><span class="keyword">void</span> <span class="title">hello_init</span><span class="params">(<span class="keyword">void</span>)</span>  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>,__func__);  </span><br><span class="line">    <span class="keyword">return</span>;  </span><br><span class="line">&#125;  </span><br><span class="line">__attribute ((destructor)) <span class="function"><span class="keyword">void</span> <span class="title">hello_fini</span><span class="params">(<span class="keyword">void</span>)</span>  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>,__func__);  </span><br><span class="line">    <span class="keyword">return</span>;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span>  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello World!\n&quot;</span>);  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+<p>$$//运行結果： hello_init Hello World! hello_fini$$</p>
+<p>后两小节 参考自 Hello World</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://blog.csdn.net/ooaven/article/details/6101409">http://blog.csdn.net/ooaven/article/details/6101409</a></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/08/07/cc-main-function-parameter/" data-id="ckg2zlohh003ocq9k4re11dzb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/" rel="tag">C/C++</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-244" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/07/244/" class="article-date">
+  <time datetime="2017-08-07T06:37:36.000Z" itemprop="datePublished">2017-08-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/uncategorized/">uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/07/244/">Untitled Post - 7</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/08/07/244/" data-id="ckg2zlogo000zcq9k7x9a636p" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-245" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/07/245/" class="article-date">
+  <time datetime="2017-08-07T06:37:36.000Z" itemprop="datePublished">2017-08-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/uncategorized/">uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/07/245/">Untitled Post - 8</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/08/07/245/" data-id="ckg2zlogp0012cq9k0cf865ya" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-246" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/07/246/" class="article-date">
+  <time datetime="2017-08-07T06:37:36.000Z" itemprop="datePublished">2017-08-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/uncategorized/">uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/07/246/">Untitled Post - 9</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/08/07/246/" data-id="ckg2zlogq0015cq9k8tvh68nc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-247" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/07/247/" class="article-date">
+  <time datetime="2017-08-07T06:37:36.000Z" itemprop="datePublished">2017-08-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/uncategorized/">uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/07/247/">Untitled Post - 10</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/08/07/247/" data-id="ckg2zlogq0017cq9k8yig97fu" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/19/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="page-number" href="/page/19/">19</a><span class="page-number current">20</span><a class="page-number" href="/page/21/">21</a><a class="page-number" href="/page/22/">22</a><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/21/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DAC-SDC/">DAC-SDC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GPGPU/">GPGPU</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/es310/">es310</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E4%B8%AD%E5%BF%83%E6%A0%A1%E5%8C%BA/">中心校区</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E6%8B%9B%E8%81%98/">招聘</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E7%A0%94%E7%A9%B6%E7%94%9F/">研究生</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E7%A0%94%E7%A9%B6%E7%94%9F/%E8%BD%AF%E4%BB%B6%E5%9B%AD/">软件园</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/es310/%E8%BD%AF%E4%BB%B6%E5%9B%AD/">软件园</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/gpu-computing/">gpu-computing</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/gpu-computing/GPGPU-Sim-Notes/">GPGPU-Sim Notes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/gpu-computing/GPU-PTX-ISA-Analysis/">GPU PTX ISA Analysis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/gpu-computing/Jetson-TX1-2/">Jetson TX1-2</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/C-C/">C/C++</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/C-C/CUDA-Programming/">CUDA Programming</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/CUDA-Programming/">CUDA Programming</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/Perl/">Perl</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/Python/">Python</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/tools/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E7%BB%B4%E6%8A%A4/">系统管理维护</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/uncategorized/">uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E6%AC%B2%E5%96%84%E5%85%B6%E4%BA%8B%E5%BF%85%E5%85%88%E5%88%A9%E5%85%B6%E5%99%A8/">工欲善其事必先利其器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E6%89%AF%E6%B7%A1/">日常扯淡</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F/">程序人生</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%80%9A%E7%94%A8%E7%BC%96%E8%AF%91%E6%8A%80%E6%9C%AF/">通用编译技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/">驱动安装</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/310/" rel="tag">310</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/" rel="tag">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CUDA/" rel="tag">CUDA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cache/" rel="tag">Cache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Caffe/" rel="tag">Caffe</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Faster-rcnn/" rel="tag">Faster rcnn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GOTURN/" rel="tag">GOTURN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GPGPU-Sim/" rel="tag">GPGPU-Sim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GPU/" rel="tag">GPU</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jetson/" rel="tag">Jetson</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PTX-ISA/" rel="tag">PTX ISA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSD-Caffe/" rel="tag">SSD-Caffe</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deeplearning/" rel="tag">deeplearning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/latex/" rel="tag">latex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/perl/" rel="tag">perl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/profiling/" rel="tag">profiling</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tx1/" rel="tag">tx1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tx2/" rel="tag">tx2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/voc2007/" rel="tag">voc2007</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yolo/" rel="tag">yolo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%8B%E7%BB%AD/" rel="tag">手续</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8B%9B%E8%81%98/" rel="tag">招聘</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8C%87%E5%8D%97/" rel="tag">指南</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82%E6%84%9F/" rel="tag">杂感</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A0%94%E7%A9%B6%E7%94%9F/" rel="tag">研究生</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AF%AE%E7%90%83/" rel="tag">篮球</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B5%84%E6%BA%90/" rel="tag">资源</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%9B%AD/" rel="tag">软件园</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%BF%E9%87%8C/" rel="tag">阿里</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/310/" style="font-size: 10px;">310</a> <a href="/tags/C-C/" style="font-size: 13.33px;">C/C++</a> <a href="/tags/CUDA/" style="font-size: 18.89px;">CUDA</a> <a href="/tags/Cache/" style="font-size: 11.11px;">Cache</a> <a href="/tags/Caffe/" style="font-size: 10px;">Caffe</a> <a href="/tags/Deep-learning/" style="font-size: 14.44px;">Deep learning</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Faster-rcnn/" style="font-size: 10px;">Faster rcnn</a> <a href="/tags/GOTURN/" style="font-size: 10px;">GOTURN</a> <a href="/tags/GPGPU-Sim/" style="font-size: 11.11px;">GPGPU-Sim</a> <a href="/tags/GPU/" style="font-size: 20px;">GPU</a> <a href="/tags/Jetson/" style="font-size: 11.11px;">Jetson</a> <a href="/tags/Linux/" style="font-size: 17.78px;">Linux</a> <a href="/tags/PTX-ISA/" style="font-size: 11.11px;">PTX ISA</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/SSD-Caffe/" style="font-size: 10px;">SSD-Caffe</a> <a href="/tags/Shell/" style="font-size: 16.67px;">Shell</a> <a href="/tags/deeplearning/" style="font-size: 10px;">deeplearning</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/latex/" style="font-size: 10px;">latex</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/perl/" style="font-size: 15.56px;">perl</a> <a href="/tags/profiling/" style="font-size: 10px;">profiling</a> <a href="/tags/tx1/" style="font-size: 10px;">tx1</a> <a href="/tags/tx2/" style="font-size: 11.11px;">tx2</a> <a href="/tags/voc2007/" style="font-size: 10px;">voc2007</a> <a href="/tags/yolo/" style="font-size: 10px;">yolo</a> <a href="/tags/%E6%89%8B%E7%BB%AD/" style="font-size: 10px;">手续</a> <a href="/tags/%E6%8B%9B%E8%81%98/" style="font-size: 10px;">招聘</a> <a href="/tags/%E6%8C%87%E5%8D%97/" style="font-size: 12.22px;">指南</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9D%82%E6%84%9F/" style="font-size: 10px;">杂感</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 12.22px;">生活</a> <a href="/tags/%E7%A0%94%E7%A9%B6%E7%94%9F/" style="font-size: 11.11px;">研究生</a> <a href="/tags/%E7%AF%AE%E7%90%83/" style="font-size: 10px;">篮球</a> <a href="/tags/%E8%B5%84%E6%BA%90/" style="font-size: 11.11px;">资源</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%9B%AD/" style="font-size: 10px;">软件园</a> <a href="/tags/%E9%98%BF%E9%87%8C/" style="font-size: 12.22px;">阿里</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.33px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/10/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/11/tvm-autotune%E4%BC%98%E5%8C%96%E7%9A%84%E7%AE%97%E5%AD%90%E9%85%8D%E7%BD%AE/">TVM autotune优化的算子配置</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/11/%E5%85%B3%E4%BA%8E%E6%A1%A3%E6%A1%88%E9%97%AE%E9%A2%98/">关于档案问题</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/03/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE/">环境变量设置</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/31/%E5%A6%82%E4%BD%95%E5%AF%BB%E6%89%BE%E5%B7%AE%E5%BC%82%E5%8C%96-%E5%A4%9A%E5%81%9A%E4%B8%80%E7%82%B9/">如何寻找差异化-多做一点</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
