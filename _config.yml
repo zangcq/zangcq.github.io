@@ -105,10 +105,3 @@ theme: next
 deploy:
   type: git
   repo: https://github.com/zangcq/zangcq.github.io
-  branch: master
-# URL
-## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://hexo.junyu.pro
-root: /
-permalink: :year/:month/:day/:title/
-permalinkdefaults:
