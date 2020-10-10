@@ -105,3 +105,4 @@ theme: next
 deploy:
   type: git
   repo: https://github.com/zangcq/zangcq.github.io
+  brach: gh-pages
