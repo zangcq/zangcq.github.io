@@ -95,13 +95,13 @@ exclude:
 ignore:
 
 # Extensions
-## Plugins: https://hexo.io/plugins/
-## Themes: https://hexo.io/themes/
-theme: next
+theme: minima
+plugins:
+  - jekyll-feed
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
   repo: https://github.com/zangcq/zangcq.github.io
-  branch: gh-pages
+  branch: main
