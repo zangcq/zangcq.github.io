@@ -6,12 +6,9 @@ source "https://rubygems.org"
 #     bundle exec jekyll serve
 #
 # This will help ensure the proper Jekyll version is running.
-
-ruby File.read(".ruby-version").strip
-
-gem "jekyll", "~> 4.3.0"
-gem "csv"  # Add this line to explicitly include the csv gem
-
+# Happy Jekylling!
+gem "jekyll", "~> 4.3.3"
+# This is the default theme for new Jekyll sites. You may change this to anything you like.
 gem "minima", "~> 2.5"
 # If you want to use GitHub Pages, remove the "gem "jekyll"" above and
 # uncomment the line below. To upgrade, run `bundle update github-pages`.

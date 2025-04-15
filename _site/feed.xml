@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-04-15T11:40:11+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Chuanqiz‘s Blog</title><subtitle>tech blog</subtitle><entry><title type="html">Helloworld</title><link href="http://localhost:4000/2025/04/03/HelloWorld.html" rel="alternate" type="text/html" title="Helloworld" /><published>2025-04-03T00:00:00+08:00</published><updated>2025-04-03T00:00:00+08:00</updated><id>http://localhost:4000/2025/04/03/HelloWorld</id><content type="html" xml:base="http://localhost:4000/2025/04/03/HelloWorld.html"><![CDATA[<h1 id="helloworld">HelloWorld</h1>
-
-<h2 id="hello">hello</h2>
-
-<h3 id="world">world</h3>]]></content><author><name></name></author><summary type="html"><![CDATA[HelloWorld]]></summary></entry></feed>
