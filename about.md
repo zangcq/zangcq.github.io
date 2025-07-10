@@ -3,6 +3,6 @@ layout: page
 title: about me
 permalink: /about/
 ---
-System Software Engineer Currently empolyed at ByteDance. Foucs on Java workloads Optimizaion
+I am a System Software Engineer at ByteDance, focusing on Java workload optimization.
 
-Before ByteDance，I spends 2 years at Alibaba Infrastructure ，get master degree from Shandong Uni. advised by Lei Ju.
+Prior to joining ByteDance, I spent two years at Alibaba Infrastructure. I hold a Master's degree from Shandong University, where I was advised by Lei Ju.
