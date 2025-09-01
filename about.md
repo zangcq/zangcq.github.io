@@ -5,11 +5,9 @@ permalink: /about/
 ---
 Currently, I am a System Software Engineer at ByteDance Infrastructure,  focusing on Java workload optimization and toubleshooting.
 
-Prior to joining ByteDance, I spent two years at [Alibaba Infrastructure Service](https://www.alibabacloud.com/). 
+Prior to joining ByteDance, I spent two years at [Alibaba Infrastructure Service](https://www.alibabacloud.com/).
 
- I hold a Master's degree from [Shandong University](https://www.sdu.edu.cn/), where I was advised by [Lei Ju](https://faculty.sdu.edu.cn/julei).
-
-
+I hold a Master's degree from [Shandong University](https://www.sdu.edu.cn/), where I was advised by [Lei Ju](https://faculty.sdu.edu.cn/julei).
 
 Paper
 
@@ -25,4 +23,3 @@ Patent
 
 * [资源计算方法、装置、电子设备及可读存储介质](https://www.patentguru.com/CN113296837B)   2025-02-28    ([杨岳鸣](https://www.patentguru.com/cn/inventor/3867743) [崔世强](https://www.patentguru.com/cn/inventor/3867744) [臧传奇](https://www.patentguru.com/cn/inventor/3867746)）
 * [一种程序编译方法、设备以及计算机可读介质](https://www.patentguru.com/CN113360157A)       2021-09-07  （[杨岳鸣](https://www.patentguru.com/cn/inventor/3867743) [崔世强](https://www.patentguru.com/cn/inventor/3867744) [臧传奇](https://www.patentguru.com/cn/inventor/3867746)）
-
