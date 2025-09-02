@@ -13,19 +13,26 @@ Prior to joining ByteDance, I spent two years at [Alibaba Infrastructure Service
 
 ### Project
 
-#### ByteDance Infrastructure  Compiler and Library Group  (2020.7~Now)
+#### ByteDance Infrastructure | Compiler and Library Group  (2020.7~Now)
 
-#### Alibaba Infra Servive Hybrid Computing Compiler Group (2018.7 ~ 2020.7)
+- Maintained OpenJDK Long Term Support  Version at Bytedance
+  - Self build OpenJDK binary at ByteDance, Provide base docker images, jdk deployment at Datacenter.
+  - Optimized BigData workload and build observability tools with performance engineering team.
+  - Be good at troubleShooting Memory Leak and Coredump.
+- DataCenter Workload Optimization
+  - Transparent Hugepages Apply in CodeCache and LibJVM.
+  - Optimized Compress library and Parse library in BigData Business.
 
-- Wasm AOT Compiler for Ant Blockchain Platform  (2019-2020)
+#### Alibaba Infra Servive | Hybrid Computing Compiler Group (2018.7 ~ 2020.7)
 
-  - Convert wasm bytecode to LLVM IR
-  - Add T-Head CSKY Extension to the RISCV ISA
-  - [资源计算方法、装置、电子设备及可读存储介质](https://www.patentguru.com/CN113296837B)   2025-02-28    ([杨岳鸣](https://www.patentguru.com/cn/inventor/3867743) [崔世强](https://www.patentguru.com/cn/inventor/3867744) [臧传奇](https://www.patentguru.com/cn/inventor/3867746)）
+- Wasm AOT Compiler Framework for Ant Blockchain Platform  (2019.9-2020.6)
+
+  - Convert wasm bytecode to LLVM IR  and Add T-Head CSKY Extension to the RISCV ISA
 
   - [一种程序编译方法、设备以及计算机可读介质](https://www.patentguru.com/CN113360157A)       2021-09-07  （[杨岳鸣](https://www.patentguru.com/cn/inventor/3867743) [崔世强](https://www.patentguru.com/cn/inventor/3867744) [臧传奇](https://www.patentguru.com/cn/inventor/3867746)）
+  - [资源计算方法、装置、电子设备及可读存储介质](https://www.patentguru.com/CN113296837B)   2025-02-28    ([杨岳鸣](https://www.patentguru.com/cn/inventor/3867743) [崔世强](https://www.patentguru.com/cn/inventor/3867744) [臧传奇](https://www.patentguru.com/cn/inventor/3867746)）
 
-- Coordinate software and hardware Optimization for CNN & DNN Accelerator implemented in FPGA  (2018-2019)
+- Coordinate software and hardware Optimization for CNN & DNN Accelerator implemented in FPGA  (2018.7-2019.10)
   - Implement CNN Operation like Conv/DeConv and DNN Operation like matmul/relu
   - Proposed a spliting HD pictures algorithm for Limited on-chip memory
   - Graph Optimization like Concat/Slice/Fusion
@@ -33,7 +40,7 @@ Prior to joining ByteDance, I spent two years at [Alibaba Infrastructure Service
 #### ShanDong Univ.  Embedded and System Labs
 
 - [Energy Efficient Object Detection for Edge Computing](https://github.com/xiaoyuuuuu/dac-hdc-2018-object-detection-in-Jetson-TX2)
-  - As project lead won [3rd place in DAC 2018 System Design Contest](http://www.cse.cuhk.edu.hk/~byu/2018-DAC-SDC/index.html）)
+  - **As project lead** won [3rd place in DAC 2018 System Design Contest](http://www.cse.cuhk.edu.hk/~byu/2018-DAC-SDC/index.html）)
   - Implemented half-precision calculation on GPU
   - Network Pruning and Reduced the down sampling rate
 
