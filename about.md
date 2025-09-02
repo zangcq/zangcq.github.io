@@ -40,7 +40,7 @@ Prior to joining ByteDance, I spent two years at [Alibaba Infrastructure Service
 #### ShanDong Univ.  Embedded and System Labs
 
 - [Energy Efficient Object Detection for Edge Computing](https://github.com/xiaoyuuuuu/dac-hdc-2018-object-detection-in-Jetson-TX2)
-  - **As project lead** won [3rd place in DAC 2018 System Design Contest](http://www.cse.cuhk.edu.hk/~byu/2018-DAC-SDC/index.html）)
+  - **As project lead** won [3rd place in DAC 2018 System Design Contest](http://www.cse.cuhk.edu.hk/~byu/2018-DAC-SDC/index.html)  with [荣登山东大学融媒体中心新闻]( https://www.view.sdu.edu.cn/info/1023/106392.htm)
   - Implemented half-precision calculation on GPU
   - Network Pruning and Reduced the down sampling rate
 
