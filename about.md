@@ -28,10 +28,8 @@ Prior to joining ByteDance, I spent two years at [Alibaba Infrastructure Service
 - Wasm AOT Compiler Framework for Ant Blockchain Platform  (2019.9-2020.6)
 
   - Convert wasm bytecode to LLVM IR  and Add T-Head CSKY Extension to the RISCV ISA
-
-  - [一种程序编译方法、设备以及计算机可读介质](https://www.patentguru.com/CN113360157A)       2021-09-07  （[杨岳鸣](https://www.patentguru.com/cn/inventor/3867743) [崔世强](https://www.patentguru.com/cn/inventor/3867744) [臧传奇](https://www.patentguru.com/cn/inventor/3867746)）
-  - [资源计算方法、装置、电子设备及可读存储介质](https://www.patentguru.com/CN113296837B)   2025-02-28    ([杨岳鸣](https://www.patentguru.com/cn/inventor/3867743) [崔世强](https://www.patentguru.com/cn/inventor/3867744) [臧传奇](https://www.patentguru.com/cn/inventor/3867746)）
-
+  - [一种程序编译方法、设备以及计算机可读介质](https://www.patentguru.com/CN113360157A)       2021-09-07 已申请  （[杨岳鸣](https://www.patentguru.com/cn/inventor/3867743) [崔世强](https://www.patentguru.com/cn/inventor/3867744) [臧传奇](https://www.patentguru.com/cn/inventor/3867746)）
+  - [资源计算方法、装置、电子设备及可读存储介质](https://www.patentguru.com/CN113296837B)   2025-02-28 已授权    ([杨岳鸣](https://www.patentguru.com/cn/inventor/3867743) [崔世强](https://www.patentguru.com/cn/inventor/3867744) [臧传奇](https://www.patentguru.com/cn/inventor/3867746)）
 - Coordinate software and hardware Optimization for CNN & DNN Accelerator implemented in FPGA  (2018.7-2019.10)
   - Implement CNN Operation like Conv/DeConv and DNN Operation like matmul/relu
   - Proposed a spliting HD pictures algorithm for Limited on-chip memory
@@ -44,7 +42,7 @@ Prior to joining ByteDance, I spent two years at [Alibaba Infrastructure Service
   - Implemented half-precision calculation on GPU
   - Network Pruning and Reduced the down sampling rate
 
-### Paper
+### Publication
 
 - NVM in GPGPU Memory Hierarchy
   - [Shared Last-level Cache Management for GPGPUs with Hybrid Main Memory](https://ieeexplore.ieee.org/abstract/document/7926953/)   (Design, Automation and Test in Europe Conference and Exhibition (DATE) 2017 [**Best Paper Award Nominations**](https://www.date-conference.com/proceedings-archive/2017/html/bestpaper.html))  Guan Wang, Xiaojun Cai,  Lei Ju, **Chuanqi Zang**, Mengying Zhao and Zhiping Jia.
