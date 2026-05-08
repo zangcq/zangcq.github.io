@@ -27,11 +27,104 @@ url: "https://zangcq.github.io" # the base hostname & protocol for your site, e.
 github_username:  zangcq
 linkedin_username: "chuanqi-zang"
 
+# 站点语言/时区（影响 SEO tag、日期显示等）
+lang: zh-CN
+locale: zh-CN
+timezone: Asia/Shanghai
+
+# Minimal Mistakes 主题作者信息（用于 SEO/结构化数据 & 侧栏）
+author:
+  name: "Chuanqi Zang"
+  avatar: # 例如 "/assets/images/avatar.jpg"
+  bio: "System Software Engineer · OpenJDK / Performance"
+  location: "Hangzhou, China"
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/zangcq"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/chuanqi-zang"
+
+# 页脚社交链接
+footer:
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/zangcq"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/chuanqi-zang"
+
 # Build settings
-theme: minima
+theme: minimal-mistakes-jekyll
+minimal_mistakes_skin: "dark"
 plugins:
+  - jekyll-include-cache
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-sitemap
+
+# 压缩主题生成的 CSS（减少传输体积）
+sass:
+  style: compressed
+
+# Markdown / 代码高亮
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
+
+# 搜索（Lunr：本地 JS 搜索，无需外部服务）
+search: true
+search_full_content: true
+search_provider: lunr
+lunr:
+  search_within_pages: true
+
+# 阅读进度/字数估算
+words_per_minute: 200
+
+# 分类与标签归档页
+category_archive:
+  type: liquid
+  path: /categories/
+tag_archive:
+  type: liquid
+  path: /tags/
+
+# 统一文章/页面默认配置（避免每篇手工调整）
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: false
+      share: true
+      related: true
+      toc: true
+      toc_sticky: true
+      show_date: true
+      classes: wide
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+
+# 避免把本地构建产物/缓存纳入站点处理范围
+exclude:
+  - .DS_Store
+  - .bundle/
+  - _site/
+  - vendor/
 
 # Exclude from processing.
 # The following items will not be processed, by default.
