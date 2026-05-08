@@ -1,8 +1,13 @@
 ---
-layout: post
+layout: single
 title: "build jekyll blog"
 date: 2025-04-03
-class: centered
+categories:
+  - blog
+tags:
+  - jekyll
+  - github-pages
+excerpt: "从 WordPress 迁到 Jekyll + GitHub Pages 的过程记录。"
 ---
 
 
@@ -16,4 +21,3 @@ bundle exec jekyll build
 
 bundle exec jekyll serve
 ````
-
