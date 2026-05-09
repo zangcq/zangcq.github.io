@@ -1,5 +1,5 @@
 ---
-title: "Caffe 中两种读取图片的方式 （python）"
+title: "Caffe 中两种读取图片的方式 (python)"
 date: 2019-08-29 11:15:11
 categories: ["Python", "机器学习"]
 permalink: "/2019/08/29/caffe-%e4%b8%ad%e4%b8%a4%e7%a7%8d%e8%af%bb%e5%8f%96%e5%9b%be%e7%89%87%e7%9a%84%e6%96%b9%e5%bc%8f-%ef%bc%88python%ef%bc%89/"

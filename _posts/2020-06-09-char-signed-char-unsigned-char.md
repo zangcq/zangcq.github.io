@@ -1,5 +1,5 @@
 ---
-title: "数据类型 char、signed char、unsigned char 的理解"
+title: "数据类型 char, signed char, unsigned char 的理解"
 date: 2020-06-09 15:44:24
 categories: ["C/C++"]
 permalink: "/2020/06/09/%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b-char%e3%80%81signed-char%e3%80%81unsigned-char-%e7%9a%84%e7%90%86%e8%a7%a3/"
