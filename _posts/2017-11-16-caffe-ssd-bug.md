@@ -1,7 +1,7 @@
 ---
 title: "caffe-ssd bug 解决日志"
 date: 2017-11-16 20:56:42
-categories:["DAC-SDC"]
+categories: ["DAC-SDC"]
 tags: ["deeplearning"]
 permalink: "/2017/11/16/caffe-ssd-bug-%e8%a7%a3%e5%86%b3%e6%97%a5%e5%bf%97/"
 legacy: true
