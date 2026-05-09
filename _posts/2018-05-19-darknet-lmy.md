@@ -1,7 +1,7 @@
 ---
 title: "darknet接口设计思路-lmy"
 date: 2018-05-19 20:26:10
-categories: ["机器学习"]
+categories: ["DAC-SDC"]
 permalink: "/2018/05/19/darknet%e6%8e%a5%e5%8f%a3%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af-lmy/"
 legacy: true
 toc: true

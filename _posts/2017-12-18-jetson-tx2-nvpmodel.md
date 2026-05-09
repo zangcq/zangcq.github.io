@@ -1,7 +1,7 @@
 ---
 title: "Jetson tx2 性能模式工具nvpmodel"
 date: 2017-12-18 14:28:10
-categories: ["Jetson TX1-2"]
+categories: ["DAC-SDC"]
 tags: ["Jetson", "tx2"]
 permalink: "/2017/12/18/jetson-tx2-%e6%80%a7%e8%83%bd%e6%a8%a1%e5%bc%8f%e5%b7%a5%e5%85%b7nvpmodel/"
 legacy: true
