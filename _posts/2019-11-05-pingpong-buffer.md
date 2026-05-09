@@ -19,7 +19,7 @@ classes: wide
 
 我们先定义上一部分为 ping；下一部分为pong
 
-![](http://www.scicompiler.cloud/userguide/lib/Cattura1.png)
+![](https://www.scicompiler.cloud/userguide/lib/Cattura1.png)
 
   1. 一块buffer（灰色部分）用来存储 较为 旧的数据；用来User Process的读取
   2. 另一块来 接受 IO Device的写的新数据；
@@ -29,4 +29,4 @@ classes: wide
 
 ##### Reference
 
-<http://www.scicompiler.cloud/userguide/PingPongBuffer.html>
+<https://www.scicompiler.cloud/userguide/PingPongBuffer.html>

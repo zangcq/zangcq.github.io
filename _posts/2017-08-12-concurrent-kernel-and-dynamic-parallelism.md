@@ -21,7 +21,7 @@ classes: wide
 
 ## dynamic parallelism
 
-pic ![](http://docs.nvidia.com/cuda/cuda-c-programming-guide/graphics/parent-child-launch-nesting.png)
+pic ![](https://docs.nvidia.com/cuda/cuda-c-programming-guide/graphics/parent-child-launch-nesting.png)
 
   * 引入 "父子" 概念，这个可以类似面向对象编程类的继承
   * CUDA 支持两级嵌套

@@ -13,9 +13,9 @@ classes: wide
 
 #### Warp Scheduling
 
-​ for some warp that is ready to execute, if any. The first scheduler is in charge of the warps with an odd ID and the second scheduler is in charge of the warps with an even ID. Note that when a scheduler issues a double-precision floating-point instruction, the other scheduler cannot issue any instruction.
+ for some warp that is ready to execute, if any. The first scheduler is in charge of the warps with an odd ID and the second scheduler is in charge of the warps with an even ID. Note that when a scheduler issues a double-precision floating-point instruction, the other scheduler cannot issue any instruction.
 
-​ A warp scheduler can issue an instruction to only half of the CUDA cores. To execute an instruction for all threads of a warp, a warp scheduler must therefore issue the instruction over two clock cycles for an integer or floating-point arithmetic instruction.
+ A warp scheduler can issue an instruction to only half of the CUDA cores. To execute an instruction for all threads of a warp, a warp scheduler must therefore issue the instruction over two clock cycles for an integer or floating-point arithmetic instruction.
 
 #### Cache
 
@@ -49,6 +49,6 @@ The same on-chip memory is used for both L1 and shared memory: It can be configu
   * a unified L1/texture cache of 24 KB used to cache reads from global memory,
   * 64 KB of shared memory for devices of compute capability 5.0 or 96 KB of shared memory for devices of compute capability 5.2.
 
-The unified L1/texture cache is also used by the texture unit that implements the various addressing modes and data filtering mentioned in [Texture and Surface Memory](<http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#texture-and-surface-memory>).
+The unified L1/texture cache is also used by the texture unit that implements the various addressing modes and data filtering mentioned in [Texture and Surface Memory](<https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#texture-and-surface-memory>).
 
-There is also an L2 cache shared by all multiprocessors that is used to cache accesses to local or global memory, including temporary register spills. Applications may query the L2 cache size by checking the l2CacheSize device property (see [Device Enumeration](<http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-enumeration>)).
+There is also an L2 cache shared by all multiprocessors that is used to cache accesses to local or global memory, including temporary register spills. Applications may query the L2 cache size by checking the l2CacheSize device property (see [Device Enumeration](<https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-enumeration>)).

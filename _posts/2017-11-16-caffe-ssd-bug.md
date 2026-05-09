@@ -44,7 +44,7 @@ classes: wide
 
 > <https://github.com/NVIDIA/DIGITS/issues/156>
 >
-> <http://www.linuxdiyf.com/linux/21717.html>
+> <https://www.linuxdiyf.com/linux/21717.html>
 
   * 如果从lib中找到`hdf`相关文件
 

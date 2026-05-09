@@ -68,7 +68,7 @@ TX2默认模式是只开4个`CPU`, 所以你如果要打开其最大性能的话
 
   1. `nvpmodel -m 2`切换模式
 
-​切换模式到`Max-P Core-All`
+切换模式到`Max-P Core-All`
 
   1. 比如说查看当前模式`nvpmodel -q --verbose`,并打印信息
 ```
@@ -120,10 +120,10 @@ TX2默认模式是只开4个`CPU`, 所以你如果要打开其最大性能的话
 
 ```
 
-​
+
 
 ### 参考文献
 
 > <https://devblogs.nvidia.com/parallelforall/jetson-tx2-delivers-twice-intelligence-edge/>
 >
-> <http://www.jetsonhacks.com/2017/03/25/nvpmodel-nvidia-jetson-tx2-development-kit/>
+> <https://www.jetsonhacks.com/2017/03/25/nvpmodel-nvidia-jetson-tx2-development-kit/>

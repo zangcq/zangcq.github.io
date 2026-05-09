@@ -63,11 +63,11 @@ ispass2009中一共有12个benchmarks，直接编译能用的有9个。 WP是（
 
 这个好办，装上就行了,
 
-$$sudo apt-get install gfortran$$
+`sudo apt-get install gfortran`
 
 下面这个链接就是怎装gfortran的，参考一下
 
-> <http://askubuntu.com/questions/358907/how-do-i-install-gfortran>
+> <https://askubuntu.com/questions/358907/how-do-i-install-gfortran>
 
   2. `在/usr/bin/ld 找不到 -lcutil_x86_64`
 

@@ -27,7 +27,9 @@ classes: wide
 
 #### 2\. 未找到 caffe.pb.h
 
-$$/home/embedded/caffe/include/caffe/blob.hpp:9:34: fatal error: caffe/proto/caffe.pb.h: No such file or directory$$
+```
+/home/embedded/caffe/include/caffe/blob.hpp:9:34: fatal error: caffe/proto/caffe.pb.h: No such file or directory
+```
 
 解决方法：
 
@@ -39,7 +41,7 @@ $$/home/embedded/caffe/include/caffe/blob.hpp:9:34: fatal error: caffe/proto/caf
 
 ```
 
-> <http://blog.csdn.net/xmzwlw/article/details/48270225>
+> <https://blog.csdn.net/xmzwlw/article/details/48270225>
 
 #### 3.boost regex 问题
 ```

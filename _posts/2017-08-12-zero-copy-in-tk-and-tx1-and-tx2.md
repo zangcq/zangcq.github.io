@@ -48,7 +48,7 @@ classes: wide
 
   * 只有这个青岛小哥看到了事情的两面性,赞一个
 
-    * <http://s1nh.org/post/tx-1-zero-copy/>
+    * <https://s1nh.org/post/tx-1-zero-copy/>
 
 ### 传统模式
 ```
@@ -123,7 +123,7 @@ classes: wide
 
   * 青岛小哥
 
-> <http://s1nh.org/post/tx-1-zero-copy/>
+> <https://s1nh.org/post/tx-1-zero-copy/>
 
   * Zero Copy on Tegra K1
 

@@ -9,7 +9,7 @@ toc: true
 classes: wide
 ---
 
-# PTX ISA [Special Registers](<http://docs.nvidia.com/cuda/parallel-thread-execution/index.html#special-registers>)
+# PTX ISA [Special Registers](<https://docs.nvidia.com/cuda/parallel-thread-execution/index.html#special-registers>)
 
 ## 综述
 
@@ -84,7 +84,7 @@ PTX includes a number of predefined, read-only variables, which are visible as s
 
 ## 9.1. Special Registers: %tid
 
-`%tid` ​ Thread identifier within a CTA.
+`%tid`  Thread identifier within a CTA.
 
 ### Syntax (predefined)
 
@@ -694,7 +694,7 @@ Supported on all target architectures.
 
 ### Examples
 
-$$mov.b32 %r1,%envreg0; // move envreg0 to %r1$$
+`mov.b32 %r1,%envreg0; // move envreg0 to %r1`
 
 ## 9.21. Special Registers: %globaltimer, %globaltimer_lo, %globaltimer_hi
 

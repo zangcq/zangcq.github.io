@@ -35,7 +35,7 @@ classes: wide
 
 #### RHEL requires
 
-> <http://caffe.berkeleyvision.org/install_yum.html>
+> <https://caffe.berkeleyvision.org/install_yum.html>
 ```
 
     sudo yum install protobuf-devel leveldb-devel snappy-devel opencv-devel boost-devel hdf5-devel
@@ -136,7 +136,7 @@ classes: wide
   * 可能依赖的python模块
   * ImportError: No module named easydict Cpython `sudo yum install Cython` `sudo pip install easydict`
   * ImportError: No module named google.protobuf.internal `sudo pip install protobuf`
-  * ImportError: No module named google.protobuf.internal ​ `sudo yum install tkinter`
+  * ImportError: No module named google.protobuf.internal  `sudo yum install tkinter`
 
 > https://stackoverflow.com/questions/36327134/matplotlib-error-no-module-named-tkinter
 

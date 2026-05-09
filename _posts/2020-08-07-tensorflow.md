@@ -158,7 +158,7 @@ TensorFlow 源码编译构建 大型工程编译坑还是太多，这波先把�
     Asking for detailed CUDA configuration...
     Please specify the CUDA SDK version you want to use. [Leave empty to default to CUDA 10]: 10
     Please specify the cuDNN version you want to use. [Leave empty to default to cuDNN 7]: 7
-    Please specify the locally installed NCCL version you want to use. [Leave empty to use http://github.com/nvidia/nccl]:
+    Please specify the locally installed NCCL version you want to use. [Leave empty to use https://github.com/nvidia/nccl]:
     Please specify the comma-separated list of base paths to look for CUDA libraries and headers. [Leave empty to use the default]: /data01/zangchuanqi/workspace/cuda
     Found CUDA 10.0 in:
       /data01/zangchuanqi/workspace/cuda/lib64

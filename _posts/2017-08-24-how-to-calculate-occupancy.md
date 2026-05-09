@@ -45,7 +45,7 @@ hardware
 
 原文
 
-There is a maximum number of warps which can be concurrently active on a Streaming Multiprocessor (SM), as listed in [the Programming Guide's table of compute capabilities](<http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#compute-capabilities>). Occupancy is defined as the ratio of active warps on an SM to the maximum number of active warps supported by the SM. Occupancy varies over time as warps begin and end, and can be different for each SM.
+There is a maximum number of warps which can be concurrently active on a Streaming Multiprocessor (SM), as listed in [the Programming Guide's table of compute capabilities](<https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#compute-capabilities>). Occupancy is defined as the ratio of active warps on an SM to the maximum number of active warps supported by the SM. Occupancy varies over time as warps begin and end, and can be different for each SM.
 
 CUDA编程手册里解释说，在每种计算能力不同的架构中，在SM中最大 活跃的warp的数量，occupancy 就是一个比值，`active warps / maximum active warps`，每段时间的`occupancy` 和每个 SM上的都不同。
 
@@ -71,7 +71,7 @@ CUDA编程手册里解释说，在每种计算能力不同的架构中，在SM�
 
 1.achieved occupancy in nsight
 
-> <http://docs.nvidia.com/gameworks/content/developertools/desktop/analysis/report/cudaexperiments/kernellevel/achievedoccupancy.htm>
+> <https://docs.nvidia.com/gameworks/content/developertools/desktop/analysis/report/cudaexperiments/kernellevel/achievedoccupancy.htm>
 
 2.basic gpu performance
 

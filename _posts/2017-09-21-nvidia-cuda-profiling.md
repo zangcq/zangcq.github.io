@@ -138,8 +138,8 @@ classes: wide
   * `sysmem_write_transactions`
     * System memory write transactions
 
-​ **Influence by L2 Hit Rate**
+ **Influence by L2 Hit Rate**
 
 ### Reference
 
-> Read more at: <http://docs.nvidia.com/cuda/profiler-users-guide/index.html#ixzz4t4vGKod8> Follow us: [@GPUComputing on Twitter](<http://ec.tynt.com/b/rw?id=aBENEGgL0r44W6acwqm_6r&u=GPUComputing>) | [NVIDIA on Facebook](<http://ec.tynt.com/b/rf?id=aBENEGgL0r44W6acwqm_6r&u=NVIDIA>)
+> Read more at: <https://docs.nvidia.com/cuda/profiler-users-guide/index.html#ixzz4t4vGKod8> Follow us: [@GPUComputing on Twitter](<https://ec.tynt.com/b/rw?id=aBENEGgL0r44W6acwqm_6r&u=GPUComputing>) | [NVIDIA on Facebook](<https://ec.tynt.com/b/rf?id=aBENEGgL0r44W6acwqm_6r&u=NVIDIA>)

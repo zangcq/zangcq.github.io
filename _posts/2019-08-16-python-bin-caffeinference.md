@@ -22,7 +22,7 @@ classes: wide
 
 > 阮一峰理解
 >
-> http://www.ruanyifeng.com/blog/2016/11/byte-order.html
+> https://www.ruanyifeng.com/blog/2016/11/byte-order.html
 >
 > 国外老铁
 >

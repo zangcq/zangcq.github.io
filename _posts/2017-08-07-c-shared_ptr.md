@@ -11,7 +11,7 @@ classes: wide
 
 # C++ 垃圾回收 智能指针shared_ptr
 
-> 转载自<http://www.cnblogs.com/qicosmos/p/3282779.html>
+> 转载自<https://www.cnblogs.com/qicosmos/p/3282779.html>
 
 C#和Java 中都有自动垃圾回收机制，.net 和 java虚拟机可以管理分配的堆内存，在对象失去引用时自动回收，因此在这两种语言中，内存管理不是大问题。
 

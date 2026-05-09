@@ -17,9 +17,9 @@ classes: wide
 
 > <https://www.youtube.com/watch?v=D7lkth34rgM>
 
-国外主要研究NVIDIA JETSON系列的网站[JetsonHacks](<http://www.jetsonhacks.com/>)
+国外主要研究NVIDIA JETSON系列的网站[JetsonHacks](<https://www.jetsonhacks.com/>)
 
-> Install JetPack 3.0 on a NVIDIA Development Kit. JetPack 3.0 can flash the Jetson TK1, TX1 and TX2. Please Like, Share and Subscribe! Full article on JetsonHacks: <http://wp.me/p7ZgI9-Ly>
+> Install JetPack 3.0 on a NVIDIA Development Kit. JetPack 3.0 can flash the Jetson TK1, TX1 and TX2. Please Like, Share and Subscribe! Full article on JetsonHacks: <https://wp.me/p7ZgI9-Ly>
 
 鉴于国内网络情况，放一个百度云连接吧
 
@@ -27,7 +27,7 @@ classes: wide
 
 英伟达 install guide
 
-> [http://docs.nvidia.com/jetpack-l4t/index.html#developertools/mobile/jetpack/l4t/3.0/jetpack_l4t_install.html](<http://docs.nvidia.com/jetpack-l4t/index.html#developertools/mobile/jetpack/l4t/3.0/jetpack_l4t_install.htm>)
+> [https://docs.nvidia.com/jetpack-l4t/index.html#developertools/mobile/jetpack/l4t/3.0/jetpack_l4t_install.html](<https://docs.nvidia.com/jetpack-l4t/index.html#developertools/mobile/jetpack/l4t/3.0/jetpack_l4t_install.htm>)
 
 ## 广告？福利
 
@@ -35,7 +35,7 @@ classes: wide
 
 放一个教育专属的申请连接
 
-> TX1 <http://www.nvidia.cn/object/edu-discount-cn.html> TX2 <http://www.nvidia.cn/object/jetsontx2-edu-discount-cn.html>
+> TX1 <https://www.nvidia.cn/object/edu-discount-cn.html> TX2 <https://www.nvidia.cn/object/jetsontx2-edu-discount-cn.html>
 
 还是郑重声明，做人以诚信为本，切莫贪婪！
 

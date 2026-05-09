@@ -43,7 +43,7 @@ Supported on all target architectures.
 
 ### Examples
 
-$${ add.s32 a,b,c; mov.s32 d,a; }$$
+`{ add.s32 a,b,c; mov.s32 d,a; }`
 
 ## 1.2. Control Flow Instructions: @
 
@@ -231,7 +231,9 @@ Direct call supported on all target architectures. Indirect call requires sm_20 
 
 ### Examples
 
-$$// examples of direct call call init; // call function 'init' call.uni g, (a); // call function 'g' with parameter 'a' @p call (d), h, (a, b); // return value into register d // call-via-pointer using jump table .func (.reg .u32 rv) foo (.reg .u32 a, .reg .u32 b) ... .func (.reg .u32 rv) bar (.reg .u32 a, .reg .u32 b) ... .func (.reg .u32 rv) baz (.reg .u32 a, .reg .u32 b) ... .global .u32 jmptbl[5] = { foo, bar, baz }; ... call (retval), %r0, (x, y), jmptbl; @p ld.global.u32 %r0, [jmptbl+4]; @p ld.global.u32 %r0, [jmptbl+8]; // call-via-pointer using .calltargets directive .func (.reg .u32 rv) foo (.reg .u32 a, .reg .u32 b) ... .func (.reg .u32 rv) bar (.reg .u32 a, .reg .u32 b) ... .func (.reg .u32 rv) baz (.reg .u32 a, .reg .u32 b) ... ... @p mov.u32 %r0, foo; @q mov.u32 %r0, baz; Ftgt: .calltargets foo, bar, baz; call (retval), %r0, (x, y), Ftgt; // call-via-pointer using .callprototype directive .func dispatch (.reg .u32 fptr, .reg .u32 idx) { ... Fproto: .callprototype _ (.param .u32 _, .param .u32 _); call %fptr, (x, y), Fproto; ...$$
+```
+// examples of direct call call init; // call function 'init' call.uni g, (a); // call function 'g' with parameter 'a' @p call (d), h, (a, b); // return value into register d // call-via-pointer using jump table .func (.reg .u32 rv) foo (.reg .u32 a, .reg .u32 b) ... .func (.reg .u32 rv) bar (.reg .u32 a, .reg .u32 b) ... .func (.reg .u32 rv) baz (.reg .u32 a, .reg .u32 b) ... .global .u32 jmptbl[5] = { foo, bar, baz }; ... call (retval), %r0, (x, y), jmptbl; @p ld.global.u32 %r0, [jmptbl+4]; @p ld.global.u32 %r0, [jmptbl+8]; // call-via-pointer using .calltargets directive .func (.reg .u32 rv) foo (.reg .u32 a, .reg .u32 b) ... .func (.reg .u32 rv) bar (.reg .u32 a, .reg .u32 b) ... .func (.reg .u32 rv) baz (.reg .u32 a, .reg .u32 b) ... ... @p mov.u32 %r0, foo; @q mov.u32 %r0, baz; Ftgt: .calltargets foo, bar, baz; call (retval), %r0, (x, y), Ftgt; // call-via-pointer using .callprototype directive .func dispatch (.reg .u32 fptr, .reg .u32 idx) { ... Fproto: .callprototype _ (.param .u32 _, .param .u32 _); call %fptr, (x, y), Fproto; ...
+```
 
 ## 1.5. Control Flow Instructions: ret
 
@@ -263,7 +265,7 @@ Supported on all target architectures.
 
 ### Examples
 
-$$ret; @p ret;$$
+`ret; @p ret;`
 
 ## 1.6. Control Flow Instructions: exit
 

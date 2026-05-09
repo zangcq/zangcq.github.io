@@ -9,7 +9,7 @@ toc: true
 classes: wide
 ---
 
-# [Launch Bounds](<http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#launch-bounds>)
+# [Launch Bounds](<https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#launch-bounds>)
 
 ## 1.概述
 
@@ -21,7 +21,7 @@ As discussed in detail in Multiprocessor Level, the fewer registers a kernel use
 
 ### 2.1概要
 
-Therefore, the compiler uses heuristics to minimize register usage while keeping register spilling (see[Device Memory Accesses](<http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses>)) and instruction count to a minimum. An application can optionally aid these heuristics by providing additional information to the compiler in the form of launch bounds that are specified using the `__launch_bounds__()`qualifier in the definition of a `__global__`function:
+Therefore, the compiler uses heuristics to minimize register usage while keeping register spilling (see[Device Memory Accesses](<https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses>)) and instruction count to a minimum. An application can optionally aid these heuristics by providing additional information to the compiler in the form of launch bounds that are specified using the `__launch_bounds__()`qualifier in the definition of a `__global__`function:
 
 其用法就是在kernel函数，来做一些限制。
 ```
