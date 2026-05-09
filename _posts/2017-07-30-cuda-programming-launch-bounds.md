@@ -25,14 +25,14 @@ Therefore, the compiler uses heuristics to minimize register usage while keeping
 
 其用法就是在kernel函数，来做一些限制。
 ```
- 
+
     __global__ void launch_bounds(maxThreadsPerBlock, minBlocksPerMultiprocessor)
-    
+
     MyKernel(...)
     {
       ....
     }
-    
+
 ```
 
 ### 2.2参数
@@ -44,7 +44,7 @@ Therefore, the compiler uses heuristics to minimize register usage while keeping
 
 ## 3.分析
 
-If launch bounds are specified, the compiler first derives from them the upper limit _L_ on the number of registers the kernel should use to ensure that `minBlocksPerMultiprocessor`blocks (or a single block if `minBlocksPerMultiprocessor` is not specified) of `maxThreadsPerBlock` threads can reside on the multiprocessor (see Hardware Multithreading for the relationship between the number of registers used by a kernel and the number of registers allocated per block). 
+If launch bounds are specified, the compiler first derives from them the upper limit _L_ on the number of registers the kernel should use to ensure that `minBlocksPerMultiprocessor`blocks (or a single block if `minBlocksPerMultiprocessor` is not specified) of `maxThreadsPerBlock` threads can reside on the multiprocessor (see Hardware Multithreading for the relationship between the number of registers used by a kernel and the number of registers allocated per block).
 
 还是接前文所说，如果`lanch baund`定义好了，那么编译器就会产生一个限制值L；这个L其实就是寄存器的可使用的数量，从而确保了上边两个参数的大小。
 
@@ -71,7 +71,7 @@ A kernel will fail to launch if it is executed with more threads per block than 
 
 Optimal launch bounds for a given kernel will usually differ across major architecture revisions. The sample code below shows how this is typically handled in device code using the`__CUDA_ARCH__` macro introduced in Application Compatibility
 ```
- 
+
     #define THREADS_PER_BLOCK      256
     #if CUDA_ARCH >= 200
     #define MY_KERNEL_MAX_THREADS  (2 * THREADS_PER_BLOCK)
@@ -83,40 +83,40 @@ Optimal launch bounds for a given kernel will usually differ across major archit
     // Device code
     __global_ void
     launch_bounds(MY_KERNEL_MAX_THREADS, MY_KERNEL_MIN_BLOCKS)
-    
+
     MyKernel(...)
     {}
-    
+
 ```
 
 通常根据体系架构的不同，会对`launch bounds`进行优化，因为fermi，Kepler，Maxwell以及pascal其架构都有所不同，每个SM上的寄存器数量也不一样。因此这个例子呢，就是根据架构来设计不同的参数值。
 
 In the common case where `MyKernel` is invoked with the maximum number of threads per block (specified as the first parameter of `__launch_bounds__()`), it is tempting to use `MY_KERNEL_MAX_THREADS` as the number of threads per block in the execution configuration:
 ```
- 
+
     // Host code
     MyKernel<<<blocksPerGrid, MY_KERNEL_MAX_THREADS>>>(...);
-    
+
 ```
 
 This will not work however since `__CUDA_ARCH__` is undefined in host code as mentioned in Application Compatibility, so `MyKernel` will launch with 256 threads per block even when `__CUDA_ARCH__`is greater or equal to 200. Instead the number of threads per block should be determined:
 
 Either at compile time using a macro that does not depend on`__CUDA_ARCH__`, for example
 ```
- 
+
     // Host code
     MyKernel<<<blocksPerGrid, THREADS_PER_BLOCK>>>(...);
-    
+
 ```
 
 Or at runtime based on the compute capability
 ```
- 
+
     // Host code
     cudaGetDeviceProperties(&deviceProp, device);
     int threadsPerBlock =(deviceProp.major >= 2 ? 2 * THREADS_PER_BLOCK : THREADS_PER_BLOCK);
     MyKernel<<<blocksPerGrid, threadsPerBlock>>>(...);
-    
+
 ```
 
 ### 5.Register usage

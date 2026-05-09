@@ -18,29 +18,29 @@ classes: wide
 
 言归正传，先写了一段小代码看看。
 ```
- 
+
     #include <stdio.h>
     #include <stdlib.h>
-    
+
     int main() {
       int a;
       int b;
       unsigned int c;
-    
+
       a = 0;
       b = 0xffffffff;
       c = 0x80000000;
-    
+
       printf(" cout in int\n");
       printf(" a = %d \n", (a));
       printf(" b = %d \n", (b));
       printf(" c = %d \n", (c));
-    
+
       printf(" cout in unsigned int\n");
       printf(" a = %u \n", (a));
       printf(" b = %u \n", (b));
       printf(" c = %u \n", (c));
-    
+
       printf(" a>b ? = %d \n", (a>b));
       printf(" a<c ? = %d \n", (a<c));
       printf(" b>c ? = %d \n", (b>c));
@@ -61,7 +61,7 @@ classes: wide
 
   * `0>-1`  这个可以理解；
   * 看一下内存表示
-  * `0x00000000 vs 0xffffffff` 
+  * `0x00000000 vs 0xffffffff`
 
 第二 a 跟 c 进行比较，a 为 int 类型，c 为 unsigned int 类型
 
@@ -75,13 +75,13 @@ classes: wide
 
   * 也是 int vs unsigned int
   * 转化为 unsigned int
-  * `0xffffffff > 0x80000000` 
+  * `0xffffffff > 0x80000000`
   * 其实我在语义上是存在疑惑的，但如果放到内存上，无关类型进行比较的话，那么必然是 0xffffffff 大于 0x80000000；
 
 > <https://stackoverflow.com/questions/8233161/compare-int-and-unsigned-int>
 
 看到 stackoverflow 的 这个比较还是更合理一些的：
 ```
- 
+
     if (x >= 0 && ((unsigned int)x) == y)
 ```

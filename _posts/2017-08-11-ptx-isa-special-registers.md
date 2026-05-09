@@ -15,34 +15,34 @@ classes: wide
 
 PTX includes a number of predefined, read-only variables, which are visible as special registers and accessed through mov or cvt instructions.
 
-  * `%tid`   
+  * `%tid`
 
-    * CTA 内的线程号 
+    * CTA 内的线程号
   * `%ntid`
 
-    * CTA 内的线程数 
+    * CTA 内的线程数
   * `%laneid`
 
     * warp内的线程号
   * `%warpid`
 
     * CTA 内的warp号
-  * `%nwarpid`   
+  * `%nwarpid`
 
-    * CTA 内的warp数 
-  * `%ctaid`   
+    * CTA 内的warp数
+  * `%ctaid`
 
-    * CTA 号 
-  * `%nctaid`   
+    * CTA 号
+  * `%nctaid`
 
-    * CTA 数 
+    * CTA 数
   * `%smid`
 
     * SM 号
-  * `%nsmid`   
+  * `%nsmid`
 
     * SM数
-  * `%gridid`   
+  * `%gridid`
 
     * 网格号 包含 多个ＣＴＡ
   * `%lanemask_eq, %lanemask_le, %lanemask_lt, %lanemask_ge, %lanemask_gt`
@@ -76,7 +76,7 @@ PTX includes a number of predefined, read-only variables, which are visible as s
   * `%total_smem_size`
 
     * 每个CTA使用shared memory 的大小 举个例子 fermi 16K/32K
-  * `%dynamic_smem_size`   
+  * `%dynamic_smem_size`
 
     * 这个是kernel 函数启动时动态分批的总大小
 
@@ -116,12 +116,12 @@ Supported on all target architectures.
 
 ### Examples
 ```
- 
+
     mov.u32      %r1,%tid.x;  // move tid.x to %rh
     // legacy code accessing 16-bit components of %tid
     mov.u16      %rh,%tid.x;
     cvt.u32.u16  %r2,%tid.z;  // zero-extend tid.z to %r2
-    
+
 ```
 
 ## 9.2. Special Registers: %ntid
@@ -138,11 +138,11 @@ A predefined, read-only special register initialized with the number of thread i
 
 `%ntid.y == %ntid.z == 1 in 1D CTAs.` `%ntid.z ==1 in 2D CTAs.` Maximum values of `%ntid.{x,y,z}` are as follows:
 
-.target architecture| %ntid.x| %ntid.y| %ntid.z  
----|---|---|---  
-sm_1x| 512| 512| 64  
-sm _20, sm_ 3x, sm _5x, sm_ 6x| 1024| 1024| 64  
-  
+.target architecture| %ntid.x| %ntid.y| %ntid.z
+---|---|---|---
+sm_1x| 512| 512| 64
+sm _20, sm_ 3x, sm _5x, sm_ 6x| 1024| 1024| 64
+
 ### PTX ISA Notes
 
 Introduced in PTX ISA version 1.0 with type .v4.u16.
@@ -155,14 +155,14 @@ Supported on all target architectures.
 
 ### Examples
 ```
- 
+
     // compute unified thread id for 2D CTA
     mov.u32  %r0,%tid.x;
     mov.u32  %h1,%tid.y;
     mov.u32  %h2,%ntid.x;
     mad.u32  %r0,%h1,%h2,%r0;
     mov.u16  %rh,%ntid.x;      // legacy code
-    
+
 ```
 
 ## 9.3. Special Registers: `%laneid`
@@ -187,9 +187,9 @@ Supported on all target architectures.
 
 ### Examples
 ```
- 
+
     mov.u32  %r, %laneid;
-    
+
 ```
 
 ## 9.4. Special Registers: %warpid
@@ -212,9 +212,9 @@ Supported on all target architectures.
 
 ### Examples
 ```
- 
+
     mov.u32  %r, %warpid;
-    
+
 ```
 
 ## 9.5. Special Registers: `%nwarpid`
@@ -269,10 +269,10 @@ Supported on all target architectures.
 
 ### Examples
 ```
- 
+
     mov.u32  %r0,%ctaid.x;
     mov.u16  %rh,%ctaid.y;   // legacy code
-    
+
 ```
 
 ## 9.7. Special Registers: %nctaid
@@ -289,11 +289,11 @@ A predefined, read-only special register initialized with the number of CTAs in 
 
 Maximum values of %nctaid.{x,y,z} are as follows:
 
-.target architecture| %nctaid.x| %nctaid.y| %nctaid.z  
----|---|---|---  
-sm _1x, sm_ 20| 65535| 65535| 65535  
-sm _3x, sm_ 5x, sm_6x| 2^31 -1| 65535| 65535  
-  
+.target architecture| %nctaid.x| %nctaid.y| %nctaid.z
+---|---|---|---
+sm _1x, sm_ 20| 65535| 65535| 65535
+sm _3x, sm_ 5x, sm_6x| 2^31 -1| 65535| 65535
+
 ### PTX ISA Notes
 
 Introduced in PTX ISA version 1.0 with type .v4.u16.
@@ -306,10 +306,10 @@ Supported on all target architectures.
 
 ### Examples
 ```
- 
+
     mov.u32  %r0,%nctaid.x;
     mov.u16  %rh,%nctaid.x;     // legacy code
-    
+
 ```
 
 ## 9.8. Special Registers: %smid
@@ -338,9 +338,9 @@ Supported on all target architectures.
 
 ### Examples
 ```
- 
+
     mov.u32  %r, %smid;
-    
+
 ```
 
 ## 9.9. Special Registers: %nsmid
@@ -365,9 +365,9 @@ Introduced in PTX ISA version 2.0.
 
 ### Examples
 ```
- 
+
     mov.u32  %r, %nsmid;
-    
+
 ```
 
 ## 9.10. Special Registers: `%gridid`
@@ -402,10 +402,10 @@ Supported on all target architectures.
 
 ### Examples
 ```
- 
+
     mov.u64  %s, %gridid;  // 64-bit read of %gridid
     mov.u32  %r, %gridid;  // legacy code with 32-bit %gridid
-    
+
 ```
 
 ## 9.11. Special Registers: %lanemask_eq
@@ -430,9 +430,9 @@ Introduced in PTX ISA version 2.0.
 
 ### Examples
 ```
- 
+
     mov.u32     %r, %lanemask_eq;
-    
+
 ```
 
 ## 9.12. Special Registers: %lanemask_le
@@ -457,9 +457,9 @@ Introduced in PTX ISA version 2.0.
 
 ### Examples
 ```
- 
+
     mov.u32     %r, %lanemask_le
-    
+
 ```
 
 ## 9.13. Special Registers: %lanemask_lt
@@ -484,9 +484,9 @@ Introduced in PTX ISA version 2.0.
 
 ### Examples
 ```
- 
+
     mov.u32     %r, %lanemask_lt;
-    
+
 ```
 
 ## 9.14. Special Registers: %lanemask_ge
@@ -511,9 +511,9 @@ Introduced in PTX ISA version 2.0.
 
 ### Examples
 ```
- 
+
     mov.u32     %r, %lanemask_ge;
-    
+
 ```
 
 ## 9.15. Special Registers: %lanemask_gt
@@ -538,9 +538,9 @@ Introduced in PTX ISA version 2.0.
 
 ### Examples
 ```
- 
+
     mov.u32     %r, %lanemask_gt;
-    
+
 ```
 
 ## 9.16. Special Registers: %clock, %clock_hi
@@ -569,10 +569,10 @@ Special register %clock and %clock_hi are unsigned 32-bit read-only cycle counte
 
 ### Examples
 ```
- 
+
     mov.u32 r1,%clock;
     mov.u32 r2, %clock_hi;
-    
+
 ```
 
 ## 9.17. Special Registers: %clock64
@@ -581,7 +581,7 @@ Special register %clock and %clock_hi are unsigned 32-bit read-only cycle counte
 
 ### Syntax (predefined)
 
-`.sreg .u64 %clock64;`   
+`.sreg .u64 %clock64;`
 
 ### Description
 
@@ -603,9 +603,9 @@ Introduced in PTX ISA version 2.0.
 
 ### Examples
 ```
- 
+
     mov.u64  r1,%clock64;
-    
+
 ```
 
 ## 9.18. Special Registers: %pm0..%pm7
@@ -614,7 +614,7 @@ Introduced in PTX ISA version 2.0.
 
 ### Syntax (predefined)
 
-`.sreg .u32 %pm<8>;`  
+`.sreg .u32 %pm<8>;`
 
 ### Description
 
@@ -634,10 +634,10 @@ Special registers %pm0..%pm7 are unsigned 32-bit read-only performance monitor c
 
 ### Examples
 ```
- 
+
     mov.u32  r1,%pm0;
     mov.u32  r1,%pm7;
-    
+
 ```
 
 ## 9.19. Special Registers: %pm0 _64..%pm7_ 64
@@ -666,17 +666,17 @@ The lower 32bits of %pm0 _64..%pm7_ 64 are identical to %pm0..%pm7.
 
 ### Examples
 ```
- 
+
     mov.u32  r1,%pm0_64;
     mov.u32  r1,%pm7_64;
-    
+
 ```
 
 ## 9.20. Driver-defined read-only registers:`%envreg<32>`.
 
 ### Syntax (predefined)
 
-`.sreg .b32 %envreg<32>;`   
+`.sreg .b32 %envreg<32>;`
 
 ### Description
 
@@ -718,9 +718,9 @@ Requires target sm_30 or higher.
 
 ### Examples
 ```
- 
+
     mov.u64  r1,%globaltimer;
-    
+
 ```
 
 ## 9.22. Special Registers: `%total_smem_size`
@@ -739,11 +739,11 @@ Size is returned in multiples of shared memory allocation unit size supported by
 
 Allocation unit values are as follows:
 
-Target architecture| Shared memory allocation unit size  
----|---  
-sm_2x| 128 bytes  
-sm _3x, sm_ 5x, sm_6x| 256 bytes  
-  
+Target architecture| Shared memory allocation unit size
+---|---
+sm_2x| 128 bytes
+sm _3x, sm_ 5x, sm_6x| 256 bytes
+
 ### PTX ISA Notes
 
 Introduced in PTX ISA version 4.1.
@@ -754,9 +754,9 @@ Requires sm_20 or higher.
 
 ### Examples
 ```
- 
+
     mov.u32  %r, %total_smem_size;
-    
+
 ```
 
 ## 9.23. Special Registers: %dynamic_smem_size
@@ -783,7 +783,7 @@ Requires sm_20 or higher.
 
 ### Examples
 ```
- 
+
     mov.u32  %r, %dynamic_smem_size;
-    
+
 ```

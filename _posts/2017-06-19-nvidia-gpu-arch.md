@@ -25,7 +25,7 @@ A multiprocessor also has a read-only constant cache that is shared by all funct
 
 ##### Data Cache
 
-There is an L1 cache for each multiprocessor and an L2 cache shared by all multiprocessors, both of which are used to cache accesses to **local or global memory** , including temporary register spills. 
+There is an L1 cache for each multiprocessor and an L2 cache shared by all multiprocessors, both of which are used to cache accesses to **local or global memory** , including temporary register spills.
 
 The cache behavior (e.g., whether reads are cached in both L1 and L2 or in L2 only) can be partially configured on a per-access basis using modifiers to the load or store instruction.
 

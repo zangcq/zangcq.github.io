@@ -13,12 +13,12 @@ classes: wide
 
 ## tx1 架构图
 
-![这里写图片描述](http://zangcq.me/wp-content/uploads/2017/08/TX1_ARCH.png)
+*(Legacy image unavailable; original hosted on old site.)*
 
 ### 说明
 
   1. JETSON TK1,TX1,TX2都是CPU-GPU异构架构，共享主存DRAM(最下边的)
-  2. 左上角，四核arm A57 
+  2. 左上角，四核arm A57
   3. 下一个，四核arm A53
   4. 右边GPU 双核Maxwell arch sm _53 /TX 2 是pascal arch sm_ 62
   5. 缓存各管各的，无共享 last level cache
@@ -52,61 +52,61 @@ classes: wide
 
 ### 传统模式
 ```
- 
+
     //代码写的挺舒服的，
     // Host Arrays
     float* h_in  = new float[sizeIn];
     float* h_out = new float[sizeOut];
-     
+
     //Process h_in
-     
+
     // Device arrays
     float *d_out, *d_in;
-     
+
     // Allocate memory on the device
     cudaMalloc((void **) &d_in,  sizeIn ));
     cudaMalloc((void **) &d_out, sizeOut));
-     
+
     // Copy array contents of input from the host (CPU) to the device (GPU)
     cudaMemcpy(d_in, h_in, sizeX * sizeY * sizeof(float), cudaMemcpyHostToDevice);
-     
+
     // Launch the GPU kernel
     kernel<<<blocks, threads>>>(d_out, d_in);
-     
+
     // Copy result back
     cudaMemcpy(h_out, d_out, sizeOut, cudaMemcpyDeviceToHost);
     // Continue processing on host using h_out
-    
+
 ```
 
 ### 零拷贝模式
 ```
- 
+
     // 1.Set flag to enable zero copy access 设置零拷贝标志
     cudaSetDeviceFlags(cudaDeviceMapHost);
-     
+
     // Host Arrays
     float* h_in  = NULL;
     float* h_out = NULL;
-     
+
     // Process h_in
      //2.分配主机内存
     // Allocate host memory using CUDA allocation calls
     cudaHostAlloc((void **)&h_in,  sizeIn,  cudaHostAllocMapped);
     cudaHostAlloc((void **)&h_out, sizeOut, cudaHostAllocMapped);
-     
+
     // Device arrays
     float *d_out, *d_in;
     // ３．共用指针呗，，反正缓存也用不了了２３３３
     // Get device pointer from host memory. No allocation or memcpy
     cudaHostGetDevicePointer((void **)&d_in,  (void *) h_in , 0);
     cudaHostGetDevicePointer((void **)&d_out, (void *) h_out, 0);
-     
+
     // Launch the GPU kernel
     kernel<<<blocks, threads>>>(d_out, d_in);
     // No need to copy d_out back
     // Continue processing on host using h_out
-    
+
 ```
 
 这个使用方法总结的不错。。。。
@@ -117,7 +117,7 @@ classes: wide
 
 > <https://devtalk.nvidia.com/default/topic/922626/jetson-tx1/regarding-usage-of-zero-copy-on-tx1-to-improve-performance/>
 
-  * rtas17 
+  * rtas17
 
 > An Evaluation of the NVIDIA TX1 for Supporting Real-time Computer-Vision Workloads
 

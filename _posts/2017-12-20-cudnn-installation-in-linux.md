@@ -8,7 +8,7 @@ toc: true
 classes: wide
 ---
 
-# `cudnn` Installation in Linux 
+# `cudnn` Installation in Linux
 
 安装教程相对简单,实际原理就是将 `cudnn`的库加入 `cuda` 的 `include` 和 `lib` 文件夹中
 
@@ -25,15 +25,15 @@ classes: wide
   2. 解压
 ```
  $ tar -xzvf cudnn-9.0-linux-x64-v7.tgz
-         
+
 ```
 
-  3. 将解压过的文件,复制到你`cuda`的安装目录即可 
+  3. 将解压过的文件,复制到你`cuda`的安装目录即可
 ```
  $ sudo cp cuda/include/cudnn.h /usr/local/cuda/include
          $ sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
          $ sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
-         
+
 ```
 
 ## 2\. `Debian` 下安装
@@ -45,19 +45,19 @@ classes: wide
   2. 安装运行时的库
 ```
  sudo dpkg -i libcudnn7_7.0.3.11-1+cuda9.0_amd64.deb
-         
+
 ```
 
   3. 安装开发者的库
 ```
  sudo dpkg -i libcudnn7-dev_7.0.3.11-1+cuda9.0_amd64.deb
-         
+
 ```
 
   4. 安装 例程和用户指南
 ```
  sudo dpkg -i libcudnn7-doc_7.0.3.11-1+cuda9.0_amd64.deb
-         
+
 ```
 
 ## 3.测试一下是否安装成功
@@ -69,31 +69,31 @@ classes: wide
   1. 拷贝到 你的home/yourdir 任意文件夹下
 ```
  $cp -r /usr/src/cudnn_samples_v7/ $HOME
-         
+
 ```
 
   2. 进入 `mnistCUDNN`
 ```
  $ cd $HOME/cudnn_samples_v7/mnistCUDNN
-         
+
 ```
 
   3. 编译
 ```
  $make clean && make
-         
+
 ```
 
   4. 运行
 ```
  $ ./mnistCUDNN
-         
+
 ```
 
   5. 如果安装成功了,你会看到这样结果
 ```
  Test passed!
-         
+
 ```
 
 其实还可以`cmake` 一下你的`caffe/build`,也能很快测试是否安装成功

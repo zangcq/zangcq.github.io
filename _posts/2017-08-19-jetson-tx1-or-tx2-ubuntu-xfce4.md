@@ -13,34 +13,34 @@ classes: wide
 
 ## （一）配置源
 ```
- 
+
      motify /etc/apt/source.list and update
-    
+
 ```
 
 #### 1\. 修改 /etc/apt/source.list
 
-`sudo vi /etc/apt/source.list`  
+`sudo vi /etc/apt/source.list`
 press i to go into the Insert mode , copy the flow detail
 ```
- 
+
     USTC的源
-    
+
 ```
 ```
- 
+
     deb http://mirrors.ustc.edu.cn/ubuntu-ports/  xenial main restricted universe multiverse
-    
+
     deb http://mirrors.ustc.edu.cn/ubuntu-ports/  xenial-updates main restricted universe multiverse
-    
+
     deb http://mirrors.ustc.edu.cn/ubuntu-ports/  xenial-security main restricted universe multiverse
-    
+
     deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/  xenial main restricted universe multiverse
-    
+
     deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/  xenial-updates main restricted universe multiverse
-    
+
     deb-src http://mirrors.ustc.edu.cn/ubuntu-ports/  xenial-security main restricted universe multiverse
-    
+
 ```
 
 #### 2\. 更新 then update source
@@ -51,17 +51,17 @@ press i to go into the Insert mode , copy the flow detail
 
 ### 1.开始安装
 ```
- 
+
      sudo apt-get install xrdp vnc4server xubuntu-desktop
-    
+
 ```
 
 ### 2.重启服务
 ```
- 
+
      echo "xfce4-session" >~/.xsession
      sudo service xrdp restart
-    
+
 ```
 
 ### 2.5 远程连接
@@ -76,4 +76,4 @@ press i to go into the Insert mode , copy the flow detail
 
 ### 4.效果图
 
-![这里写图片描述](http://img.blog.csdn.net/20170819162516186?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZGFyazU2Njk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+*(Legacy image unavailable; original hosted on CSDN.)*

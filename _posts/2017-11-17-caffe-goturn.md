@@ -12,13 +12,13 @@ classes: wide
 
 #### 1.caffe目录未找到
 ```
- 
-    Caffe_DEFINITIONS is 
+
+    Caffe_DEFINITIONS is
     Caffe_DIR is /home/zagncq/benchmark/caffe-master/build/
     Caffe_INCLUDE_DIRS is /home/zagncq/benchmark/caffe-master/include/caffe
     CMake Error: The following variables are used in this project, but they are set to NOTFOUND.
     Please set them or make sure they are set and tested correctly in the CMake files:
-    
+
 ```
 
 **修改`～/GOTURN/cmake/Modules/FindCaffe.cmake`文件第5行，将caffe绝对路径加上即可。**
@@ -33,35 +33,35 @@ $$/home/embedded/caffe/include/caffe/blob.hpp:9:34: fatal error: caffe/proto/caf
 
 **用`protoc`从`caffe/src/caffe/proto/caffe.proto`生成`caffe.pb.h和caffe.pb.cc**`
 ```
- 
+
     cd caffe/src/caffe/proto/
     protoc --cpp_out=/home/yourdir/caffe/include/caffe/ caffe.proto #必须使用绝对路径
-    
+
 ```
 
 > <http://blog.csdn.net/xmzwlw/article/details/48270225>
 
 #### 3.boost regex 问题
 ```
- 
-    ‘boost::re_detail_106200::cpp_regex_traits_implementation<char>::transform_primary(char const*, char const*) const’未定义的引用
-    
+
+    'boost::re_detail_106200::cpp_regex_traits_implementation<char>::transform_primary(char const*, char const*) const'未定义的引用
+
 ```
 
 #### 4.tx2 安装 opencv失败
 ```
- 
+
     sudo: unable to resolve host tegra-ubuntu
-    [sudo] password for nvidia: 
+    [sudo] password for nvidia:
     Reading package lists... Done
-    Building dependency tree       
+    Building dependency tree
     Reading state information... Done
     Some packages could not be installed. This may mean that you have
     requested an impossible situation or if you are using the unstable
     distribution that some required packages have not yet been created
     or been moved out of Incoming.
     The following information may help to resolve the situation:
-    
+
     The following packages have unmet dependencies:
      libopencv-dev : Depends: libopencv-core-dev (= 2.4.9.1+dfsg-1.5ubuntu1)
                      Depends: libopencv-ml-dev (= 2.4.9.1+dfsg-1.5ubuntu1)
@@ -86,28 +86,28 @@ $$/home/embedded/caffe/include/caffe/blob.hpp:9:34: fatal error: caffe/proto/caf
                      Depends: libcv-dev (= 2.4.9.1+dfsg-1.5ubuntu1)
                      Depends: libhighgui-dev (= 2.4.9.1+dfsg-1.5ubuntu1)
                      Depends: libcvaux-dev (= 2.4.9.1+dfsg-1.5ubuntu1)
-    
+
 ```
 
 **解决办法，缺啥装啥，**
 ```
- 
+
     sudo apt install libopencv-ocl-dev libopencv2.4-java libopencv2.4-jni
-    
+
 ```
 
 #### 5.waring it doesnt matter
 ```
- 
-    /home/nvidia/GOTURN/src/native/vot.cpp: In member function ‘vot_region* VOT::vot_initialize()’:
-    /home/nvidia/GOTURN/src/native/vot.cpp:237:43: warning: ignoring return value of ‘__ssize_t getline(char**, size_t*, FILE*)’, declared with attribute warn_unused_result [-Wunused-result]
+
+    /home/nvidia/GOTURN/src/native/vot.cpp: In member function 'vot_region* VOT::vot_initialize()':
+    /home/nvidia/GOTURN/src/native/vot.cpp:237:43: warning: ignoring return value of '__ssize_t getline(char**, size_t*, FILE*)', declared with attribute warn_unused_result [-Wunused-result]
          getline(&linebuf, &linesiz, inputfile);
-    
+
 ```
 
 ## 6.vot
 ```
- 
+
     libGOTURN.a(vot.cpp.o): In function `VOT::vot_initialize()':
     vot.cpp:(.text+0x250): undefined reference to `trax_server_setup'
     vot.cpp:(.text+0x264): undefined reference to `trax_server_wait'
@@ -126,7 +126,7 @@ $$/home/embedded/caffe/include/caffe/blob.hpp:9:34: fatal error: caffe/proto/caf
     vot.cpp:(.text+0x6f0): undefined reference to `trax_region_create_rectangle'
     vot.cpp:(.text+0x704): undefined reference to `trax_server_reply'
     vot.cpp:(.text+0x70c): undefined reference to `trax_region_release'
-    
+
 ```
 
 解决办法
@@ -139,19 +139,19 @@ $$/home/embedded/caffe/include/caffe/blob.hpp:9:34: fatal error: caffe/proto/caf
 ```
  cd trax
         mkdir build
-        cd build 
+        cd build
         cmake ..
         make
-        
+
 ```
 
   * **修改CMakeLists.txt of GOTURN around line 84:把trax的实际路径写上**
 ```
  #Note: If can't find trax, please download trax and build it, then uncomment the below line and set the path manually
         target_link_libraries(${PROJECT_NAME}home/your dir/trax/build/libtrax.so)
-        
+
 ```
 
 > <https://github.com/davheld/GOTURN/issues/1>
-> 
+>
 > <https://github.com/davheld/GOTURN/issues/39>

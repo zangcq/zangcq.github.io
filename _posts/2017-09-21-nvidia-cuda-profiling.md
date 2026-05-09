@@ -14,9 +14,9 @@ classes: wide
   * `nsight` in `WIN（vs）` or `Linux (eclipse）`
   * `nvprof` in `linux cmd line`
 ```
- //in gtx1060 
+ //in gtx1060
         nvprof --metrics ipc,issued_ipc,achieved_occupancy,global_hit_rate,local_hit_rate,l2_tex_read_hit_rate,gld_transactions,gst_transactions,local_load_transactions,local_store_transactions,l2_tex_read_transactions,l2_tex_write_transactions,l2_read_transactions,l2_write_transactions,dram_read_transactions,dram_write_transactions,sysmem_read_transactions,sysmem_write_transactions ./wave
-        
+
 ```
 
 ## 2\. 度量标准 `metrics`
@@ -36,7 +36,7 @@ classes: wide
 
 #### `L1 Cache`
 
-**Fermi/Kepler** (Capability 2.x/3.x) 
+**Fermi/Kepler** (Capability 2.x/3.x)
 
   * `l1_cache_global_hit_rate`
     * Hit rate in `L1 cache` for global loads
@@ -46,7 +46,7 @@ classes: wide
     * only for **Kepler**
     * Hit rate in `non coherent cache` for global loads
 
-**Maxwell/Pascal**(Capability 5.x/6.x) 
+**Maxwell/Pascal**(Capability 5.x/6.x)
 
   * `global_hit_rate`
     * Hit rate for global loads
@@ -55,14 +55,14 @@ classes: wide
 
 #### `L2 Cache`
 
-**Fermi/Kepler** (Capability 2.x/3.x) 
+**Fermi/Kepler** (Capability 2.x/3.x)
 
   * `l2_l1_read_hit_rate`
     * Hit rate at `L2` cache for all read requests from `L1` cache
   * `l2_tex_read_hit_rate`
     * Hit rate at `L2` cache for all read requests from `texture` cache
 
-**Maxwell/Pascal**(Capability 5.x/6.x) 
+**Maxwell/Pascal**(Capability 5.x/6.x)
 
   * `l2_tex_read_hit_rate`
     * Hit rate at `L2` cache for all read requests from `texture` cache
@@ -95,14 +95,14 @@ classes: wide
 
 #### `L2 Cache`
 
-**Fermi/Kepler** (Capability 2.x/3.x) 
+**Fermi/Kepler** (Capability 2.x/3.x)
 
   * `l2_l1_read_transactions`
     * Memory read transactions seen at `L2` cache for all read requests from `L1` cache
   * `l2_l1_write_transactions`
     * Memory write transactions seen at `L2` cache for all write requests from `L1` cache
 
-**Maxwell/Pascal**(Capability 5.x/6.x) 
+**Maxwell/Pascal**(Capability 5.x/6.x)
 
   * `l2_tex_read_transactions`
     * Memory read transactions seen at `L2` cache for read requests from the `texture` cache

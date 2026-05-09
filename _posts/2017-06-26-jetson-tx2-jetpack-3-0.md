@@ -25,7 +25,7 @@ classes: wide
 
 > 链接: <https://pan.baidu.com/s/1pLjYjTx> 密码: fagi
 
-英伟达 install guide 
+英伟达 install guide
 
 > [http://docs.nvidia.com/jetpack-l4t/index.html#developertools/mobile/jetpack/l4t/3.0/jetpack_l4t_install.html](<http://docs.nvidia.com/jetpack-l4t/index.html#developertools/mobile/jetpack/l4t/3.0/jetpack_l4t_install.htm>)
 

@@ -75,11 +75,11 @@ Supported on all target architectures.
 
 ### Examples
 ```
- 
+
     setp.eq.f32  p,y,0;         // is y zero?
     @!p div.f32      ratio,x,y  // avoid division by zero
     @q  bra L23;                // conditional branch
-    
+
 ```
 
 ## 1.3. Control Flow Instructions: bra
@@ -90,12 +90,12 @@ Supported on all target architectures.
 
 ### Syntax
 ```
- 
-    @p   bra{.uni}  tgt;             // direct branch, tgt is a label 
+
+    @p   bra{.uni}  tgt;             // direct branch, tgt is a label
     bra{.uni}  tgt;                  // unconditional branch
     @p   bra{.uni}  tgt{, tlist};    // indirect branch, tgt is reg
     bra{.uni}  tgt{, tlist};
-    
+
 ```
 
 tgt = target 作为要跳转的目标 label， 分为有条件和无条件跳转。
@@ -124,11 +124,11 @@ Jump tables and `.branchtargets` declarations must be within the local function 
 
 ### Semantics
 ```
- 
+
     if (p) {
     		pc = tgt;
     }
-    
+
 ```
 
 ### PTX ISA Notes
@@ -147,17 +147,17 @@ Indirect branch requires sm_20 or higher.
 
 ### Examples
 ```
- 
+
     bra.uni  L_exit;        // uniform unconditional jump
     @q  bra      L23;       // conditional branch
-    
+
     // indirect branch using jump table
     .global .u32 jmptbl[5] = { Loop, Done, L1, L2, L3 };
     ...
     @p  ld.global.u32  %r0, [jmptbl+4];//L2
     @q  ld.global.u32  %r0, [jmptbl+8];//？
     bra            %r0, jmptbl;
-    
+
     // indirect branch using .branchtargets directive
     ...
     @p  mov.u32  %r0, Done;
@@ -170,7 +170,7 @@ Indirect branch requires sm_20 or higher.
     @p  mov.u32  %r0, Done;
     @q  mov.u32  %r0, L1;
     bra      %r0;
-    
+
 ```
 
 ### 1.4. Control Flow Instructions: call
@@ -181,27 +181,27 @@ Indirect branch requires sm_20 or higher.
 
 ### Syntax
 ```
- 
+
     // direct call to named function, func is a symbol
     call{.uni} (ret-param), func, (param-list);
     call{.uni} func, (param-list);
     call{.uni} func;
-    
+
     // indirect call via pointer, with full list of call targets
     call{.uni} (ret-param), fptr, (param-list), flist;
     call{.uni} fptr, (param-list), flist;
     call{.uni} fptr, flist;
-    
+
     // indirect call via pointer, with no knowledge of call targets
     call{.uni} (ret-param), fptr, (param-list), fproto;
     call{.uni} fptr, (param-list), fproto;
     call{.uni} fptr, fproto;
-    
+
 ```
 
 ### Description
 
-The call instruction stores the address of the next instruction, so execution can resume at that point after executing a `ret` instruction. 
+The call instruction stores the address of the next instruction, so execution can resume at that point after executing a `ret` instruction.
 
 call指令可以保存下一条指令，因此可以在`ret`之后回到原来的执行点。
 
@@ -293,8 +293,8 @@ Supported on all target architectures.
 
 ### Examples
 ```
- 
+
     exit;
     @p  exit;
-    
+
 ```

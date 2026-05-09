@@ -13,7 +13,7 @@ classes: wide
 清早初醒，微信群里发了个科比去世的消息，以为是个假新闻，仔细一看是在UC Merced 读书的老铁发的消息，可信度多了几分，打开虎扑看了一下，铺天盖地的新闻，不过还是令人难以置信。
 
 > <https://www.nytimes.com/2020/01/26/sports/basketball/kobe-bryant-dead.html>
-> 
+>
 > 科比-布莱恩特 乘坐直升飞机失事死亡
 
 The retired Los Angeles Lakers star Kobe Bryant, 41, and his daughter Gianna died in a helicopter crash near Calabasas, Calif., on Sunday.
@@ -30,7 +30,7 @@ The retired Los Angeles Lakers star Kobe Bryant, 41, and his daughter Gianna die
 
 吉安娜，大概可以继承科比衣钵的女儿；曾有记者问科比，你没有儿子继承你的篮球天赋，而吉安娜说，有我就够了！是的，如果没有出事，这一切都会实现的。前几天还在微博上看到 八卦她跟詹姆斯的儿子布朗尼可不可以联姻，幻想着詹科一家亲，湖人总冠军的段子，而如今只剩下深深的遗憾与可惜了。
 
-多数非球迷大概只会记得那句装B的话，“你见过凌晨四点的洛杉矶吗？”
+多数非球迷大概只会记得那句装B的话，"你见过凌晨四点的洛杉矶吗？"
 
 我只会记得那个永不服输的黑曼巴！
 

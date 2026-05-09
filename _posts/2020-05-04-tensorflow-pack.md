@@ -13,7 +13,7 @@ classes: wide
 #### Reference
 
 > <https://zhuanlan.zhihu.com/p/37637446>
-> 
+>
 > <https://www.tensorflow.org/api_docs/python/tf/stack>
 
 #### Overview
@@ -25,14 +25,14 @@ classes: wide
 
 例如：
 ```
- 
+
     import tensorflow as tf
-    a = tf.constant([[1,2,3],[4,5,6]]) 
+    a = tf.constant([[1,2,3],[4,5,6]])
     b = tf.constant([[7,8,9],[10,11,12]])
     ab1 = tf.concat([a,b],axis=0)
     ab2 = tf.stack([a,b], axis=0)
     sess = tf.Session()
-    print(sess.run(ab1)) 
+    print(sess.run(ab1))
     print(sess.run(ab2))
     print ab1
     print ab2

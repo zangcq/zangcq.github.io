@@ -20,7 +20,7 @@ classes: wide
   * `shader_core_config`
   * `gpgpu_sim_config`
   * 初始化模拟器
-  * 周期激活 
+  * 周期激活
   * 打印状态
   * 更新状态
   * 死锁检查
@@ -40,7 +40,7 @@ thread block dispatcher
 实现的功能
 
   1. 将能耗、存储、核等需要的参数从gpgpusim.config中读取出来
-  2. 实现自己的一些方法   
+  2. 实现自己的一些方法
 
 ## dram.cc
 
@@ -61,7 +61,7 @@ thread block dispatcher
 
   * `dram_req_t`
 
-    * row 
+    * row
     * col
     * bk
     * `nbytes`
@@ -105,25 +105,25 @@ array write 【】array read
 
 #### tRRD act ，tRRD pre
 
-限制访问频率来满足功耗预算   
+限制访问频率来满足功耗预算
 
 only when a read evicts dirty buffer contents
 
 #### 添加NVM的延时参数
 ```
- 
+
      unsigned int RRDactc;
-    
+
      unsigned int RRDprec;
-    
+
      unsigned int RRDactc_PCM;
-    
+
      unsigned int RRDprec_PCM;//hybrid memory structure latency paramater
-    
+
 ```
 
 ### addrdec.cc
 
-手册解释： Address decoder - Maps a given address to a specific row, bank, column, in a DRAM channel 翻译： 地址解码器 - 在一个DRAM channel 里 将一个给定的地址映射成 行 ，bank ，列 
+手册解释： Address decoder - Maps a given address to a specific row, bank, column, in a DRAM channel 翻译： 地址解码器 - 在一个DRAM channel 里 将一个给定的地址映射成 行 ，bank ，列
 
 其中比较重要的函数 ： 1.`void linear_to_raw_address_translation::addrdec_tlx(new_addr_type addr, addrdec_t *tlx) const` 将线性地址转换成物理地址 ，地址解码转换功能 2.`void linear_to_raw_address_translation::init(unsigned int n_channel, unsigned int n_sub_partition_in_channel)` 地址转换的初始化函数，从这个函数开始，逐步调用相应的功能 3.`static new_addr_type addrdec_packbits( new_addr_type mask, new_addr_type val, unsigned char high, unsigned char low)`

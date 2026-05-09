@@ -10,7 +10,6 @@ classes: wide
 
 # darknet接口设计思路
 
-[TOC]
 
 ## 概述
 
@@ -24,7 +23,7 @@ eg:
 ```
  image im = load_image_color(path,0,0);
                 image sized = letterbox_image(im, net->w, net->h);
-        
+
 ```
 
 这两行代码是每一次图像读取进来后进行处理的函数，之后`sized`这个图片才会被作为网络输入，关注一下他的实现：
@@ -41,7 +40,7 @@ eg:
         #else
             image out = load_image_stb(filename, c);
         #endif
-        
+
             if((h && w) && (h != out.h || w != out.w)){
                 image resized = resize_image(out, w, h);
                 free_image(out);
@@ -73,7 +72,7 @@ eg:
             free(data);
             return im;
         }
-        
+
 ```
 
 首先这是整个load_image的过程，这里我选择展示了他使用stb API的部分，使用opencv的算法大同小异，我总结了一下他的特点：
@@ -102,14 +101,14 @@ eg:
         fill_image(boxed, .5);
         //int i;
         //for(i = 0; i < boxed.w*boxed.h*boxed.c; ++i) boxed.data[i] = 0;
-        embed_image(resized, boxed, (w-new_w)/2, (h-new_h)/2); 
+        embed_image(resized, boxed, (w-new_w)/2, (h-new_h)/2);
         free_image(resized);
         return boxed;
     }
     // ... ...
     image resize_image(image im, int w, int h)
     {
-        image resized = make_image(w, h, im.c);   
+        image resized = make_image(w, h, im.c);
         image part = make_image(w, im.h, im.c);
         int r, c, k;
         float w_scale = (float)(im.w - 1) / (w - 1);
@@ -149,7 +148,7 @@ eg:
                 }
             }
         }
-    
+
         free_image(part);
         return resized;
     }
@@ -166,7 +165,7 @@ eg:
             }
         }
     }
-    
+
 ```
 
 然后是`letterbox_image`的流程，实现的功能是：
