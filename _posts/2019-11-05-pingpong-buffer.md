@@ -1,11 +1,8 @@
 ---
-title: "PingPong buffer"
+title: PingPong buffer
 date: 2019-11-05 17:36:05
-categories: ["程序人生"]
-permalink: "/2019/11/05/pingpong-buffer/"
-legacy: true
-toc: true
-classes: wide
+categories:
+- 程序人生
 ---
 
 ##### Overview

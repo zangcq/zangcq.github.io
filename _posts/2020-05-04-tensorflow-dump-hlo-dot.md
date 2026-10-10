@@ -1,11 +1,8 @@
 ---
-title: "Tensorflow Dump HLO dot图"
+title: Tensorflow Dump HLO dot图
 date: 2020-05-04 12:13:46
-categories: ["机器学习"]
-permalink: "/2020/05/04/tensorflow-dump-hlo-dot%e5%9b%be/"
-legacy: true
-toc: true
-classes: wide
+categories:
+- 机器学习
 ---
 
 1. DUMP HLO 和 NLO的dot图，便于查看XLA PASS间是否做了对应转换

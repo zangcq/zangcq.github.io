@@ -1,11 +1,8 @@
 ---
-title: "RIP. for Kobe Bryant 8&24"
+title: RIP. for Kobe Bryant 8&24
 date: 2020-01-27 22:42:19
-categories: ["日常扯淡"]
-permalink: "/2020/01/27/rip-for-kobe-brant-824/"
-legacy: true
-toc: true
-classes: wide
+categories:
+- 日常扯淡
 ---
 
 今天是大年初三，新型冠状病毒肺炎疫情的隔离期间，气氛一直处于恐慌压抑的状态。

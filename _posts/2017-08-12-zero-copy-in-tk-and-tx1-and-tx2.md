@@ -1,12 +1,10 @@
 ---
-title: "Zero copy in TK1 and TX1 and TX2"
+title: Zero copy in TK1 and TX1 and TX2
 date: 2017-08-12 17:17:27
-categories: ["Jetson TX1-2"]
-tags: ["GPU"]
-permalink: "/2017/08/12/zero-copy-in-tk%ef%bc%91and-tx1-and-tx2/"
-legacy: true
-toc: true
-classes: wide
+categories:
+- Jetson TX1-2
+tags:
+- GPU
 ---
 
 # Zero copy in TK１and TX1 and TX２

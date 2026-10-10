@@ -1,11 +1,8 @@
 ---
-title: "数据类型比较 int vs unsigned int"
+title: 数据类型比较 int vs unsigned int
 date: 2020-05-04 12:10:57
-categories: ["C/C++"]
-permalink: "/2020/05/04/%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b%e6%af%94%e8%be%83-int-vs-unsigned-int/"
-legacy: true
-toc: true
-classes: wide
+categories:
+- C/C++
 ---
 
 起因是 云智能的安全考试有一题，如下图所示：

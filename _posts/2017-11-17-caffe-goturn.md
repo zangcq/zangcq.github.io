@@ -1,11 +1,8 @@
 ---
-title: "caffe - goturn 安装问题汇总"
+title: caffe - goturn 安装问题汇总
 date: 2017-11-17 19:39:33
-categories: ["DAC-SDC"]
-permalink: "/2017/11/17/caffe-goturn-%e5%ae%89%e8%a3%85%e9%97%ae%e9%a2%98%e6%b1%87%e6%80%bb/"
-legacy: true
-toc: true
-classes: wide
+categories:
+- DAC-SDC
 ---
 
 ### caffe - goturn 安装问题汇总

@@ -1,12 +1,10 @@
 ---
-title: "C++ 垃圾回收 智能指针shared_ptr"
+title: C++ 垃圾回收 智能指针shared_ptr
 date: 2017-08-07 23:33:42
-categories: ["C/C++"]
-tags: ["C/C++"]
-permalink: "/2017/08/07/c-%e5%9e%83%e5%9c%be%e5%9b%9e%e6%94%b6-%e6%99%ba%e8%83%bd%e6%8c%87%e9%92%88shared_ptr/"
-legacy: true
-toc: true
-classes: wide
+categories:
+- C/C++
+tags:
+- C/C++
 ---
 
 # C++ 垃圾回收 智能指针shared_ptr

@@ -1,12 +1,11 @@
 ---
-title: "NVIDIA GPU ARCH"
+title: NVIDIA GPU ARCH
 date: 2017-06-19 09:44:06
-categories: ["CUDA Programming"]
-tags: ["CUDA", "GPU"]
-permalink: "/2017/06/19/nvidia-gpu-arch/"
-legacy: true
-toc: true
-classes: wide
+categories:
+- CUDA Programming
+tags:
+- CUDA
+- GPU
 ---
 
 ### Compute Capability 2.x Fermi Arch

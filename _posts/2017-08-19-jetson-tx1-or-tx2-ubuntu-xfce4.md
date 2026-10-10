@@ -1,12 +1,12 @@
 ---
-title: "Jetson TX1 or TX2 配置源 和 设置远程桌面Ubuntu xfce4"
+title: Jetson TX1 or TX2 配置源 和 设置远程桌面Ubuntu xfce4
 date: 2017-08-19 16:43:17
-categories: ["Jetson TX1-2"]
-tags: ["Jetson", "tx1", "tx2"]
-permalink: "/2017/08/19/jetson-tx1-or-tx2-%e9%85%8d%e7%bd%ae%e6%ba%90-%e5%92%8c-%e8%ae%be%e7%bd%ae%e8%bf%9c%e7%a8%8b%e6%a1%8c%e9%9d%a2ubuntu-xfce4/"
-legacy: true
-toc: true
-classes: wide
+categories:
+- Jetson TX1-2
+tags:
+- Jetson
+- tx1
+- tx2
 ---
 
 为了使用Ubuntu 的远程桌面，做了很多尝试，只有使用 xfce4 结合 vnc 可以使用

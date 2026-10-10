@@ -1,12 +1,10 @@
 ---
-title: "How to calculate occupancy"
+title: How to calculate occupancy
 date: 2017-08-24 23:31:28
-categories: ["CUDA Programming"]
-tags: ["CUDA"]
-permalink: "/2017/08/24/how-to-calculate-occupancy/"
-legacy: true
-toc: true
-classes: wide
+categories:
+- CUDA Programming
+tags:
+- CUDA
 ---
 
 ## How to calculate occupancy
