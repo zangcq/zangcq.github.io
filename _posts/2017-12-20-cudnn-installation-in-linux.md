@@ -1,11 +1,8 @@
 ---
-title: "cudnn Installation in Linux"
+title: cudnn Installation in Linux
 date: 2017-12-20 15:50:48
-categories: ["机器学习"]
-permalink: "/2017/12/20/cudnn-installation-in-linux/"
-legacy: true
-toc: true
-classes: wide
+categories:
+- 机器学习
 ---
 
 # `cudnn` Installation in Linux

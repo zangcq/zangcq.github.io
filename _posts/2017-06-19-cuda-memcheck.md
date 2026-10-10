@@ -1,12 +1,11 @@
 ---
-title: "CUDA-MEMCHECK"
+title: CUDA-MEMCHECK
 date: 2017-06-19 09:45:35
-categories: ["CUDA Programming"]
-tags: ["CUDA", "GPU"]
-permalink: "/2017/06/19/cuda-memcheck/"
-legacy: true
-toc: true
-classes: wide
+categories:
+- CUDA Programming
+tags:
+- CUDA
+- GPU
 ---
 
 # CUDA-MEMCHECK

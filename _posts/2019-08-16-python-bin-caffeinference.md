@@ -1,12 +1,13 @@
 ---
-title: "Python读写bin文件实例CaffeInference"
+title: Python读写bin文件实例CaffeInference
 date: 2019-08-16 10:47:23
-categories: ["Python", "机器学习"]
-tags: ["Caffe", "Python", "机器学习"]
-permalink: "/2019/08/16/python%e8%af%bb%e5%86%99bin%e6%96%87%e4%bb%b6%e5%ae%9e%e4%be%8bcaffeinference/"
-legacy: true
-toc: true
-classes: wide
+categories:
+- Python
+- 机器学习
+tags:
+- Caffe
+- Python
+- 机器学习
 ---
 
 #### Reference

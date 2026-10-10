@@ -1,12 +1,11 @@
 ---
-title: "PTX ISA 之 Control Flow Instructions"
+title: PTX ISA 之 Control Flow Instructions
 date: 2017-06-29 10:26:19
-categories: ["GPU PTX ISA Analysis"]
-tags: ["GPU", "PTX ISA"]
-permalink: "/2017/06/29/ptx-isa-%e4%b9%8b-control-flow-instructions/"
-legacy: true
-toc: true
-classes: wide
+categories:
+- GPU PTX ISA Analysis
+tags:
+- GPU
+- PTX ISA
 ---
 
 # Control Flow Instructions

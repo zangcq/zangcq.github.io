@@ -1,11 +1,8 @@
 ---
-title: "NVIDIA Ampere Architecture 分析"
+title: NVIDIA Ampere Architecture 分析
 date: 2020-05-17 11:39:59
-categories: ["GPGPU"]
-permalink: "/2020/05/17/nvidia-ampere-architecture-%e5%88%86%e6%9e%90/"
-legacy: true
-toc: true
-classes: wide
+categories:
+- GPGPU
 ---
 
 官方博客

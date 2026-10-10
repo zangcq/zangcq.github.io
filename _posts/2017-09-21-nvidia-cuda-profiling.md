@@ -1,12 +1,12 @@
 ---
-title: "NVIDIA CUDA PROFILING Tool"
+title: NVIDIA CUDA PROFILING Tool
 date: 2017-09-21 10:51:07
-categories: ["GPGPU-Sim Notes"]
-tags: ["CUDA", "GPU", "profiling"]
-permalink: "/2017/09/21/nvidia-cuda-profiling/"
-legacy: true
-toc: true
-classes: wide
+categories:
+- GPGPU-Sim Notes
+tags:
+- CUDA
+- GPU
+- profiling
 ---
 
 ## 1\. tools

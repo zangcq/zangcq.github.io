@@ -1,12 +1,10 @@
 ---
-title: "C/C++　main function parameter"
+title: C/C++　main function parameter
 date: 2017-08-07 22:27:45
-categories: ["C/C++"]
-tags: ["C/C++"]
-permalink: "/2017/08/07/cc%e3%80%80main-function-parameter/"
-legacy: true
-toc: true
-classes: wide
+categories:
+- C/C++
+tags:
+- C/C++
 ---
 
 

@@ -1,12 +1,11 @@
 ---
-title: "PTX ISA special-registers"
+title: PTX ISA special-registers
 date: 2017-08-11 14:31:52
-categories: ["GPU PTX ISA Analysis"]
-tags: ["GPU", "PTX ISA"]
-permalink: "/2017/08/11/ptx-isa-special-registers/"
-legacy: true
-toc: true
-classes: wide
+categories:
+- GPU PTX ISA Analysis
+tags:
+- GPU
+- PTX ISA
 ---
 
 # PTX ISA [Special Registers](<https://docs.nvidia.com/cuda/parallel-thread-execution/index.html#special-registers>)

@@ -1,12 +1,11 @@
 ---
-title: "GPGPU-Sim Notes —— Cache"
+title: GPGPU-Sim Notes —— Cache
 date: 2017-07-24 15:22:14
-categories: ["GPGPU-Sim Notes"]
-tags: ["Cache", "GPU"]
-permalink: "/2017/07/24/gpgpu-sim-notes-cache/"
-legacy: true
-toc: true
-classes: wide
+categories:
+- GPGPU-Sim Notes
+tags:
+- Cache
+- GPU
 ---
 
 # GPGPU-Sim笔记整理 cache

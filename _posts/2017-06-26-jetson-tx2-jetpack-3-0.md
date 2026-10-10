@@ -1,12 +1,12 @@
 ---
-title: "Jetson TX2 安装 JetPack 3.0 小记 与 申请教育版链接"
+title: Jetson TX2 安装 JetPack 3.0 小记 与 申请教育版链接
 date: 2017-06-26 09:29:33
-categories: ["Jetson TX1-2"]
-tags: ["CUDA", "GPU", "Shell"]
-permalink: "/2017/06/26/jetson-tx2-%e5%ae%89%e8%a3%85-jetpack-3-0-%e5%b0%8f%e8%ae%b0/"
-legacy: true
-toc: true
-classes: wide
+categories:
+- Jetson TX1-2
+tags:
+- CUDA
+- GPU
+- Shell
 ---
 
 ## 前言

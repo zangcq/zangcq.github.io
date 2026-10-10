@@ -1,12 +1,10 @@
 ---
-title: "concurrent kernel  and dynamic parallelism"
+title: concurrent kernel  and dynamic parallelism
 date: 2017-08-12 15:48:52
-categories: ["CUDA Programming"]
-tags: ["GPU"]
-permalink: "/2017/08/12/concurrent-kernel-and-dynamic-parallelism/"
-legacy: true
-toc: true
-classes: wide
+categories:
+- CUDA Programming
+tags:
+- GPU
 ---
 
 # concurrent kernel and dynamic parallelism

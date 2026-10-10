@@ -1,147 +1,95 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
-#
-# If you need help with YAML syntax, here are some quick references for you:
-# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
-# https://learnxinyminutes.com/docs/yaml/
-#
 # Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
-
-title: Chuanqiz‘s Blog
-email: ""
-description: >- # this means to ignore newlines until "baseurl:"
-  tech blog
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://zangcq.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-github_username:  zangcq
-linkedin_username: "chuanqi-zang"
-
-# 站点语言/时区（影响 SEO tag、日期显示等）
 lang: zh-CN
-locale: zh-CN
 timezone: Asia/Shanghai
 
-# Minimal Mistakes 主题作者信息（用于 SEO/结构化数据 & 侧栏）
-author:
-  name: "Chuanqi Zang"
-  avatar: # 例如 "/assets/images/avatar.jpg"
-  bio: "System Software Engineer · OpenJDK / Performance"
-  location: "Hangzhou, China"
-  links:
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/zangcq"
-    - label: "LinkedIn"
-      icon: "fab fa-fw fa-linkedin"
-      url: "https://www.linkedin.com/in/chuanqi-zang"
+title: "Chuanqi's Blog"
+tagline: "Systems · Performance · JVM · Infra"
+description: "技术博客：系统性能、JVM、编译器、GPU、Linux 内核等工程笔记。"
 
-# 页脚社交链接
-footer:
+url: "https://zangcq.github.io"
+
+github:
+  username: zangcq
+
+social:
+  name: Chuanqi Zang
+  email: ""
   links:
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/zangcq"
-    - label: "LinkedIn"
-      icon: "fab fa-fw fa-linkedin"
-      url: "https://www.linkedin.com/in/chuanqi-zang"
+    - https://github.com/zangcq
+    - https://www.linkedin.com/in/chuanqi-zang
+
+# Theme
+theme: jekyll-theme-chirpy
+theme_mode: dark
+
+avatar: ""
+
+toc: true
+
+paginate: 10
+
+baseurl: ""
 
 # Build settings
-theme: minimal-mistakes-jekyll
-minimal_mistakes_skin: "dark"
-plugins:
-  - jekyll-include-cache
-  - jekyll-feed
-  - jekyll-seo-tag
-  - jekyll-sitemap
-
-# 压缩主题生成的 CSS（减少传输体积）
-sass:
-  style: compressed
-
-# Markdown / 代码高亮
 markdown: kramdown
-highlighter: rouge
 kramdown:
-  input: GFM
+  footnote_backlink: "&#8617;&#xfe0e;"
+  syntax_highlighter: rouge
   syntax_highlighter_opts:
+    css_class: highlight
+    span:
+      line_numbers: false
     block:
       line_numbers: true
+      start_line: 1
 
-# 搜索（Lunr：本地 JS 搜索，无需外部服务）
-search: true
-search_full_content: true
-search_provider: lunr
-lunr:
-  search_within_pages: true
+collections:
+  tabs:
+    output: true
+    sort_by: order
 
-# 阅读进度/字数估算
-words_per_minute: 200
-
-# 分类与标签归档页
-category_archive:
-  type: liquid
-  path: /categories/
-tag_archive:
-  type: liquid
-  path: /tags/
-
-# 统一文章/页面默认配置（避免每篇手工调整）
 defaults:
   - scope:
       path: ""
       type: posts
     values:
-      layout: single
-      author_profile: true
-      read_time: true
-      comments: false
-      share: true
-      related: true
+      layout: post
       toc: true
-      toc_sticky: true
-      show_date: true
-      classes: wide
+      permalink: /posts/:title/
+  - scope:
+      path: _drafts
+    values:
+      comments: false
   - scope:
       path: ""
-      type: pages
+      type: tabs
     values:
-      layout: single
-      author_profile: true
+      layout: page
+      permalink: /:title/
 
-# 避免把本地构建产物/缓存纳入站点处理范围
+sass:
+  style: compressed
+
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  profile: false
+  blanklines: false
+  ignore:
+    envs: [development]
+
 exclude:
+  - "*.gem"
+  - "*.gemspec"
+  - docs
+  - tools
+  - README.md
+  - LICENSE
+  - purgecss.js
+  - "*.config.js"
+  - "package*.json"
   - .DS_Store
   - .bundle/
-  - _site/
   - vendor/
-
-# Exclude from processing.
-# The following items will not be processed, by default.
-# Any item listed under the `exclude:` key here will be automatically added to
-# the internal "default list".
-#
-# Excluded items can be processed by explicitly listing the directories or
-# their entries' file path in the `include:` list.
-#
-# exclude:
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+  - scripts/

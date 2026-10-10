@@ -1,11 +1,8 @@
 ---
-title: "TensorFlow 源码编译"
+title: TensorFlow 源码编译
 date: 2020-08-07 14:38:37
-categories: ["机器学习"]
-permalink: "/2020/08/07/tensorflow-%e6%ba%90%e7%a0%81%e7%bc%96%e8%af%91/"
-legacy: true
-toc: true
-classes: wide
+categories:
+- 机器学习
 ---
 
 TensorFlow 源码编译构建 大型工程编译坑还是太多，这波先把坑给大家踩一踩。

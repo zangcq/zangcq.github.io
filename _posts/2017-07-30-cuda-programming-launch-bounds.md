@@ -1,12 +1,11 @@
 ---
-title: "CUDA Programming 之 Launch Bounds"
+title: CUDA Programming 之 Launch Bounds
 date: 2017-07-30 22:29:48
-categories: ["CUDA Programming"]
-tags: ["CUDA", "GPU"]
-permalink: "/2017/07/30/cuda-programming-%e4%b9%8b-launch-bounds/"
-legacy: true
-toc: true
-classes: wide
+categories:
+- CUDA Programming
+tags:
+- CUDA
+- GPU
 ---
 
 # [Launch Bounds](<https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#launch-bounds>)

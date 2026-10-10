@@ -1,12 +1,12 @@
 ---
-title: "GPGPU-Sim ispass2009 编译问题０"
+title: GPGPU-Sim ispass2009 编译问题０
 date: 2017-08-09 09:41:44
-categories: ["GPGPU-Sim Notes"]
-tags: ["GPGPU-Sim", "GPU", "Shell"]
-permalink: "/2017/08/09/gpgpu-sim-ispass2009-%e7%bc%96%e8%af%91%e9%97%ae%e9%a2%98%ef%bc%90/"
-legacy: true
-toc: true
-classes: wide
+categories:
+- GPGPU-Sim Notes
+tags:
+- GPGPU-Sim
+- GPU
+- Shell
 ---
 
 # GPGPU-Sim ispass2009 编译问题０

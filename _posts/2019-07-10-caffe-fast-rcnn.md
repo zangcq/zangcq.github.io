@@ -1,11 +1,8 @@
 ---
-title: "Caffe fast-rcnn 踩坑"
+title: Caffe fast-rcnn 踩坑
 date: 2019-07-10 10:08:37
-categories: ["机器学习"]
-permalink: "/2019/07/10/caffe-fast-rcnn-%e8%b8%a9%e5%9d%91/"
-legacy: true
-toc: true
-classes: wide
+categories:
+- 机器学习
 ---
 
 

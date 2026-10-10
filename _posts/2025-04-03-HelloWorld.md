@@ -1,13 +1,12 @@
 ---
-layout: single
-title: "build jekyll blog"
+title: build jekyll blog
 date: 2025-04-03
 categories:
-  - blog
+- blog
 tags:
-  - jekyll
-  - github-pages
-excerpt: "从 WordPress 迁到 Jekyll + GitHub Pages 的过程记录。"
+- jekyll
+- github-pages
+excerpt: 从 WordPress 迁到 Jekyll + GitHub Pages 的过程记录。
 ---
 
 

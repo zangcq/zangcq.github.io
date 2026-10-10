@@ -1,12 +1,10 @@
 ---
-title: "GPGPU-Sim Notes 0"
+title: GPGPU-Sim Notes 0
 date: 2017-08-07 22:47:50
-categories: ["GPGPU-Sim Notes"]
-tags: ["GPGPU-Sim"]
-permalink: "/2017/08/07/gpgpu-sim-notes-0/"
-legacy: true
-toc: true
-classes: wide
+categories:
+- GPGPU-Sim Notes
+tags:
+- GPGPU-Sim
 ---
 
 # GPGPU-Sim 笔记整理 0
