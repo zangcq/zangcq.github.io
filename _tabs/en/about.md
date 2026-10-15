@@ -13,13 +13,14 @@ Prior to joining ByteDance, I spent two years at [Alibaba Infrastructure Service
 
 #### ByteDance Infrastructure | Compiler and Library Group (2020.7~Now)
 
-- Maintained OpenJDK Long Term Support Version at ByteDance
-  - Self build OpenJDK binary at ByteDance, Provide base docker images, jdk deployment at Datacenter.
-  - Optimized BigData workload and build observability tools with performance engineering team.
-  - Be good at troubleshooting Memory Leak and Coredump.
-- DataCenter Workload Optimization
-  - Transparent Hugepages Apply in CodeCache and LibJVM.
-  - Optimized Compress library and Parse library in BigData Business.
+- ByteDance OpenJDK Tech Lead
+  - Self-build OpenJDK binaries at ByteDance; provide base Docker images and datacenter JDK deployment.
+  - Led the company-wide JDK 8 to JDK 17 upgrade for big data services, deployed at a scale of 10M+ cores.
+  - Deep understanding of GC, JIT and the runtime system; experienced in troubleshooting memory leaks and coredumps.
+- Analyzed datacenter workloads in depth and delivered optimization solutions.
+  - Designed and implemented a G1 elastic heap solution, strengthening the vertical scaling capability of services.
+  - Designed and implemented transparent huge pages for CodeCache and LibJVM, improving the iTLB cache hit rate.
+  - Deeply involved in the bring-up and performance tuning of x86, ARM and RISC-V servers.
 
 #### Alibaba Infra Service | Hybrid Computing Compiler Group (2018.7 ~ 2020.7)
 
@@ -36,10 +37,7 @@ Prior to joining ByteDance, I spent two years at [Alibaba Infrastructure Service
 
 - [Energy Efficient Object Detection for Edge Computing](https://github.com/xiaoyuuuuu/dac-hdc-2018-object-detection-in-Jetson-TX2)
   - [3rd place in DAC 2018 System Design Contest](http://www.cse.cuhk.edu.hk/~byu/2018-DAC-SDC/index.html)
-  - Implemented half-precision calculation on GPU (Jetson TX2)
-  - Network Pruning and Reduced the down sampling rate
-
-### Publication
+  - Implemented half-precision calculation on GPU (Jetson TX2), with network pruning and reduced down-sampling rate
 
 - NVM in GPGPU Memory Hierarchy
   - [Shared Last-level Cache Management for GPGPUs with Hybrid Main Memory](https://ieeexplore.ieee.org/abstract/document/7926953/) (DATE 2017, **Best Paper Award Nominations**)
