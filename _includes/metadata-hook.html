@@ -1,0 +1,30 @@
+<!--
+  Custom <head> metadata (Chirpy includes this placeholder near the end of
+  head.html). We use it to emit hreflang alternate links for pages that have a
+  real translation.
+
+  A translated pair is declared explicitly with a shared `page_id` in the front
+  matter (and, by convention, the same filename so `page.url` matches across
+  languages). We rely ONLY on `page_id`, never on polyglot's permalink matching:
+  all posts share the templated permalink `/posts/:title/`, which would
+  otherwise make polyglot treat unrelated posts as translations of each other.
+
+  URLs are built from `page.url` (identical across languages for a translated
+  pair) plus the language prefix, instead of `page.permalink_lang`, whose values
+  are the un-expanded `/posts/:title/` template.
+-->
+{% if page.page_id and page.available_languages and page.available_languages.size > 1 %}
+  {% for alt_lang in page.available_languages %}
+    {% if alt_lang == site.default_lang %}
+      {% assign alt_prefix = site.baseurl %}
+    {% else %}
+      {% assign alt_prefix = site.baseurl | append: '/' | append: alt_lang %}
+    {% endif %}
+
+    {% assign alt_url = site.url | append: alt_prefix | append: page.url %}
+    <link rel="alternate" hreflang="{{ alt_lang }}" href="{{ alt_url }}">
+    {% if alt_lang == site.default_lang %}
+      <link rel="alternate" hreflang="x-default" href="{{ alt_url }}">
+    {% endif %}
+  {% endfor %}
+{% endif %}
