@@ -1,0 +1,13 @@
+# Per-language site identity strings for the bilingual (zh-CN + en) site.
+#
+# `site.active_lang` (provided by jekyll-polyglot) selects the right block.
+# Values for the default language mirror _config.yml (`tagline`/`description`)
+# so layouts can always read from here; the config values remain the fallback
+# when the key is missing (e.g. a plain single-language build).
+zh-CN:
+  tagline: "系统 · 性能 · JVM · 基础设施"
+  description: "技术博客：系统性能、JVM、编译器、GPU、Linux 内核等工程笔记。"
+
+en:
+  tagline: "Systems · Performance · JVM · Infra"
+  description: "Engineering notes on systems performance, JVM, compilers, GPU and the Linux kernel."

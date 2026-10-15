@@ -2,6 +2,32 @@
 lang: zh-CN
 timezone: Asia/Shanghai
 
+# ---------------------------------------------------------------------------
+# Bilingual (zh-CN + en) via jekyll-polyglot
+# ---------------------------------------------------------------------------
+# Chinese is the default site at "/", English is built under "/en/".
+languages: ["zh-CN", "en"]
+default_lang: "zh-CN"
+# Make `site.lang` follow the language currently being built, so Chirpy's UI
+# locale (which falls back to site.lang) switches automatically per language.
+lang_vars: ["lang"]
+# Build languages one after another: avoids fork/plugin collisions on macOS
+# and keeps jekyll-paginate / jekyll-sitemap deterministic.
+parallel_localization: false
+# Static files/dirs that must exist only once at the site root and must NOT be
+# duplicated into /<lang>/. (Generated pages like feed.xml / sitemap.xml and the
+# per-language search index assets/js/data/search.json are intentionally left
+# out so each language gets its own correct copy.)
+exclude_from_localization:
+  - "assets/css"
+  - "assets/js/dist"
+  - "assets/img"
+  - "assets/images"
+  - "assets/lib"
+  - "assets/robots.txt"
+  - "CNAME"
+  - ".nojekyll"
+
 title: "Chuanqi's Blog"
 tagline: "Systems · Performance · JVM · Infra"
 description: "技术博客：系统性能、JVM、编译器、GPU、Linux 内核等工程笔记。"
@@ -18,11 +44,30 @@ social:
     - https://github.com/zangcq
     - https://www.linkedin.com/in/chuanqi-zang
 
+# Image used for social sharing previews (og:image / twitter card).
+# Generated at assets/img/social-preview.png.
+social_preview_image: "/assets/img/social-preview.png"
+
+# Comments: enable giscus (https://giscus.app) by filling in the IDs for the
+# zangcq/zangcq.github.io repository and setting `comments: true` on posts.
+# comments:
+#   provider: giscus
+#   giscus:
+#     repo: zangcq/zangcq.github.io
+#     repo_id: ""
+#     category: Comments
+#     category_id: ""
+#     mapping: pathname
+#     strict: true
+#     input_position: bottom
+#     lang: zh-CN
+#     reactions_enabled: 1
+
 # Theme
 theme: jekyll-theme-chirpy
 theme_mode: dark
 
-avatar: ""
+avatar: "/assets/img/avatar.svg"
 
 toc: true
 
@@ -56,6 +101,16 @@ defaults:
       layout: post
       toc: true
       permalink: /posts/:title/
+      # Chinese is the default language; these posts build only at "/".
+      lang: zh-CN
+      lang-exclusive: ["zh-CN"]
+  - scope:
+      path: "_posts/en"
+      type: posts
+    values:
+      # English translations/originals build only under "/en/".
+      lang: en
+      lang-exclusive: ["en"]
   - scope:
       path: _drafts
     values:
@@ -69,6 +124,8 @@ defaults:
 
 sass:
   style: compressed
+  # Polyglot + Jekyll 4 generate broken SCSS sourcemaps; disable them.
+  sourcemap: never
 
 compress_html:
   clippings: all
@@ -93,6 +150,8 @@ exclude:
   - .bundle/
   - vendor/
   - scripts/
+  # Old WordPress export kept for reference only; do not publish it.
+  - chuanqizsblog.WordPress.2021-10-09.xml
 
 jekyll-archives:
   enabled: [categories, tags]

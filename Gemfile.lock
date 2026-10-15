@@ -45,6 +45,8 @@ GEM
     jekyll-include-cache (0.3.1)
       jekyll (>= 3.7, < 5.0)
     jekyll-paginate (1.1.0)
+    jekyll-polyglot (1.14.0)
+      jekyll (>= 4.0, >= 3.0)
     jekyll-sass-converter (3.1.0)
       sass-embedded (~> 1.75)
     jekyll-seo-tag (2.8.0)
@@ -99,6 +101,7 @@ DEPENDENCIES
   http_parser.rb (~> 0.6.0)
   jekyll (~> 4.3.0)
   jekyll-paginate
+  jekyll-polyglot (~> 1.9)
   jekyll-seo-tag
   jekyll-sitemap
   jekyll-theme-chirpy (~> 7.6)

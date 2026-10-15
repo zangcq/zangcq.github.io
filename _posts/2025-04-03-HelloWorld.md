@@ -7,6 +7,7 @@ tags:
 - jekyll
 - github-pages
 excerpt: 从 WordPress 迁到 Jekyll + GitHub Pages 的过程记录。
+page_id: build-jekyll-blog
 ---
 
 

@@ -1,0 +1,31 @@
+---
+layout: compress
+swcache: true
+---
+{%- comment -%}
+  Local override of Chirpy's search index.
+
+  Polyglot filters `site.posts` to the active language and builds a separate
+  copy of this file per language (default at the site root, others under
+  `/<lang>/`). However, the post URLs here live inside a JSON string, not an
+  `href="..."` attribute, so polyglot does NOT add the language prefix to them.
+  Without help, the English index would link results back to the Chinese
+  (default) URLs. We add the active language prefix explicitly below.
+{%- endcomment -%}
+{%- assign url_prefix = '' -%}
+{%- if site.active_lang and site.active_lang != site.default_lang -%}
+  {%- assign url_prefix = '/' | append: site.active_lang -%}
+{%- endif -%}
+[
+  {% for post in site.posts %}
+  {
+    "title": {{ post.title | jsonify }},
+    "url": {{ post.url | relative_url | prepend: url_prefix | jsonify }},
+    "categories": {{ post.categories | join: ', ' | jsonify }},
+    "tags": {{ post.tags | join: ', ' | jsonify }},
+    "date": {{ post.date | jsonify }},
+    {% capture content -%}{% include post-summary.html full_text=true %}{%- endcapture -%}
+    "content": {{ content | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]
