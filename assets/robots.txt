@@ -1,0 +1,12 @@
+---
+permalink: /robots.txt
+# Local override of the theme's assets/robots.txt:
+# list both language sitemaps so crawlers discover the /en/ site too.
+---
+
+User-agent: *
+
+Disallow: /norobots/
+
+Sitemap: https://zangcq.github.io/sitemap.xml
+Sitemap: https://zangcq.github.io/en/sitemap.xml

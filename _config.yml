@@ -24,9 +24,9 @@ exclude_from_localization:
   - "assets/img"
   - "assets/images"
   - "assets/lib"
+  - "assets/robots.txt"
   - "CNAME"
   - ".nojekyll"
-  - "chuanqizsblog.WordPress.2021-10-09.xml"
 
 title: "Chuanqi's Blog"
 tagline: "Systems · Performance · JVM · Infra"
@@ -44,11 +44,30 @@ social:
     - https://github.com/zangcq
     - https://www.linkedin.com/in/chuanqi-zang
 
+# Image used for social sharing previews (og:image / twitter card).
+# Generated at assets/img/social-preview.png.
+social_preview_image: "/assets/img/social-preview.png"
+
+# Comments: enable giscus (https://giscus.app) by filling in the IDs for the
+# zangcq/zangcq.github.io repository and setting `comments: true` on posts.
+# comments:
+#   provider: giscus
+#   giscus:
+#     repo: zangcq/zangcq.github.io
+#     repo_id: ""
+#     category: Comments
+#     category_id: ""
+#     mapping: pathname
+#     strict: true
+#     input_position: bottom
+#     lang: zh-CN
+#     reactions_enabled: 1
+
 # Theme
 theme: jekyll-theme-chirpy
 theme_mode: dark
 
-avatar: ""
+avatar: "/assets/img/avatar.svg"
 
 toc: true
 
@@ -131,6 +150,8 @@ exclude:
   - .bundle/
   - vendor/
   - scripts/
+  # Old WordPress export kept for reference only; do not publish it.
+  - chuanqizsblog.WordPress.2021-10-09.xml
 
 jekyll-archives:
   enabled: [categories, tags]
