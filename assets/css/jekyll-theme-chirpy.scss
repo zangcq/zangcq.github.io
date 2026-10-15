@@ -1,0 +1,22 @@
+---
+---
+
+@use 'abstracts/variables' with (
+  $theme: '{{ site.theme_mode }}'
+);
+
+/* prettier-ignore */
+@use 'main
+{%- if jekyll.environment == 'production' -%}
+  .bundle
+{%- endif -%}
+';
+
+/* append your custom style below */
+
+/* Homepage intro card (see _layouts/home.html) */
+#home-intro.card {
+  border: 1px solid rgb(128 128 128 / 20%);
+  background: var(--card-bg);
+  border-radius: 1rem;
+}
