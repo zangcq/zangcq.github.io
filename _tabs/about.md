@@ -13,13 +13,14 @@ page_id: about
 
 #### 字节跳动基础架构 | 编译器与库组（2020.7 ~ 至今）
 
-- 维护字节跳动 OpenJDK LTS 版本
+- 字节跳动OpenJDK技术负责人
   - 自研构建 OpenJDK 二进制，提供基础 Docker 镜像与数据中心 JDK 部署
-  - 与性能工程团队合作优化大数据工作负载，并建设可观测性工具
-  - 擅长内存泄漏与 Coredump 问题排查
-- 数据中心工作负载优化
-  - 在 CodeCache 与 LibJVM 中应用透明大页（THP）
-  - 优化大数据业务中的压缩库与解析库
+  - 主导公司大数据服务JDK8到JDK17的版本升级，落地规模超过千万核。
+  - 深入理解 GC、JIT、运行时系统，擅长内存泄漏与 Coredump 问题排查。
+- 深入分析数据中心工作负载，制定优化方案并落地。
+  - 设计并实现G1弹性堆内存的方案，业务增强垂直扩缩容能力。
+  - 设计并实现应用透明大页到CodeCache和LibJVM方案，提升iTLBCache命中率。
+  - 深度参与 x86、ARM、RISC-V架构服务器引入及性能调优。
 
 #### 阿里巴巴基础架构 | 异构计算编译器组（2018.7 ~ 2020.7）
 
@@ -36,10 +37,7 @@ page_id: about
 
 - [面向边缘计算的低功耗目标检测](https://github.com/xiaoyuuuuu/dac-hdc-2018-object-detection-in-Jetson-TX2)
   - 获得 [DAC 2018 System Design Contest 第三名](http://www.cse.cuhk.edu.hk/~byu/2018-DAC-SDC/index.html)
-  - 在 GPU（Jetson TX2）上实现半精度计算
-  - 网络剪枝与降低下采样率
-
-### 论文发表
+  - 在 GPU（Jetson TX2）上实现半精度计算，网络剪枝与降低下采样率
 
 - GPGPU 存储层次中的 NVM 研究
   - [Shared Last-level Cache Management for GPGPUs with Hybrid Main Memory](https://ieeexplore.ieee.org/abstract/document/7926953/)（DATE 2017，**最佳论文提名**）
